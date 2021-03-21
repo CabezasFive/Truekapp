@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Truekapp</string>
+    <string name="add_publicacion">Agregar una Publicacion</string>
+    <string name="titulo_publicacion">Ingrese titulo de la publicacion</string>
+    <string name="guardar">Guardar</string>
 </resources>
