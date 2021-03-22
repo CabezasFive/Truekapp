@@ -49,7 +49,8 @@ public class ListadoPublicaciones extends AppCompatActivity {
 
         if(requestCode == NEW_PUBLICACION_REQ_CODE && resultCode == RESULT_OK){
             Publicacion publicacion = new Publicacion();
-            publicacion.setTitulo(data.getStringExtra(NuevaPublicacionActivity.EXTRA_MSG));
+            publicacion.setTitulo(data.getStringExtra(NuevaPublicacionActivity.EXTRA_MSG_TITULO));
+            publicacion.setDescripcion(data.getStringExtra(NuevaPublicacionActivity.EXTRA_MSG_DESCRIPCION));
             publicacionViewModel.insert(publicacion);
         }else {
             Toast.makeText(getApplicationContext(), "No se pudo guardar", Toast.LENGTH_LONG).show();
