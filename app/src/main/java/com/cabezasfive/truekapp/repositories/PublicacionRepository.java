@@ -22,13 +22,29 @@ public class PublicacionRepository {
         publicaciones = publicacionDao.getAll();
     }
 
+    // Obtener todas las publicaciones
     public LiveData<List<Publicacion>> getPublicaciones(){
         return publicaciones;
     }
 
+    // Insert de una publicacion
     public void insert( Publicacion publicacion){
         AppDatabase.databaseWriteExecutor.execute(()->{
             publicacionDao.insert(publicacion);
+        });
+    }
+
+    // Update de la publicacion
+    public void updatePublicacion(Publicacion publicacion){
+        AppDatabase.databaseWriteExecutor.execute(()->{
+            publicacionDao.update(publicacion);
+        });
+    }
+
+    // Delete de una publicacion
+    public void deletePublicacion(Publicacion publicacion){
+        AppDatabase.databaseWriteExecutor.execute(()->{
+            publicacionDao.delete(publicacion);
         });
     }
 }

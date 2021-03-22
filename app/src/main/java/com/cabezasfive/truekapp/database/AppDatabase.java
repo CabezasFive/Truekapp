@@ -13,7 +13,9 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Publicacion.class}, version = 2)
+// version debe cambiar cada vez que se haga un cambio
+// en la entidad Publicacion para no generar error
+@Database(entities = {Publicacion.class}, version = 3)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract PublicacionDao publicacionDao();
@@ -25,8 +27,8 @@ public abstract class AppDatabase extends RoomDatabase {
     public static AppDatabase getInstance(final Context context){
         if(instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, "truekapp")
-                    .fallbackToDestructiveMigration()
-                    .build();
+                    .fallbackToDestructiveMigration() // si cambio la version destrulle la bd y la vuelve a construir
+                    .build(); // construye la bd
         }
         return instance;
     }
