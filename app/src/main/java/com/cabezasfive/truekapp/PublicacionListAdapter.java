@@ -50,7 +50,7 @@ public class PublicacionListAdapter extends ListAdapter<Publicacion, Publicacion
         });
     }
 
-    static class PublicacionDiff extends DiffUtil.ItemCallback<Publicacion>{
+    public static class PublicacionDiff extends DiffUtil.ItemCallback<Publicacion>{
         @Override
         public boolean areItemsTheSame(@NonNull Publicacion oldItem, @NonNull Publicacion newItem) {
             return oldItem.getId()== newItem.getId();

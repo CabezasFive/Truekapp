@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Truekapp">
         <activity android:name=".NuevaPublicacionActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
