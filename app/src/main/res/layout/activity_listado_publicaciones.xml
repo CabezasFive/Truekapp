@@ -28,7 +28,6 @@
         android:layout_margin="16dp"
         android:contentDescription="@string/add_publicacion"
         android:src="@drawable/ic_baseline_add_24"
-        android:backgroundTint="@color/verdeFondo"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
