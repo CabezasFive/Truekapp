@@ -36,4 +36,5 @@ public class PublicacionListAdapter extends ListAdapter<Publicacion, Publicacion
             return oldItem.getTitulo().equals(newItem.getTitulo());
         }
     }
+    
 }
