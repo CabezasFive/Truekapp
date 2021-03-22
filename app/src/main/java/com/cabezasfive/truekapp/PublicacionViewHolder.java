@@ -8,15 +8,18 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class PublicacionViewHolder extends RecyclerView.ViewHolder {
-    private final TextView publicacionItemView;
+    private final TextView tituloItemView;
+    private final TextView descripcionItemView;
 
     private PublicacionViewHolder(View itemView){
         super(itemView);
-        publicacionItemView = itemView.findViewById(R.id.textViewTitulo);
+        tituloItemView = itemView.findViewById(R.id.textViewTitulo);
+        descripcionItemView = itemView.findViewById(R.id.textViewDescripcion);
     }
 
-    public void bind(String texto){
-        publicacionItemView.setText(texto);
+    public void bind(String titulo, String descripcion){
+        tituloItemView.setText(titulo);
+        descripcionItemView.setText(descripcion);
     }
 
     static PublicacionViewHolder create(ViewGroup parent){

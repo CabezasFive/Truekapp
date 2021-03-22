@@ -13,12 +13,20 @@
         android:fontFamily="sans-serif-medium"
         />
 
+    <EditText
+        android:id="@+id/editTextIngresarDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:hint="@string/descripcion_publicacion"
+        android:fontFamily="sans-serif-medium"
+        />
+
     <Button
         android:id="@+id/btnGuardarPublicacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/teal_200"
-        android:textColor="@color/black"
+        android:backgroundTint="@color/verdeFondo"
         android:text="@string/guardar"
         />
 
