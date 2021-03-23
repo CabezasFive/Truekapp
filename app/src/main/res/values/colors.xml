@@ -8,4 +8,19 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="verdeFondo">#3dd854</color>
+
+    <!-- Paleta de colores personalizados -->
+    <color name="rojo">#DB3E3E</color>
+    <color name="verde">#54C74C </color>
+    <color name="azul">#223CA4</color>
+    <color name="amarillo">#DBC13E</color>
+    <color name="gris">#CBCBCB </color>
+
+
+
+    #DB3E3E - Rojo
+    #DB3E3E - Verde
+    #DB3E3E - Azul
+    #DB3E3E - Amarillo
+    #DB3E3E - Gris
 </resources>

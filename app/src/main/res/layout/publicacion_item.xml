@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        app:cardBackgroundColor="@color/verdeFondo"
+        app:cardBackgroundColor="@color/gris"
         app:cardCornerRadius="12dp"
         app:contentPadding="4dp"
         >
@@ -34,6 +34,7 @@
                 android:id="@+id/textViewDescripcion"
                 android:layout_width="335dp"
                 android:layout_height="18dp"
+                android:textColor="@color/black"
                 android:text="Esta es la descripcion del producto"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewTitulo" />

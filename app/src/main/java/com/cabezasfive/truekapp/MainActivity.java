@@ -86,7 +86,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (item.getItemId()){
             case R.id.nav_home:
-                ft.replace(R.id.contenido, new HomeFragment()).commit();
+                ft.replace(R.id.contenido, new HomeFragment());
+                ft.addToBackStack(null);
                 break;
             case R.id.nav_profile:
                 break;
@@ -97,6 +98,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_profile2:
                 break;
         }
+        ft.commit();
         setTitle(item.getTitle());
         drawerLayout.closeDrawers();
     }

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:layout_gravity="bottom"
-    android:background="@color/design_default_color_primary_dark"
+    android:background="@color/verde"
     android:paddingStart="15dp"
     android:paddingLeft="15dp"
     android:paddingBottom="15dp"
@@ -16,13 +17,15 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_person" />
+        android:src="@drawable/ic_person"
+        app:tint="@color/white" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Truekapp"
-        android:textSize="20sp"
+        android:textSize="26sp"
+        android:textColor="@color/white"
         />
 
 </LinearLayout>
