@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home"
+            android:icon="@drawable/ic_home"
+            />
+
+        <item
+            android:id="@+id/nav_profile"
+            android:title="Profile"
+            android:icon="@drawable/ic_person"
+            />
+
+        <item
+            android:id="@+id/nav_event"
+            android:title="Event"
+            android:icon="@drawable/ic_launcher_foreground"
+            />
+    </group>
+
+    <item android:title="Social">
+
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_home2"
+                    android:title="Home 2"
+                    android:icon="@drawable/ic_home"
+                    />
+
+                <item
+                    android:id="@+id/nav_profile2"
+                    android:title="Profile 2"
+                    android:icon="@drawable/ic_person"
+                    />
+
+            </group>
+        </menu>
+    </item>
+
+</menu>
