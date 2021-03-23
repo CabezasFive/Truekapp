@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +19,8 @@ import com.cabezasfive.truekapp.R;
 public class HomeFragment extends Fragment {
 
     View view;
-    Button btnListado;
+    Button btnListado, btnCategorias;
+
 
     public HomeFragment() {
         // Required empty public constructors
@@ -33,6 +36,20 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
         btnListado = view.findViewById(R.id.btn_Listado);
+        btnCategorias = view.findViewById(R.id.btn_HomeCategorias);
+
+        // Listener del boton a las categorias
+        btnCategorias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                CategoriasFragment categoriasFragment = new CategoriasFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.contenido, categoriasFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
 
         // escucha para el boton al listado
         btnListado.setOnClickListener(new View.OnClickListener() {
@@ -40,6 +57,7 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 // Intent para comenzar una nueva activity
                 // Debe reemplazarse por ir a un fragment donde se muestre el listado
+
                 Intent intent = new Intent(getActivity(), ListadoPublicaciones.class);
                 startActivity(intent);
             }

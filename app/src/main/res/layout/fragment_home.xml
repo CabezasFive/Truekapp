@@ -1,15 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
 
-    <Button
-        android:id="@+id/btn_Listado"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Listado" />
+        android:layout_height="match_parent"
+        >
+
+        <Button
+            android:id="@+id/btn_Listado"
+            android:layout_width="160dp"
+            android:layout_height="42dp"
+            android:layout_marginStart="152dp"
+            android:layout_marginLeft="152dp"
+            android:layout_marginTop="680dp"
+            android:backgroundTint="@color/rojo"
+            android:text="Listado"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_HomePublicar"
+            android:layout_width="145dp"
+            android:layout_height="145dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="120dp"
+            android:backgroundTint="@color/verde"
+            android:text="Publicar"
+            app:layout_constraintStart_toEndOf="@+id/btn_HomeCategorias"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_HomeDestacados"
+            android:layout_width="220dp"
+            android:layout_height="145dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="52dp"
+            android:backgroundTint="@color/azul"
+            android:text="Destacados"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_HomeCategorias" />
+
+        <Button
+            android:id="@+id/btn_HomeAyuda"
+            android:layout_width="145dp"
+            android:layout_height="145dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="52dp"
+            android:backgroundTint="@color/verde"
+            android:text="Ayuda"
+            app:layout_constraintStart_toEndOf="@+id/btn_HomeMasVistos"
+            app:layout_constraintTop_toBottomOf="@+id/btn_HomeOfertas" />
+
+        <Button
+            android:id="@+id/btn_HomeMasVistos"
+            android:layout_width="220dp"
+            android:layout_height="145dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="52dp"
+            android:backgroundTint="@color/amarillo"
+            android:text="Mas Vistos"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_HomeDestacados" />
+
+        <Button
+            android:id="@+id/btn_HomeOfertas"
+            android:layout_width="145dp"
+            android:layout_height="145dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="52dp"
+            android:backgroundTint="@color/verde"
+            android:text="Mas Ofertas"
+            app:layout_constraintStart_toEndOf="@+id/btn_HomeDestacados"
+            app:layout_constraintTop_toBottomOf="@+id/btn_HomePublicar" />
+
+        <Button
+            android:id="@+id/btn_HomeCategorias"
+            android:layout_width="220dp"
+            android:layout_height="145dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="120dp"
+            android:backgroundTint="@color/rojo"
+            android:text="Categorias"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="36dp"
+            android:src="@android:drawable/ic_menu_search"
+            app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="220dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="36dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="busca alguna publicacion"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 
 </FrameLayout>
