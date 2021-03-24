@@ -18,8 +18,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.cabezasfive.truekapp.fragments.AyudaFragment;
 import com.cabezasfive.truekapp.fragments.CategoriasFragment;
+import com.cabezasfive.truekapp.fragments.DestacadosFragment;
 import com.cabezasfive.truekapp.fragments.HomeFragment;
+import com.cabezasfive.truekapp.fragments.MasVistosFragment;
+import com.cabezasfive.truekapp.fragments.MisOfertasFragment;
+import com.cabezasfive.truekapp.fragments.PublicarFragment;
 import com.cabezasfive.truekapp.interfaces.IComunicacionFragments;
 import com.google.android.material.navigation.NavigationView;
 
@@ -46,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         toolbar = findViewById(R.id.toolbar);
 
         // Al iniciar se muestra el HomeFragment
-        getSupportFragmentManager().beginTransaction().replace(R.id.contenido, new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.contenido, new HomeFragment()).commit();
         setTitle("Home");
 
         // Setup del toolbar
@@ -90,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
 
         switch (item.getItemId()){
             case R.id.nav_home:
+                ft = fm.beginTransaction();
                 ft.replace(R.id.contenido, new HomeFragment());
                 ft.addToBackStack(null);
                 break;
@@ -122,12 +128,52 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         }
 
 
+        // Metodos que son llamados desde el menu de homeFragment que inicia el fragment asociado con el cardView clickeado
     @Override
-    public void Categorias() {
-        Toast.makeText(getApplicationContext(), "Preciono el boton", Toast.LENGTH_SHORT).show();
+    public void A_Categorias() {
+        ft = fm.beginTransaction();
         ft.replace(R.id.contenido, new CategoriasFragment());
         ft.addToBackStack(null);
         ft.commit();
+    }
 
+    @Override
+    public void A_Publicar() {
+        ft = fm.beginTransaction();
+        ft.replace(R.id.contenido, new PublicarFragment());
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    @Override
+    public void A_Destacados() {
+        ft = fm.beginTransaction();
+        ft.replace(R.id.contenido, new DestacadosFragment());
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    @Override
+    public void A_MisOfertas() {
+        ft = fm.beginTransaction();
+        ft.replace(R.id.contenido, new MisOfertasFragment());
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    @Override
+    public void A_MasVistos() {
+        ft = fm.beginTransaction();
+        ft.replace(R.id.contenido, new MasVistosFragment());
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    @Override
+    public void A_Ayuda() {
+        ft = fm.beginTransaction();
+        ft.replace(R.id.contenido, new AyudaFragment());
+        ft.addToBackStack(null);
+        ft.commit();
     }
 }
