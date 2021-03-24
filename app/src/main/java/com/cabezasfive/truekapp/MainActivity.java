@@ -99,13 +99,38 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
                 ft.replace(R.id.contenido, new HomeFragment());
                 ft.addToBackStack(null);
                 break;
-            case R.id.nav_profile:
+            case R.id.nav_login:
                 break;
-            case R.id.nav_event:
+            case R.id.nav_registro:
                 break;
-            case R.id.nav_home2:
+            case R.id.nav_categorias:
+                ft = fm.beginTransaction();
+                ft.replace(R.id.contenido,new  CategoriasFragment());
+                ft.addToBackStack(null);
                 break;
-            case R.id.nav_profile2:
+            case R.id.nav_destacados:
+                ft = fm.beginTransaction();
+                ft.replace(R.id.contenido,new DestacadosFragment());
+                ft.addToBackStack(null);
+                break;
+            case R.id.nav_masVistos:
+                ft = fm.beginTransaction();
+                ft.replace(R.id.contenido,new MasVistosFragment());
+                ft.addToBackStack(null);
+                break;
+            case R.id.nav_publicar:
+                ft = fm.beginTransaction();
+                ft.replace(R.id.contenido,new PublicarFragment());
+                ft.addToBackStack(null);
+                break;
+            case R.id.nav_ayuda:
+                ft = fm.beginTransaction();
+                ft.replace(R.id.contenido,new AyudaFragment());
+                ft.addToBackStack(null);
+                break;
+            case R.id.nav_pregruntasFrecuentes:
+                break;
+            case R.id.nav_acercaDe:
                 break;
         }
         ft.commit();

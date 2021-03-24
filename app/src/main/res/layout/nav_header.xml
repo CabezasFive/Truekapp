@@ -17,8 +17,7 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_person"
-        app:tint="@color/white" />
+        android:src="@drawable/logo" />
 
     <TextView
         android:layout_width="wrap_content"

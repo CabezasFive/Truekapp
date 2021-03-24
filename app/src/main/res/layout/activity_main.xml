@@ -35,13 +35,6 @@
         app:menu="@menu/drawer_menu"
         app:headerLayout="@layout/nav_header"
         />
-<!--
-    <Button
-        android:id="@+id/btn_Listado"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="aListado"
-        android:text="Listado" />
--->
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
