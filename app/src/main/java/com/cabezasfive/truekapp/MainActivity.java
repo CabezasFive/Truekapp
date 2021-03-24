@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.cabezasfive.truekapp.fragments.AyudaFragment;
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
     FragmentManager fm = getSupportFragmentManager();
     FragmentTransaction ft = fm.beginTransaction();
 
+    ImageView logoHome;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navView);
         toolbar = findViewById(R.id.toolbar);
+
+        logoHome=findViewById(R.id.logoToolbar);
+
 
         // Al iniciar se muestra el HomeFragment
         getSupportFragmentManager().beginTransaction().add(R.id.contenido, new HomeFragment()).commit();
@@ -138,6 +144,8 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         drawerLayout.closeDrawers();
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(toggle.onOptionsItemSelected(item)){
@@ -152,53 +160,64 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
             startActivity(intent);
         }
 
+        public void clikHome(View view){
+                    ft = fm.beginTransaction();
+                    ft.replace(R.id.contenido, new HomeFragment());
+                    ft.addToBackStack(null);
+                    ft.commit();
+        }
+
 
         // Metodos que son llamados desde el menu de homeFragment que inicia el fragment asociado con el cardView clickeado
-    @Override
-    public void A_Categorias() {
-        ft = fm.beginTransaction();
-        ft.replace(R.id.contenido, new CategoriasFragment());
-        ft.addToBackStack(null);
-        ft.commit();
-    }
+        @Override
+        public void A_Categorias() {
+            ft = fm.beginTransaction();
+            ft.replace(R.id.contenido, new CategoriasFragment());
+            ft.addToBackStack(null);
+            ft.commit();
+        }
 
-    @Override
-    public void A_Publicar() {
-        ft = fm.beginTransaction();
-        ft.replace(R.id.contenido, new PublicarFragment());
-        ft.addToBackStack(null);
-        ft.commit();
-    }
+        @Override
+        public void A_Publicar() {
+            ft = fm.beginTransaction();
+            ft.replace(R.id.contenido, new PublicarFragment());
+            ft.addToBackStack(null);
+            ft.commit();
+        }
 
-    @Override
-    public void A_Destacados() {
-        ft = fm.beginTransaction();
-        ft.replace(R.id.contenido, new DestacadosFragment());
-        ft.addToBackStack(null);
-        ft.commit();
-    }
+        @Override
+        public void A_Destacados() {
+            ft = fm.beginTransaction();
+            ft.replace(R.id.contenido, new DestacadosFragment());
+            ft.addToBackStack(null);
+            ft.commit();
+        }
 
-    @Override
-    public void A_MisOfertas() {
-        ft = fm.beginTransaction();
-        ft.replace(R.id.contenido, new MisOfertasFragment());
-        ft.addToBackStack(null);
-        ft.commit();
-    }
+        @Override
+        public void A_MisOfertas() {
+            ft = fm.beginTransaction();
+            ft.replace(R.id.contenido, new MisOfertasFragment());
+            ft.addToBackStack(null);
+            ft.commit();
+        }
 
-    @Override
-    public void A_MasVistos() {
-        ft = fm.beginTransaction();
-        ft.replace(R.id.contenido, new MasVistosFragment());
-        ft.addToBackStack(null);
-        ft.commit();
-    }
+        @Override
+        public void A_MasVistos() {
+            ft = fm.beginTransaction();
+            ft.replace(R.id.contenido, new MasVistosFragment());
+            ft.addToBackStack(null);
+            ft.commit();
+        }
 
-    @Override
-    public void A_Ayuda() {
-        ft = fm.beginTransaction();
-        ft.replace(R.id.contenido, new AyudaFragment());
-        ft.addToBackStack(null);
-        ft.commit();
-    }
+        @Override
+        public void A_Ayuda() {
+            ft = fm.beginTransaction();
+            ft.replace(R.id.contenido, new AyudaFragment());
+            ft.addToBackStack(null);
+            ft.commit();
+        }
+
+
 }
+
+
