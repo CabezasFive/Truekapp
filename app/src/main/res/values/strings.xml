@@ -4,4 +4,8 @@
     <string name="titulo_publicacion">Ingrese titulo de la publicacion</string>
     <string name="descripcion_publicacion">Ingrese una descripcion</string>
     <string name="guardar">Guardar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
 </resources>

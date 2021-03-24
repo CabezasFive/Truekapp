@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home"
+            android:icon="@drawable/ic_home_24"
+            android:checked="true"
+            />
+
+        <item
+            android:id="@+id/nav_login"
+            android:title="Ingresar"
+            android:icon="@drawable/user"
+            />
+
+        <item
+            android:id="@+id/nav_registro"
+            android:title="Registro"
+            android:icon="@drawable/ic_registration"
+            />
+    </group>
+
+    <item android:title="Publicaciones">
+
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_categorias"
+                    android:title="Categorias"
+                    android:icon="@drawable/b_lista"
+                    />
+
+                <item
+                    android:id="@+id/nav_destacados"
+                    android:title="Destacados"
+                    android:icon="@drawable/b_estrella"
+                    />
+
+                <item
+                    android:id="@+id/nav_masVistos"
+                    android:title="Mas Vistos"
+                    android:icon="@drawable/b_ojo"
+                    />
+
+                <item
+                    android:id="@+id/nav_publicar"
+                    android:title="Publicar"
+                    android:icon="@drawable/b_vender"
+                    />
+
+            </group>
+        </menu>
+    </item>
+
+
+
+    <item android:title="Ayuda">
+
+        <menu>
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_ayuda"
+                    android:title="Ayuda"
+                    android:icon="@drawable/b_informacion"
+                    />
+
+                <item
+                    android:id="@+id/nav_pregruntasFrecuentes"
+                    android:title="FAQ"
+                    android:icon="@drawable/ic_question"
+                    />
+
+                <item
+                    android:id="@+id/nav_acercaDe"
+                    android:title="Acerca de"
+                    android:icon="@drawable/ic_groups"
+                    />
+
+
+            </group>
+        </menu>
+    </item>
+
+</menu>
