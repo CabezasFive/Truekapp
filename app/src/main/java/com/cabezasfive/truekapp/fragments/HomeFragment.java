@@ -1,8 +1,12 @@
 package com.cabezasfive.truekapp.fragments;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -11,14 +15,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.cabezasfive.truekapp.ListadoPublicaciones;
 import com.cabezasfive.truekapp.R;
+import com.cabezasfive.truekapp.interfaces.IComunicacionFragments;
 
 
 public class HomeFragment extends Fragment {
 
+    //Referencia a los cardViews que funcionaran como botones
+    CardView cardCategorias;
+    IComunicacionFragments iComunica;
+
+
     View view;
+    Activity activity;
     Button btnListado, btnCategorias;
 
 
@@ -35,34 +47,25 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        btnListado = view.findViewById(R.id.btn_Listado);
-        btnCategorias = view.findViewById(R.id.btn_HomeCategorias);
-
-        // Listener del boton a las categorias
-        btnCategorias.setOnClickListener(new View.OnClickListener() {
+        cardCategorias=view.findViewById(R.id.cardCategorias);
+        cardCategorias.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                CategoriasFragment categoriasFragment = new CategoriasFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.contenido, categoriasFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
-
-        // escucha para el boton al listado
-        btnListado.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Intent para comenzar una nueva activity
-                // Debe reemplazarse por ir a un fragment donde se muestre el listado
-
-                Intent intent = new Intent(getActivity(), ListadoPublicaciones.class);
-                startActivity(intent);
+                iComunica.Categorias();
             }
         });
 
         return view;
     }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        if (context instanceof Activity){
+            activity= (Activity) context;
+            iComunica = (IComunicacionFragments) activity;
+        }
+    }
 }
+

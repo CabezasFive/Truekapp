@@ -16,11 +16,14 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import com.cabezasfive.truekapp.fragments.CategoriasFragment;
 import com.cabezasfive.truekapp.fragments.HomeFragment;
+import com.cabezasfive.truekapp.interfaces.IComunicacionFragments;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements IComunicacionFragments, NavigationView.OnNavigationItemSelectedListener {
 
     // referencias a la navegacion
     DrawerLayout drawerLayout;
@@ -28,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     // Icono hamburguesa
     ActionBarDrawerToggle toggle;
+
+    FragmentManager fm = getSupportFragmentManager();
+    FragmentTransaction ft = fm.beginTransaction();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = findViewById(R.id.toolbar);
 
         // Al iniciar se muestra el HomeFragment
-        getSupportFragmentManager().beginTransaction().add(R.id.contenido, new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.contenido, new HomeFragment()).commit();
         setTitle("Home");
 
         // Setup del toolbar
@@ -81,8 +87,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void selectItemNav(MenuItem item) {
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
 
         switch (item.getItemId()){
             case R.id.nav_home:
@@ -118,4 +122,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
 
+    @Override
+    public void Categorias() {
+        Toast.makeText(getApplicationContext(), "Preciono el boton", Toast.LENGTH_SHORT).show();
+        ft.replace(R.id.contenido, new CategoriasFragment());
+        ft.addToBackStack(null);
+        ft.commit();
+
+    }
 }

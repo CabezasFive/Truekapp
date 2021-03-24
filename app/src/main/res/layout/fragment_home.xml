@@ -72,7 +72,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardMasVistos"
+                android:id="@+id/cardPublicar"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginLeft="16dp"
@@ -102,7 +102,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
-                        android:text="Mas Visitados"
+                        android:text="PUBLICAR"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="16sp"
@@ -113,7 +113,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardListado"
+                android:id="@+id/cardDestacados"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginLeft="16dp"
@@ -143,7 +143,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
-                        android:text="LISTADO"
+                        android:text="DESTACADOS"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="16sp"
@@ -155,7 +155,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardNuevos"
+                android:id="@+id/cardMisOfertas"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginLeft="16dp"
@@ -185,7 +185,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
-                        android:text="ULTIMOS"
+                        android:text="MIS OFERTAS"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="16sp"
@@ -197,7 +197,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardIngresar"
+                android:id="@+id/cardMasVistos"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginLeft="16dp"
@@ -227,7 +227,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="center_horizontal"
-                        android:text="INGRESAR"
+                        android:text="MAS VISTOS"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="16sp"
