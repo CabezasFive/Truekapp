@@ -3,6 +3,8 @@ package com.cabezasfive.truekapp.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +16,18 @@ import android.widget.Toast;
 import com.cabezasfive.truekapp.MainActivity;
 import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.entities.Publicacion;
+import com.cabezasfive.truekapp.interfaces.IComunicacionFragments;
+import com.google.android.material.navigation.NavigationView;
+
+import javax.security.auth.callback.Callback;
 
 
-public class PublicarFragment extends Fragment {
+public class PublicarFragment extends Fragment  {
 
     private EditText inputTitulo, inputDescripcion;
     private Button btnAgregar;
+
+
 
 
     @Override
@@ -35,7 +43,7 @@ public class PublicarFragment extends Fragment {
 
         inputTitulo = view.findViewById(R.id.et_TituloPub);
         inputDescripcion = view.findViewById(R.id.et_DescrPub);
-        btnAgregar = view.findViewById(R.id.btnAgregar);
+        btnAgregar = view.findViewById(R.id.btn_AddPub);
 
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +60,12 @@ public class PublicarFragment extends Fragment {
 
                 inputTitulo.setText("");
                 inputDescripcion.setText("");
+
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft;
+                ft = fm.beginTransaction();
+                ft.replace(R.id.contenido,new HomeFragment());
+                ft.commit();
             }
         });
 
