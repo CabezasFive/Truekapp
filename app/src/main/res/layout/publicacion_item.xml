@@ -39,15 +39,6 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewTitulo" />
 
-            <ImageButton
-                android:id="@+id/buttonDelete"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewDescripcion"
-                app:layout_constraintEnd_toEndOf="@+id/textViewTitulo"
-                app:layout_constraintTop_toTopOf="@+id/textViewDescripcion"
-                app:srcCompat="@android:drawable/ic_delete" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

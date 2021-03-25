@@ -24,7 +24,7 @@ public class ListadoPublicaciones extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listado_publicaciones);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewPublicaciones);
+        RecyclerView recyclerView = findViewById(R.id.rv_MasVistos);
         final PublicacionListAdapter adapter = new PublicacionListAdapter(new PublicacionListAdapter.PublicacionDiff());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -3,64 +3,72 @@ package com.cabezasfive.truekapp.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.cabezasfive.truekapp.MainActivity;
 import com.cabezasfive.truekapp.R;
+import com.cabezasfive.truekapp.entities.Publicacion;
+import com.cabezasfive.truekapp.interfaces.IComunicacionFragments;
+import com.google.android.material.navigation.NavigationView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PublicarFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class PublicarFragment extends Fragment {
+import javax.security.auth.callback.Callback;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class PublicarFragment extends Fragment  {
 
-    public PublicarFragment() {
-        // Required empty public constructor
-    }
+    private EditText inputTitulo, inputDescripcion;
+    private Button btnAgregar;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PublicarFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PublicarFragment newInstance(String param1, String param2) {
-        PublicarFragment fragment = new PublicarFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_publicar, container, false);
+        View view = inflater.inflate(R.layout.fragment_publicar, container, false);
+
+        inputTitulo = view.findViewById(R.id.et_TituloPub);
+        inputDescripcion = view.findViewById(R.id.et_DescrPub);
+        btnAgregar = view.findViewById(R.id.btn_AddPub);
+
+        btnAgregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String titulo = inputTitulo.getText().toString();
+                String descripcion = inputDescripcion.getText().toString();
+
+                Publicacion publicacion = new Publicacion();
+                publicacion.setTitulo(titulo);
+                publicacion.setDescripcion(descripcion);
+
+                MainActivity.appDatabase.publicacionDao().insert(publicacion);
+                Toast.makeText(getActivity(), "Datos Guardados Correctamente", Toast.LENGTH_SHORT).show();
+
+                inputTitulo.setText("");
+                inputDescripcion.setText("");
+
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft;
+                ft = fm.beginTransaction();
+                ft.replace(R.id.contenido,new HomeFragment());
+                ft.commit();
+            }
+        });
+
+        return view;
     }
 }

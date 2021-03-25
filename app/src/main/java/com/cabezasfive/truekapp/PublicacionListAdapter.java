@@ -30,14 +30,14 @@ public class PublicacionListAdapter extends ListAdapter<Publicacion, Publicacion
         holder.bind(publicacionActual.getTitulo(), publicacionActual.getDescripcion());
 
         // obtener la referencia del boton de borrar
-        ImageButton deleteButton = holder.itemView.findViewById(R.id.buttonDelete);
+        //ImageButton deleteButton = holder.itemView.findViewById(R.id.buttonDelete);
 
         // Listener de onClick
-        deleteButton.setOnClickListener(view ->{
+        /*deleteButton.setOnClickListener(view ->{
             if(listener!=null){
                 listener.onItemDelete(publicacionActual);
             }
-        });
+        });*/
 
         // Click en un item de la lista - Edita
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +50,7 @@ public class PublicacionListAdapter extends ListAdapter<Publicacion, Publicacion
         });
     }
 
-    static class PublicacionDiff extends DiffUtil.ItemCallback<Publicacion>{
+    public static class PublicacionDiff extends DiffUtil.ItemCallback<Publicacion>{
         @Override
         public boolean areItemsTheSame(@NonNull Publicacion oldItem, @NonNull Publicacion newItem) {
             return oldItem.getId()== newItem.getId();
