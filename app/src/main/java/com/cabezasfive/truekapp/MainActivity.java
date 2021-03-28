@@ -13,12 +13,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import com.cabezasfive.truekapp.fragments.AyudaFragment;
 import com.cabezasfive.truekapp.fragments.CategoriasFragment;
 import com.cabezasfive.truekapp.fragments.DestacadosFragment;
 import com.cabezasfive.truekapp.fragments.HomeFragment;
@@ -124,9 +121,8 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
                 ft.addToBackStack(null);
                 break;
             case R.id.nav_ayuda:
-                ft = fm.beginTransaction();
-                ft.replace(R.id.contenido,new AyudaFragment());
-                ft.addToBackStack(null);
+                Intent miIntent = new Intent(MainActivity.this, AyudaActivity.class);
+                startActivity(miIntent);
                 break;
             case R.id.nav_pregruntasFrecuentes:
                 break;
@@ -196,9 +192,7 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
 
     @Override
     public void A_Ayuda() {
-        ft = fm.beginTransaction();
-        ft.replace(R.id.contenido, new AyudaFragment());
-        ft.addToBackStack(null);
-        ft.commit();
+        Intent miIntent = new Intent(MainActivity.this, AyudaActivity.class);
+        startActivity(miIntent);
     }
 }

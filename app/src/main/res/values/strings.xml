@@ -8,4 +8,24 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="drawer_open">Open Drawer</string>
     <string name="drawer_close">Close Drawer</string>
+
+
+    <!-- Strings de Ayuda -->
+    <string name="title_activity_ayuda">Ayuda Activity</string>
+    <string name="tab_text_1">Descripcion de App</string>
+    <string name="tab_text_2">Login / Registro</string>
+    <string name="tab_text_3">Publicar / Mis Ofertas</string>
+    <string name="tab_text_4">Categorias</string>
+    <string name="tab_text_5">Destacados</string>
+    <string name="tab_text_6">Mas Vistos</string>
+    <string name="tab_text_7">FAQ</string>
+
+    <string name="ayuda_app_descripcion">Descripcion de la app</string>
+    <string name="ayuda_login_register">Login y registro de usuario info</string>
+    <string name="ayuda_publicar_mis_ofertas">Publicar y ver nuestras ofertas info</string>
+    <string name="ayuda_categorias">Ver ofertas por categorias info</string>
+    <string name="ayuda_destacados">Ver ofertas destacadas info</string>
+    <string name="ayuda_mas_vistos">Ver ofertas mas vistas info</string>
+    <string name="ayuda_FAQ">Por mas preguntas que puedas tener, puedes verificar nuestra seccion de FAQ</string>
+
 </resources>
