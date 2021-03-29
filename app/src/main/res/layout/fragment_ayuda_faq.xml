@@ -6,14 +6,55 @@
     tools:context=".fragments.AyudaFAQFragment"
     android:background="@color/verde">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ayuda_FAQ"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textSize="28dp"
-        android:textColor="@color/black"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="center">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ayuda_FAQ"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:layout_margin="10dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:gravity="bottom">
+
+            <Button
+                android:id="@+id/FAQ"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_alignParentLeft="true"
+                android:text="@string/tab_text_7"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:background="@android:color/transparent"
+                />
+
+        <Button
+            android:id="@+id/Inicio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_alignParentRight="true"
+            android:text="@string/inicio"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:background="@android:color/transparent"
+            />
+
+    </RelativeLayout>
 
 </FrameLayout>

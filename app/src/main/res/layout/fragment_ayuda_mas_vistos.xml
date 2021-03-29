@@ -4,16 +4,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.AyudaMasVistosFragment"
-    android:background="@color/rojo">
+    android:background="@color/rojointenso">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ayuda_mas_vistos"
+        android:orientation="vertical"
         android:layout_gravity="center"
-        android:gravity="center"
-        android:textSize="30dp"
-        android:textColor="@color/black" />
+        android:padding="15dp"
+        android:layout_margin="15dp">
+
+        <ImageView
+            android:id="@+id/ojo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:src="@drawable/b_ojo"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ayuda_mas_vistos"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </FrameLayout>

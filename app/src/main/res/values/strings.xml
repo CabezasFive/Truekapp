@@ -12,6 +12,7 @@
 
     <!-- Strings de Ayuda -->
     <string name="title_activity_ayuda">Ayuda Activity</string>
+    <string name="inicio">Inicio</string>
     <string name="tab_text_1">Descripcion de App</string>
     <string name="tab_text_2">Login / Registro</string>
     <string name="tab_text_3">Publicar / Mis Ofertas</string>
@@ -20,12 +21,12 @@
     <string name="tab_text_6">Mas Vistos</string>
     <string name="tab_text_7">FAQ</string>
 
-    <string name="ayuda_app_descripcion">Descripcion de la app</string>
-    <string name="ayuda_login_register">Login y registro de usuario info</string>
-    <string name="ayuda_publicar_mis_ofertas">Publicar y ver nuestras ofertas info</string>
-    <string name="ayuda_categorias">Ver ofertas por categorias info</string>
-    <string name="ayuda_destacados">Ver ofertas destacadas info</string>
-    <string name="ayuda_mas_vistos">Ver ofertas mas vistas info</string>
-    <string name="ayuda_FAQ">Por mas preguntas que puedas tener, puedes verificar nuestra seccion de FAQ</string>
+    <string name="ayuda_app_descripcion">App enfocada en la promoción e implementación del trueque como elemento clave en el intercambio de bienes y servicios</string>
+    <string name="ayuda_login_register">La pantalla de login o acceso al sistema habilitá a los usuarios al acceso y registro en la aplicación</string>
+    <string name="ayuda_publicar_mis_ofertas">Pantalla donde los usuarios podrán iniciar el proceso de publicación de sus articulos en el site y verificar las ofertas recibidas de parte de otros usuarios</string>
+    <string name="ayuda_categorias">Clases de articulos agrupados en función de sus atributos, similitud o funcionalidad.</string>
+    <string name="ayuda_destacados">Selección de los articulos más importantes o de mayor relevancia en cada una de las categorias del site.</string>
+    <string name="ayuda_mas_vistos">Selección de los articulos con mayor cantidad de visitas de usuarios en un intervalo previamente determinado. </string>
+    <string name="ayuda_FAQ">Por mas preguntas que puedas tener, puedes verificar nuestra seccion de FAQ o dirigirte al inicio con los siguientes botones</string>
 
 </resources>

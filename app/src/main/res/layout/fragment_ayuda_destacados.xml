@@ -6,14 +6,39 @@
     tools:context=".fragments.AyudaDestacadosFragment"
     android:background="@color/azul">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ayuda_destacados"
+        android:orientation="vertical"
         android:layout_gravity="center"
-        android:gravity="center"
-        android:textSize="30dp"
-        android:textColor="@color/white" />
+        android:padding="15dp"
+        android:layout_margin="15dp">
+
+        <ImageView
+            android:id="@+id/destacados"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:src="@drawable/b_estrella"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ayuda_destacados"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </FrameLayout>
