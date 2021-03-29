@@ -23,7 +23,8 @@ public class PublicacionViewHolder extends RecyclerView.ViewHolder {
     }
 
     static PublicacionViewHolder create(ViewGroup parent){
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.publicacion_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.publicacion_item, parent, false);
         return new PublicacionViewHolder(view);
     }
 }
