@@ -8,20 +8,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
 
 
-import android.content.Intent;
+
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.cabezasfive.truekapp.database.AppDatabase;
 import com.cabezasfive.truekapp.fragments.AyudaFragment;
 import com.cabezasfive.truekapp.fragments.CategoriasFragment;
 import com.cabezasfive.truekapp.fragments.DestacadosFragment;
@@ -46,15 +41,12 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
 
     ImageView logoHome;
 
-    public static AppDatabase appDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        appDatabase = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "truekapp" ).allowMainThreadQueries().build();
 
         // UI
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -162,11 +154,6 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         return super.onOptionsItemSelected(item);
     }
 
-    // Metodo del boton  A Listado
-        public void aListado(View view){
-            Intent intent = new Intent(this, ListadoPublicaciones.class);
-            startActivity(intent);
-        }
 
         public void clikHome(View view){
                     ft = fm.beginTransaction();
