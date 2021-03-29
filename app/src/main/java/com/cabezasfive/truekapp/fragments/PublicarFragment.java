@@ -15,9 +15,14 @@ import android.widget.Toast;
 
 import com.cabezasfive.truekapp.MainActivity;
 import com.cabezasfive.truekapp.R;
-import com.cabezasfive.truekapp.entities.Publicacion;
 import com.cabezasfive.truekapp.interfaces.IComunicacionFragments;
+import com.cabezasfive.truekapp.models.Publicacion;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.UUID;
 
 import javax.security.auth.callback.Callback;
 
@@ -27,8 +32,9 @@ public class PublicarFragment extends Fragment  {
     private EditText inputTitulo, inputDescripcion;
     private Button btnAgregar;
 
-
-
+    // Integracion de Firebase
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,15 +57,30 @@ public class PublicarFragment extends Fragment  {
                 String titulo = inputTitulo.getText().toString();
                 String descripcion = inputDescripcion.getText().toString();
 
-                Publicacion publicacion = new Publicacion();
-                publicacion.setTitulo(titulo);
-                publicacion.setDescripcion(descripcion);
+                // Inicializar Firebase
+                inicializarFirebase();
 
-                MainActivity.appDatabase.publicacionDao().insert(publicacion);
-                Toast.makeText(getActivity(), "Datos Guardados Correctamente", Toast.LENGTH_SHORT).show();
+                if (titulo.equals("") || descripcion.equals("")){
+                    validacion();
+                }else {
+                    // crear un objeto (instancia de la clase Publicacion
+                    Publicacion p = new Publicacion();
+                    p.setUid(UUID.randomUUID().toString());
+                    p.setTitulo(titulo);
+                    p.setDescripcion(descripcion);
 
-                inputTitulo.setText("");
-                inputDescripcion.setText("");
+                    databaseReference.child("Publicacion").child(p.getUid()).setValue(p);
+
+                    Toast.makeText(getActivity(), "Datos Guardados Correctamente", Toast.LENGTH_SHORT).show();
+                    limpiarDatos();
+                }
+
+                //Publicacion publicacion = new Publicacion();
+                //publicacion.setTitulo(titulo);
+                //publicacion.setDescripcion(descripcion);
+
+                //MainActivity.appDatabase.publicacionDao().insert(publicacion);
+
 
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction ft;
@@ -70,5 +91,28 @@ public class PublicarFragment extends Fragment  {
         });
 
         return view;
+    }
+
+    // Metodo para inicializar Firebase
+    private void inicializarFirebase() {
+        FirebaseApp.initializeApp(getContext());
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+    }
+
+    private void limpiarDatos() {
+        inputTitulo.setText("");
+        inputDescripcion.setText("");
+    }
+
+    private void validacion() {
+        String titulo = inputTitulo.getText().toString();
+        String descripcion = inputDescripcion.getText().toString();
+
+        if(titulo.equals("")){
+            Toast.makeText(getActivity(), "Debe ingresar un Titulo", Toast.LENGTH_SHORT).show();
+        } else if(descripcion.equals("")){
+            Toast.makeText(getActivity(), "Debe ingresar una Descripcion", Toast.LENGTH_SHORT).show();
+        }
     }
 }
