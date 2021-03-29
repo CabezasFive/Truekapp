@@ -3,6 +3,8 @@ package com.cabezasfive.truekapp.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +23,7 @@ public class EditPublicacionFragment extends Fragment {
 
 
     private String tituloP, descrP, uidP;
-    private Button btnEditar;
+    private Button btnEditar, btnBorrar;
 
     // Integracion de Firebase
     FirebaseDatabase firebaseDatabase;
@@ -57,11 +59,16 @@ public class EditPublicacionFragment extends Fragment {
         EditText titulo = view.findViewById(R.id.et_EditTituloPub);
         EditText descripcion = view.findViewById(R.id.et_EditDescrPub);
         btnEditar = view.findViewById(R.id.btn_EditPub);
+        btnBorrar = view.findViewById(R.id.btn_DeletePub);
+
+        inicializarFirebase();
+
+
+        // Al precionar el boton de editar se guarda en la misma posicion con los datos actualizados
 
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                inicializarFirebase();
 
                 String tituloEd = titulo.getText().toString();
                 String descripcionEd = descripcion.getText().toString();
@@ -72,6 +79,31 @@ public class EditPublicacionFragment extends Fragment {
                 publicacion.setUid(uidP);
 
                 databaseReference.child("Publicacion").child(uidP).setValue(publicacion);
+
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft;
+                ft = fm.beginTransaction();
+                ft.replace(R.id.contenido,new HomeFragment());
+                ft.commit();
+            }
+        });
+
+
+
+        // Al precionar el boton borrar elimina el elemento por su uid
+
+        btnBorrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                databaseReference.child("Publicacion").child(uidP).removeValue();
+
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft;
+                ft = fm.beginTransaction();
+                ft.replace(R.id.contenido,new HomeFragment());
+                ft.commit();
             }
         });
 
