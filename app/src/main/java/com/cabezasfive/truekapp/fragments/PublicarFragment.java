@@ -13,11 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.cabezasfive.truekapp.MainActivity;
+
 import com.cabezasfive.truekapp.R;
-import com.cabezasfive.truekapp.interfaces.IComunicacionFragments;
+
 import com.cabezasfive.truekapp.models.Publicacion;
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

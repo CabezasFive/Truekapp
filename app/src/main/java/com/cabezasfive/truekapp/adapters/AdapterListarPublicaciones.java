@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cabezasfive.truekapp.R;
-import com.cabezasfive.truekapp.entities.Publicacion;
+import com.cabezasfive.truekapp.models.Publicacion;
 
 import java.util.ArrayList;
 

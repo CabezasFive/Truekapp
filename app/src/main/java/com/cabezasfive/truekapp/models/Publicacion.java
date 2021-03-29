@@ -9,6 +9,12 @@ public class Publicacion {
     public Publicacion() {
     }
 
+    public Publicacion (String uid, String titulo, String descripcion){
+        this.uid = uid;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+    }
+
     public String getUid() {
         return uid;
     }
@@ -33,8 +39,4 @@ public class Publicacion {
         this.descripcion = descripcion;
     }
 
-    @Override
-    public String toString() {
-        return titulo;
-    }
 }
