@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.EditPublicacionFragment">
+
+
+    <Button
+        android:id="@+id/btn_EditPub"
+        android:layout_width="211dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="40dp"
+        android:text="EDITAR"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_EditDescripcionPub" />
+
+    <TextView
+        android:id="@+id/tv_EditDescripcionPub"
+        android:layout_width="327dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="24dp"
+        android:text="Ingresa una descripcion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_EditDescrPub" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_EditTituloPub"
+        android:layout_width="323dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="64dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_EditDescrPub"
+        android:layout_width="319dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EdittextView2" />
+
+    <TextView
+        android:id="@+id/EdittextView2"
+        android:layout_width="219dp"
+        android:layout_height="31dp"
+        android:layout_marginTop="32dp"
+        android:text="Ingresa el Titulo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_EditTituloPub" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
