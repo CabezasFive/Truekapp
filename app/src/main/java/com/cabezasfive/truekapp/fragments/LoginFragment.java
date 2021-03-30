@@ -20,9 +20,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class LoginFragment extends Fragment {
+
 
     private EditText etEmail;
     private EditText etPass;
@@ -36,10 +42,9 @@ public class LoginFragment extends Fragment {
     private TextView tvRegistrarse;
 
     private FirebaseAuth mAuth;
+    private DatabaseReference databaseReference;
 
-    public LoginFragment() {
-        // Required empty public constructor
-    }
+
 
     public static LoginFragment newInstance(String param1, String param2) {
         LoginFragment fragment = new LoginFragment();
@@ -105,8 +110,8 @@ public class LoginFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 // si la tarea fue exitosa (se logueo el usuario)
-                // se carga el mainFragment y se mostrara el nombre de usuario y boton cerrar sesion
                 if( task.isSuccessful()){
+
                     HomeFragment homeFragment = new HomeFragment();
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     fm.beginTransaction().replace(R.id.contenido, homeFragment)
