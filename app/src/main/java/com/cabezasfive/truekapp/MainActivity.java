@@ -24,6 +24,7 @@ import com.cabezasfive.truekapp.fragments.HomeFragment;
 import com.cabezasfive.truekapp.fragments.MasVistosFragment;
 import com.cabezasfive.truekapp.fragments.MisOfertasFragment;
 import com.cabezasfive.truekapp.fragments.PublicarFragment;
+import com.cabezasfive.truekapp.fragments.RegistroFragment;
 import com.cabezasfive.truekapp.interfaces.IComunicacionFragments;
 import com.google.android.material.navigation.NavigationView;
 
@@ -108,6 +109,9 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
             case R.id.nav_login:
                 break;
             case R.id.nav_registro:
+                ft = fm.beginTransaction();
+                ft.replace(R.id.contenido, new RegistroFragment());
+                ft.addToBackStack(null);
                 break;
             case R.id.nav_categorias:
                 ft = fm.beginTransaction();

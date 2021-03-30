@@ -1,8 +1,10 @@
 package com.cabezasfive.truekapp;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,11 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 public class PublicacionViewHolder extends RecyclerView.ViewHolder {
     private final TextView tituloItemView;
     private final TextView descripcionItemView;
+    private ImageView imageViewPub;
 
     private PublicacionViewHolder(View itemView){
         super(itemView);
         tituloItemView = itemView.findViewById(R.id.textViewTitulo);
         descripcionItemView = itemView.findViewById(R.id.textViewDescripcion);
+        imageViewPub = itemView.findViewById(R.id.imgPublicacion);
     }
 
     public void bind(String titulo, String descripcion){

@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
 import com.cabezasfive.truekapp.R;
 
 import com.cabezasfive.truekapp.models.Publicacion;
@@ -21,9 +20,8 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Date;
 import java.util.UUID;
-
-import javax.security.auth.callback.Callback;
 
 
 public class PublicarFragment extends Fragment  {
@@ -50,14 +48,14 @@ public class PublicarFragment extends Fragment  {
         inputDescripcion = view.findViewById(R.id.et_DescrPub);
         btnAgregar = view.findViewById(R.id.btn_AddPub);
 
+        // Inicializar Firebase
+        inicializarFirebase();
+
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String titulo = inputTitulo.getText().toString();
                 String descripcion = inputDescripcion.getText().toString();
-
-                // Inicializar Firebase
-                inicializarFirebase();
 
                 if (titulo.equals("") || descripcion.equals("")){
                     validacion();
@@ -67,18 +65,18 @@ public class PublicarFragment extends Fragment  {
                     p.setUid(UUID.randomUUID().toString());
                     p.setTitulo(titulo);
                     p.setDescripcion(descripcion);
+                    p.setImagen01("https://fotos.perfil.com/2020/06/08/960/0/9-de-junio-dia-mundial-del-pato-donald-968611.jpg");
+                    p.setActivo(true);
+                    p.setVisitas(0);
+
+                    Date fecha = new Date(); // Sistema actual La fecha y la hora se asignan a objDate
+                    p.setF_Creacion(fecha);
 
                     databaseReference.child("Publicacion").child(p.getUid()).setValue(p);
 
                     Toast.makeText(getActivity(), "Datos Guardados Correctamente", Toast.LENGTH_SHORT).show();
                     limpiarDatos();
                 }
-
-                //Publicacion publicacion = new Publicacion();
-                //publicacion.setTitulo(titulo);
-                //publicacion.setDescripcion(descripcion);
-
-                //MainActivity.appDatabase.publicacionDao().insert(publicacion);
 
 
                 FragmentManager fm = getFragmentManager();
