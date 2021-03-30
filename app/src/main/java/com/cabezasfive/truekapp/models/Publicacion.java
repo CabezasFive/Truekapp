@@ -13,17 +13,20 @@ public class Publicacion {
     private Boolean activo;
     private Integer visitas;
     private String imagen01;
+    private String idUser;
+
 
     // Constructores
     public Publicacion() {
     }
 
-    public Publicacion (String uid, String titulo, String descripcion, String imagen01 ){
+    public Publicacion (String uid, String titulo, String descripcion, String imagen01, String idUser ){
         this.uid = uid;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.activo = true;
         this.imagen01 = imagen01;
+        this.idUser = idUser;
     }
 
 
@@ -92,4 +95,13 @@ public class Publicacion {
     public void setVisitas(Integer visitas) {
         this.visitas = visitas;
     }
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
+    }
+
 }

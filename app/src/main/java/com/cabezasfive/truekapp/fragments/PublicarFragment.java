@@ -17,6 +17,7 @@ import com.cabezasfive.truekapp.R;
 
 import com.cabezasfive.truekapp.models.Publicacion;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -32,6 +33,8 @@ public class PublicarFragment extends Fragment  {
     // Integracion de Firebase
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+
+    FirebaseAuth mAuth;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,32 +53,43 @@ public class PublicarFragment extends Fragment  {
 
         // Inicializar Firebase
         inicializarFirebase();
+        mAuth = FirebaseAuth.getInstance();
 
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String titulo = inputTitulo.getText().toString();
-                String descripcion = inputDescripcion.getText().toString();
 
-                if (titulo.equals("") || descripcion.equals("")){
-                    validacion();
-                }else {
-                    // crear un objeto (instancia de la clase Publicacion
-                    Publicacion p = new Publicacion();
-                    p.setUid(UUID.randomUUID().toString());
-                    p.setTitulo(titulo);
-                    p.setDescripcion(descripcion);
-                    p.setImagen01("https://fotos.perfil.com/2020/06/08/960/0/9-de-junio-dia-mundial-del-pato-donald-968611.jpg");
-                    p.setActivo(true);
-                    p.setVisitas(0);
+                // si hay un usuario logueado puede publicar
+                if(mAuth.getCurrentUser() != null){
+                    String titulo = inputTitulo.getText().toString();
+                    String descripcion = inputDescripcion.getText().toString();
 
-                    Date fecha = new Date(); // Sistema actual La fecha y la hora se asignan a objDate
-                    p.setF_Creacion(fecha.toString());
+                    if (titulo.equals("") || descripcion.equals("")){
+                        validacion();
+                    }else {
+                        // crear un objeto (instancia de la clase Publicacion
+                        Publicacion p = new Publicacion();
+                        p.setUid(UUID.randomUUID().toString());
+                        p.setTitulo(titulo);
+                        p.setDescripcion(descripcion);
+                        p.setImagen01("https://fotos.perfil.com/2020/06/08/960/0/9-de-junio-dia-mundial-del-pato-donald-968611.jpg");
+                        p.setActivo(true);
+                        p.setVisitas(0);
 
-                    databaseReference.child("Publicacion").child(p.getUid()).setValue(p);
+                        Date fecha = new Date(); // Sistema actual La fecha y la hora se asignan a objDate
+                        p.setF_Creacion(fecha.toString());
 
-                    Toast.makeText(getActivity(), "Datos Guardados Correctamente", Toast.LENGTH_SHORT).show();
-                    limpiarDatos();
+                        databaseReference.child("Publicacion").child(p.getUid()).setValue(p);
+
+                        Toast.makeText(getActivity(), "Datos Guardados Correctamente", Toast.LENGTH_SHORT).show();
+                        limpiarDatos();
+                    }
+                }else{
+                    FragmentManager fm = getFragmentManager();
+                    FragmentTransaction ft;
+                    ft = fm.beginTransaction();
+                    ft.replace(R.id.contenido,new LoginFragment())
+                                .commit();
                 }
 
 

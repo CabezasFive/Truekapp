@@ -30,6 +30,7 @@ import com.cabezasfive.truekapp.fragments.MisOfertasFragment;
 import com.cabezasfive.truekapp.fragments.PublicarFragment;
 import com.cabezasfive.truekapp.fragments.RegistroFragment;
 import com.cabezasfive.truekapp.interfaces.IComunicacionFragments;
+import com.cabezasfive.truekapp.interfaces.IComunicacionMain;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -38,7 +39,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity implements IComunicacionFragments, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements IComunicacionFragments, IComunicacionMain, NavigationView.OnNavigationItemSelectedListener {
 
     // referencias a la navegacion
     DrawerLayout drawerLayout;
@@ -76,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         navigationView = findViewById(R.id.navView);
         toolbar = findViewById(R.id.toolbar);
 
+
+
         logoHome=findViewById(R.id.logoToolbar);
         userName=findViewById(R.id.tv_NombreUsuarioToolbar);
 
@@ -85,30 +88,8 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
-        // Chequea si hay un usuario logueado - si lo hay pone su nick en el textView UserName
-        if(mAuth.getCurrentUser() !=null ){
-            btnInicioSesion.setVisibility(View.INVISIBLE);
-            btnCerrarSesion.setVisibility(View.VISIBLE);
-            String id = mAuth.getCurrentUser().getUid();
-            databaseReference.child("users").child(id).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if ( snapshot.exists()){
-                        String nick = snapshot.child("nick").getValue().toString();
-                        userName.setText(nick);
-                    }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
 
-                }
-            });
-        }else{
-            btnInicioSesion.setVisibility(View.VISIBLE);
-            btnCerrarSesion.setVisibility(View.INVISIBLE);
-            userName.setText("");
-        }
 
 
         // Boton cerrar Sesion
@@ -130,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
             }
         });
 
-
+        getUserName();
 
 
         // Al iniciar se muestra el HomeFragment
@@ -150,11 +131,11 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         );
         drawerLayout.addDrawerListener(toggle);
 
-
         navigationView.setNavigationItemSelectedListener(this);
 
 
     }
+
 
 
     @Override
@@ -209,10 +190,18 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
                 ft.addToBackStack(null);
                 break;
             case R.id.nav_publicar:
-                ft = fm.beginTransaction();
-                ft.replace(R.id.contenido,new PublicarFragment());
-                ft.addToBackStack(null);
-                break;
+                if(mAuth.getCurrentUser() != null){
+                    ft = fm.beginTransaction();
+                    ft.replace(R.id.contenido,new PublicarFragment());
+                    ft.addToBackStack(null);
+                    break;
+                }else{
+                    ft = fm.beginTransaction();
+                    ft.replace(R.id.contenido, new LoginFragment());
+                    ft.addToBackStack(null);
+                    break;
+                }
+
             case R.id.nav_ayuda:
                 ft = fm.beginTransaction();
                 ft.replace(R.id.contenido,new AyudaFragment());
@@ -251,8 +240,7 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
     // al cerrar sesion oculto el boton y limpio el nick de usuario
     public void cerrarSesion(){
         mAuth.signOut();
-        btnCerrarSesion.setVisibility(View.INVISIBLE);
-        userName.setText("");
+        activarLogin();
     }
 
 
@@ -268,10 +256,17 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
 
     @Override
     public void A_Publicar() {
-        ft = fm.beginTransaction();
-        ft.replace(R.id.contenido, new PublicarFragment());
-        ft.addToBackStack(null);
-        ft.commit();
+        if(mAuth.getCurrentUser() != null){
+            ft = fm.beginTransaction();
+            ft.replace(R.id.contenido, new PublicarFragment());
+            ft.addToBackStack(null);
+            ft.commit();
+        }else{
+            ft = fm.beginTransaction();
+            ft.replace(R.id.contenido, new LoginFragment());
+            ft.addToBackStack(null);
+            ft.commit();
+        }
     }
 
     @Override
@@ -284,10 +279,18 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
 
     @Override
     public void A_MisOfertas() {
-        ft = fm.beginTransaction();
-        ft.replace(R.id.contenido, new MisOfertasFragment());
-        ft.addToBackStack(null);
-        ft.commit();
+        if (mAuth.getCurrentUser() != null){
+            ft = fm.beginTransaction();
+            ft.replace(R.id.contenido, new MisOfertasFragment());
+            ft.addToBackStack(null);
+            ft.commit();
+        }else{
+            ft = fm.beginTransaction();
+            ft.replace(R.id.contenido, new LoginFragment());
+            ft.addToBackStack(null);
+            ft.commit();
+        }
+
     }
 
     @Override
@@ -306,6 +309,41 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         ft.commit();
     }
 
+    @Override
+    public void activarCerrar() {
+        btnInicioSesion.setVisibility(View.INVISIBLE);
+        btnCerrarSesion.setVisibility(View.VISIBLE);
+        getUserName();
+    }
+
+    @Override
+    public void activarLogin() {
+        btnInicioSesion.setVisibility(View.VISIBLE);
+        btnCerrarSesion.setVisibility(View.INVISIBLE);
+        getUserName();
+    }
+
+    public void getUserName(){
+        if(mAuth.getCurrentUser() !=null ){
+            String id = mAuth.getCurrentUser().getUid();
+            databaseReference.child("users").child(id).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if ( snapshot.exists()){
+                        String nick = snapshot.child("nick").getValue().toString();
+                        userName.setText(nick);
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }else{
+            userName.setText("");
+        }
+
+    }
 
 }
 

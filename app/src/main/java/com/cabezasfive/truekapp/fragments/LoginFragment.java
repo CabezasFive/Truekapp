@@ -1,5 +1,7 @@
 package com.cabezasfive.truekapp.fragments;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,7 +17,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cabezasfive.truekapp.MainActivity;
 import com.cabezasfive.truekapp.R;
+import com.cabezasfive.truekapp.interfaces.IComunicacionFragments;
+import com.cabezasfive.truekapp.interfaces.IComunicacionMain;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -27,7 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment  {
 
 
     private EditText etEmail;
@@ -44,6 +49,10 @@ public class LoginFragment extends Fragment {
     private FirebaseAuth mAuth;
     private DatabaseReference databaseReference;
 
+    private TextView userNick;
+
+    IComunicacionMain comunicacionMain;
+    Activity activity;
 
 
     public static LoginFragment newInstance(String param1, String param2) {
@@ -70,6 +79,8 @@ public class LoginFragment extends Fragment {
         etEmail = view.findViewById(R.id.et_UsuarioLogin);
         etPass = view.findViewById(R.id.et_PassLogin);
         btnLogin = view.findViewById(R.id.btnIniciarSesion);
+
+
 
 
         // Al precionar boton de Iniciar Sesion
@@ -112,6 +123,8 @@ public class LoginFragment extends Fragment {
                 // si la tarea fue exitosa (se logueo el usuario)
                 if( task.isSuccessful()){
 
+                    comunicacionMain.activarCerrar();
+
                     HomeFragment homeFragment = new HomeFragment();
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     fm.beginTransaction().replace(R.id.contenido, homeFragment)
@@ -122,4 +135,15 @@ public class LoginFragment extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        if (context instanceof Activity){
+            activity= (Activity) context;
+            comunicacionMain = (IComunicacionMain) activity;
+        }
+    }
+
 }
