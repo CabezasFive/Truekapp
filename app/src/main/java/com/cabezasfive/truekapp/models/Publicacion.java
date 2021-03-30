@@ -8,8 +8,8 @@ public class Publicacion {
     private String uid;
     private String titulo;
     private String descripcion;
-    private Date f_Creacion;
-    private Date f_Modificado;
+    private String f_Creacion;
+    private String f_Modificado;
     private Boolean activo;
     private Integer visitas;
     private String imagen01;
@@ -29,19 +29,19 @@ public class Publicacion {
 
     // Getters and Setters
 
-    public Date getF_Creacion() {
+    public String getF_Creacion() {
         return f_Creacion;
     }
 
-    public void setF_Creacion(Date f_Creacion) {
+    public void setF_Creacion(String f_Creacion) {
         this.f_Creacion = f_Creacion;
     }
 
-    public Date getF_Modificado() {
+    public String getF_Modificado() {
         return f_Modificado;
     }
 
-    public void setF_Modificado(Date f_Modificado) {
+    public void setF_Modificado(String f_Modificado) {
         this.f_Modificado = f_Modificado;
     }
 

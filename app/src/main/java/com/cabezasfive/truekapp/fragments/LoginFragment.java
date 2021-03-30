@@ -3,10 +3,13 @@ package com.cabezasfive.truekapp.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.cabezasfive.truekapp.R;
 
@@ -14,6 +17,9 @@ import com.cabezasfive.truekapp.R;
 
 public class LoginFragment extends Fragment {
 
+    FragmentTransaction ft;
+
+    private TextView tvRegistrarse;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -29,6 +35,7 @@ public class LoginFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     @Override
@@ -37,6 +44,17 @@ public class LoginFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
 
+        tvRegistrarse = view.findViewById(R.id.tvRegistroDesdeLogin);
+        tvRegistrarse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                RegistroFragment registroFragment = new RegistroFragment();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.beginTransaction().replace(R.id.contenido, registroFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
 
         return view;
     }

@@ -42,6 +42,14 @@
         />
 
     <EditText
+        android:id="@+id/et_Registro_NickName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Nombre de usuario"
+        />
+
+    <EditText
         android:id="@+id/et_Registro_Email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

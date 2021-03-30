@@ -23,25 +23,39 @@
             android:id="@+id/logoToolbar"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:onClick="clikHome"
             android:src="@drawable/logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.434"
+            app:layout_constraintHorizontal_bias="0.396"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            android:onClick="clikHome"/>
+            app:layout_constraintVertical_bias="0.0" />
 
-        <ImageView
-            android:id="@+id/userToolbar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/user"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.72"
+        <TextView
+            android:id="@+id/tv_NombreUsuarioToolbar"
+            android:layout_width="141dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="Juan"
             app:layout_constraintStart_toEndOf="@+id/logoToolbar"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnCerrarSesion"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="12dp"
+            android:textSize="10sp"
+            android:backgroundTint="@color/rojo"
+            android:text="Cerrar Sesion"
+            app:layout_constraintStart_toEndOf="@+id/logoToolbar"
+            app:layout_constraintTop_toBottomOf="@+id/tv_NombreUsuarioToolbar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

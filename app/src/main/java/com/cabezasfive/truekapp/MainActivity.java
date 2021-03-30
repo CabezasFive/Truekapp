@@ -15,18 +15,28 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cabezasfive.truekapp.fragments.AyudaFragment;
 import com.cabezasfive.truekapp.fragments.CategoriasFragment;
 import com.cabezasfive.truekapp.fragments.DestacadosFragment;
 import com.cabezasfive.truekapp.fragments.HomeFragment;
+import com.cabezasfive.truekapp.fragments.LoginFragment;
 import com.cabezasfive.truekapp.fragments.MasVistosFragment;
 import com.cabezasfive.truekapp.fragments.MisOfertasFragment;
 import com.cabezasfive.truekapp.fragments.PublicarFragment;
 import com.cabezasfive.truekapp.fragments.RegistroFragment;
 import com.cabezasfive.truekapp.interfaces.IComunicacionFragments;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements IComunicacionFragments, NavigationView.OnNavigationItemSelectedListener {
 
@@ -34,6 +44,14 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+
+    // Logo de usuario
+    private ImageView btnUser;
+    //TextView nombre de usuario logueado
+    private TextView userName;
+
+    private Button btnCerrarSesion;
+
     // Icono hamburguesa
     ActionBarDrawerToggle toggle;
 
@@ -41,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
     FragmentTransaction ft = fm.beginTransaction();
 
     ImageView logoHome;
+
+    FirebaseAuth mAuth;
+    private DatabaseReference databaseReference;
 
 
     @Override
@@ -55,6 +76,39 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         toolbar = findViewById(R.id.toolbar);
 
         logoHome=findViewById(R.id.logoToolbar);
+        userName=findViewById(R.id.tv_NombreUsuarioToolbar);
+
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+        // Chequea si hay un usuario logueado - si lo hay pone su nick en el textView UserName
+        if(mAuth!=null){
+            String id = mAuth.getCurrentUser().getUid();
+            databaseReference.child("users").child(id).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if ( snapshot.exists()){
+                        String nick = snapshot.child("nick").getValue().toString();
+                        userName.setText(nick);
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+
+
+        // Boton cerrar Sesion
+        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
+        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cerrarSesion();
+            }
+        });
 
 
         // Al iniciar se muestra el HomeFragment
@@ -76,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
 
 
         navigationView.setNavigationItemSelectedListener(this);
+
 
     }
 
@@ -107,6 +162,9 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
                 ft.addToBackStack(null);
                 break;
             case R.id.nav_login:
+                ft = fm.beginTransaction();
+                ft.replace(R.id.contenido, new LoginFragment());
+                ft.addToBackStack(null);
                 break;
             case R.id.nav_registro:
                 ft = fm.beginTransaction();
@@ -159,62 +217,72 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
     }
 
 
-        public void clikHome(View view){
-                    ft = fm.beginTransaction();
-                    ft.replace(R.id.contenido, new HomeFragment());
-                    ft.addToBackStack(null);
-                    ft.commit();
-        }
+    // Lleva al fragment home al clickear el logo en la toolbar
+    // esta asociado al imageView en el xml (onClick)
+    public void clikHome(View view){
+        ft = fm.beginTransaction();
+        ft.replace(R.id.contenido, new HomeFragment());
+        ft.commit();
+    }
+
+    // Cierra la sesion de usuario
+    // al cerrar sesion oculto el boton y limpio el nick de usuario
+    public void cerrarSesion(){
+        mAuth.signOut();
+        btnCerrarSesion.setVisibility(View.GONE);
+        userName.setText("");
+    }
 
 
-        // Metodos que son llamados desde el menu de homeFragment que inicia el fragment asociado con el cardView clickeado
-        @Override
-        public void A_Categorias() {
-            ft = fm.beginTransaction();
-            ft.replace(R.id.contenido, new CategoriasFragment());
-            ft.addToBackStack(null);
-            ft.commit();
-        }
 
-        @Override
-        public void A_Publicar() {
-            ft = fm.beginTransaction();
-            ft.replace(R.id.contenido, new PublicarFragment());
-            ft.addToBackStack(null);
-            ft.commit();
-        }
+    // Metodos que son llamados desde el menu de homeFragment que inicia el fragment asociado con el cardView clickeado
+    @Override
+    public void A_Categorias() {
+        ft = fm.beginTransaction();
+        ft.replace(R.id.contenido, new CategoriasFragment());
+        ft.addToBackStack(null);
+        ft.commit();
+    }
 
-        @Override
-        public void A_Destacados() {
-            ft = fm.beginTransaction();
-            ft.replace(R.id.contenido, new DestacadosFragment());
-            ft.addToBackStack(null);
-            ft.commit();
-        }
+    @Override
+    public void A_Publicar() {
+        ft = fm.beginTransaction();
+        ft.replace(R.id.contenido, new PublicarFragment());
+        ft.addToBackStack(null);
+        ft.commit();
+    }
 
-        @Override
-        public void A_MisOfertas() {
-            ft = fm.beginTransaction();
-            ft.replace(R.id.contenido, new MisOfertasFragment());
-            ft.addToBackStack(null);
-            ft.commit();
-        }
+    @Override
+    public void A_Destacados() {
+        ft = fm.beginTransaction();
+        ft.replace(R.id.contenido, new DestacadosFragment());
+        ft.addToBackStack(null);
+        ft.commit();
+    }
 
-        @Override
-        public void A_MasVistos() {
-            ft = fm.beginTransaction();
-            ft.replace(R.id.contenido, new MasVistosFragment());
-            ft.addToBackStack(null);
-            ft.commit();
-        }
+    @Override
+    public void A_MisOfertas() {
+        ft = fm.beginTransaction();
+        ft.replace(R.id.contenido, new MisOfertasFragment());
+        ft.addToBackStack(null);
+        ft.commit();
+    }
 
-        @Override
-        public void A_Ayuda() {
-            ft = fm.beginTransaction();
-            ft.replace(R.id.contenido, new AyudaFragment());
-            ft.addToBackStack(null);
-            ft.commit();
-        }
+    @Override
+    public void A_MasVistos() {
+        ft = fm.beginTransaction();
+        ft.replace(R.id.contenido, new MasVistosFragment());
+        ft.addToBackStack(null);
+        ft.commit();
+    }
+
+    @Override
+    public void A_Ayuda() {
+        ft = fm.beginTransaction();
+        ft.replace(R.id.contenido, new AyudaFragment());
+        ft.addToBackStack(null);
+        ft.commit();
+    }
 
 
 }

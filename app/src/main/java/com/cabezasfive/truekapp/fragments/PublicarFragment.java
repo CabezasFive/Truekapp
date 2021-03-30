@@ -70,7 +70,7 @@ public class PublicarFragment extends Fragment  {
                     p.setVisitas(0);
 
                     Date fecha = new Date(); // Sistema actual La fecha y la hora se asignan a objDate
-                    p.setF_Creacion(fecha);
+                    p.setF_Creacion(fecha.toString());
 
                     databaseReference.child("Publicacion").child(p.getUid()).setValue(p);
 

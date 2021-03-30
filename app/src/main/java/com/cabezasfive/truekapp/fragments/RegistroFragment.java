@@ -32,6 +32,7 @@ public class RegistroFragment extends Fragment {
     private EditText editTextapellido;
     private EditText editTextdireccion;
     private EditText editTexttelefono;
+    private EditText editTextnick;
     private EditText editTextemail;
     private EditText editTextpassword;
     private Button btnRegistrar;
@@ -42,6 +43,7 @@ public class RegistroFragment extends Fragment {
     private String direccion = "";
     private String telefono = "";
     private String email = "";
+    private String nick = "" ;
     private String password = "";
 
     FirebaseAuth mAuth;
@@ -76,6 +78,7 @@ public class RegistroFragment extends Fragment {
         editTextapellido = view.findViewById(R.id.et_Registro_Apellido);
         editTextdireccion = view.findViewById(R.id.et_Registro_Direccion);
         editTexttelefono = view.findViewById(R.id.et_Registro_Telefono);
+        editTextnick = view.findViewById(R.id.et_Registro_NickName);
         editTextemail = view.findViewById(R.id.et_Registro_Email);
         editTextpassword = view.findViewById(R.id.et_Registro_Password);
         btnRegistrar = view.findViewById(R.id.btn_RegistroUsuario);
@@ -88,6 +91,7 @@ public class RegistroFragment extends Fragment {
                 apellido = editTextapellido.getText().toString();
                 direccion = editTextdireccion.getText().toString();
                 telefono = editTexttelefono.getText().toString();
+                nick = editTextnick.getText().toString();
                 email = editTextemail.getText().toString();
                 password = editTextpassword.getText().toString();
 
@@ -100,8 +104,8 @@ public class RegistroFragment extends Fragment {
 
     private void validarTextos() {
         if(!nombre.isEmpty() && !apellido.isEmpty() && !direccion.isEmpty() && !nombre.isEmpty()
-                && !email.isEmpty() && !password.isEmpty()){
-            if (password.length() > 6){
+                && !email.isEmpty() && !password.isEmpty() && !nick.isEmpty()){
+            if (password.length() >= 6){
                 registrarUsuario();
             }else{
                 Toast.makeText(getContext(), "El password debe tener como minimo 6 caracteres", Toast.LENGTH_SHORT).show();
@@ -118,22 +122,27 @@ public class RegistroFragment extends Fragment {
                 if(task.isSuccessful()){
 
                     // Mapa de valores para agregar al campo usuario
-                    Map<String, Object> map = new HashMap<>();
-                    map.put("nombre", nombre);
-                    map.put("apellido", apellido);
-                    map.put("direccion", direccion);
-                    map.put("telefono", telefono);
-                    map.put("email", email);
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("nombre", nombre);
+                    user.put("apellido", apellido);
+                    user.put("nick", nick);
+                    user.put("direccion", direccion);
+                    user.put("telefono", telefono);
+                    user.put("email", email);
 
 
                     // obtener el id que se le asigna al usuario en Auth
                     String id = mAuth.getCurrentUser().getUid();
 
                     // Creo un nuevo nodo hijo de Users con el nombre del id del usuario
-                    databaseReference.child("Users").child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    databaseReference.child("users").child(id).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task2) {
                             if(task2.isSuccessful()){
+                                // Se guarda en Nicks solo el nombre de usuario para facilitar la busqueda
+                                // en que no sea usuario repetido (A CORREGIR - NECESITA VERIFICAR QUE NO EXISTA EL NICK)
+                                databaseReference.child("nicks").child("name").setValue(nick);
+
                                 // El registro fue exitoso se envia al usuario a otro Fragment
                                 // (Home por el momento)
                                 FragmentManager fm = getFragmentManager();

@@ -89,11 +89,8 @@ public class MasVistosFragment extends Fragment {
                     adapter.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Toast.makeText(getContext(),
-                                        "Articulo: " + publicaciones.get(rvPublicaciones.getChildAdapterPosition(view)).getTitulo(),
-                                            Toast.LENGTH_SHORT).show();
 
-                            // Inicio el fragment de editar
+                            // Datos a pasar al Fragment editar
                             Bundle bundle = new Bundle();
 
                             String titulo = publicaciones.get(rvPublicaciones.getChildAdapterPosition(view)).getTitulo();

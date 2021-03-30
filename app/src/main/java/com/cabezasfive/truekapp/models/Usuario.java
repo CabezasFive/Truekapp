@@ -8,20 +8,23 @@ public class Usuario {
     private String direccion;
     private String telefono;
     private String email;
+    private String nick;
     private String fechaCreado;
 
     public Usuario() {
     }
 
-    public Usuario(String id, String nombre, String apellido, String direccion, String telefono, String email, String fechaCreado) {
+    public Usuario(String id, String nombre, String apellido, String direccion, String telefono, String email, String nick, String fechaCreado) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
+        this.nick = nick;
         this.fechaCreado = fechaCreado;
     }
+
 
     public String getId() {
         return id;
