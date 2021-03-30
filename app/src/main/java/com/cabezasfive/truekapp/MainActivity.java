@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
     private TextView userName;
 
     private Button btnCerrarSesion;
+    private Button btnInicioSesion;
 
     // Icono hamburguesa
     ActionBarDrawerToggle toggle;
@@ -78,11 +79,16 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         logoHome=findViewById(R.id.logoToolbar);
         userName=findViewById(R.id.tv_NombreUsuarioToolbar);
 
+        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
+        btnInicioSesion = findViewById(R.id.btnInicioSesionToolbar);
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         // Chequea si hay un usuario logueado - si lo hay pone su nick en el textView UserName
-        if(mAuth!=null){
+        if(mAuth.getCurrentUser() !=null ){
+            btnInicioSesion.setVisibility(View.INVISIBLE);
+            btnCerrarSesion.setVisibility(View.VISIBLE);
             String id = mAuth.getCurrentUser().getUid();
             databaseReference.child("users").child(id).addValueEventListener(new ValueEventListener() {
                 @Override
@@ -98,17 +104,33 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
 
                 }
             });
+        }else{
+            btnInicioSesion.setVisibility(View.VISIBLE);
+            btnCerrarSesion.setVisibility(View.INVISIBLE);
+            userName.setText("");
         }
 
 
         // Boton cerrar Sesion
-        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
         btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 cerrarSesion();
             }
         });
+
+        // Boton iniciar sesion
+        btnInicioSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ft = fm.beginTransaction();
+                ft.replace(R.id.contenido, new LoginFragment())
+                    .addToBackStack(null)
+                    .commit();
+            }
+        });
+
+
 
 
         // Al iniciar se muestra el HomeFragment
@@ -229,7 +251,7 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
     // al cerrar sesion oculto el boton y limpio el nick de usuario
     public void cerrarSesion(){
         mAuth.signOut();
-        btnCerrarSesion.setVisibility(View.GONE);
+        btnCerrarSesion.setVisibility(View.INVISIBLE);
         userName.setText("");
     }
 
