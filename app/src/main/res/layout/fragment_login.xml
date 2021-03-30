@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.LoginFragment"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_marginTop="20dp">
+
+    <TextView
+        android:id="@+id/tituloLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Iniciar Sesion"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:fontFamily="sans-serif-black"
+        android:paddingBottom="20dp"
+        android:background="@color/verde"/>
+
+
+    <EditText
+        android:id="@+id/et_UsuarioLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:inputType="textEmailAddress"
+        android:hint="Correo elecronico"
+        />
+
+    <EditText
+        android:id="@+id/et_PassLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        />
+
+    <Button
+        android:id="@+id/btnIniciarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/verde"
+        android:text="INICIAR SESION"
+        />
+
+    <TextView
+        android:id="@+id/tvRegistroDesdeLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:textColor="@color/azul"
+        android:layout_gravity="center"
+        android:text="No tienes cuenta - Registrate aqui"
+        />
+
+
+
+</LinearLayout>

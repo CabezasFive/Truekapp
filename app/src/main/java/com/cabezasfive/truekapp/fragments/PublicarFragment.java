@@ -3,64 +3,127 @@ package com.cabezasfive.truekapp.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.cabezasfive.truekapp.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PublicarFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class PublicarFragment extends Fragment {
+import com.cabezasfive.truekapp.models.Publicacion;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.util.Date;
+import java.util.UUID;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
-    public PublicarFragment() {
-        // Required empty public constructor
-    }
+public class PublicarFragment extends Fragment  {
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PublicarFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PublicarFragment newInstance(String param1, String param2) {
-        PublicarFragment fragment = new PublicarFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private EditText inputTitulo, inputDescripcion;
+    private Button btnAgregar;
+
+    // Integracion de Firebase
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
+
+    FirebaseAuth mAuth;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_publicar, container, false);
+        View view = inflater.inflate(R.layout.fragment_publicar, container, false);
+
+        inputTitulo = view.findViewById(R.id.et_TituloPub);
+        inputDescripcion = view.findViewById(R.id.et_DescrPub);
+        btnAgregar = view.findViewById(R.id.btn_AddPub);
+
+        // Inicializar Firebase
+        inicializarFirebase();
+        mAuth = FirebaseAuth.getInstance();
+
+        btnAgregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // si hay un usuario logueado puede publicar
+                if(mAuth.getCurrentUser() != null){
+                    String titulo = inputTitulo.getText().toString();
+                    String descripcion = inputDescripcion.getText().toString();
+
+                    if (titulo.equals("") || descripcion.equals("")){
+                        validacion();
+                    }else {
+                        // crear un objeto (instancia de la clase Publicacion
+                        Publicacion p = new Publicacion();
+                        p.setUid(UUID.randomUUID().toString());
+                        p.setTitulo(titulo);
+                        p.setDescripcion(descripcion);
+                        p.setImagen01("https://fotos.perfil.com/2020/06/08/960/0/9-de-junio-dia-mundial-del-pato-donald-968611.jpg");
+                        p.setActivo(true);
+                        p.setVisitas(0);
+
+                        Date fecha = new Date(); // Sistema actual La fecha y la hora se asignan a objDate
+                        p.setF_Creacion(fecha.toString());
+
+                        databaseReference.child("Publicacion").child(p.getUid()).setValue(p);
+
+                        Toast.makeText(getActivity(), "Datos Guardados Correctamente", Toast.LENGTH_SHORT).show();
+                        limpiarDatos();
+                    }
+                }else{
+                    FragmentManager fm = getFragmentManager();
+                    FragmentTransaction ft;
+                    ft = fm.beginTransaction();
+                    ft.replace(R.id.contenido,new LoginFragment())
+                                .commit();
+                }
+
+
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft;
+                ft = fm.beginTransaction();
+                ft.replace(R.id.contenido,new HomeFragment());
+                ft.commit();
+            }
+        });
+
+        return view;
+    }
+
+    // Metodo para inicializar Firebase
+    private void inicializarFirebase() {
+        FirebaseApp.initializeApp(getContext());
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+    }
+
+    private void limpiarDatos() {
+        inputTitulo.setText("");
+        inputDescripcion.setText("");
+    }
+
+    private void validacion() {
+        String titulo = inputTitulo.getText().toString();
+        String descripcion = inputDescripcion.getText().toString();
+
+        if(titulo.equals("")){
+            Toast.makeText(getActivity(), "Debe ingresar un Titulo", Toast.LENGTH_SHORT).show();
+        } else if(descripcion.equals("")){
+            Toast.makeText(getActivity(), "Debe ingresar una Descripcion", Toast.LENGTH_SHORT).show();
+        }
     }
 }
