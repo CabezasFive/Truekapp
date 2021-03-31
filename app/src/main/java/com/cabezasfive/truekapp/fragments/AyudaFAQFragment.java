@@ -1,5 +1,6 @@
 package com.cabezasfive.truekapp.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.cabezasfive.truekapp.R;
 
@@ -27,6 +29,10 @@ public class AyudaFAQFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    Button btnFinAyuda;
+    View vista;
+    Activity actividad;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,8 +70,17 @@ public class AyudaFAQFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ayuda_faq, container, false);
+        vista = inflater.inflate(R.layout.fragment_ayuda_faq, container, false);
+        btnFinAyuda=vista.findViewById(R.id.btnHome);
+
+        btnFinAyuda.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                actividad.finish();
+            }
+        });
+
+        return vista;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -78,6 +93,10 @@ public class AyudaFAQFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        if (context instanceof Activity) {
+            actividad = (Activity) context;
+        }
+
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {

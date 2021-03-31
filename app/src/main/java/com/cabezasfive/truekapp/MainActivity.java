@@ -125,6 +125,9 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
                 startActivity(miIntent);
                 break;
             case R.id.nav_pregruntasFrecuentes:
+                /*ft = fm.beginTransaction();
+                ft.replace(R.id.contenido,new PublicarFragment());
+                ft.addToBackStack(null);*/
                 break;
             case R.id.nav_acercaDe:
                 break;
