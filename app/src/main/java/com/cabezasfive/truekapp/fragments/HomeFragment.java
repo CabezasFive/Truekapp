@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.interfaces.IComunicacionFragments;
@@ -27,7 +26,6 @@ public class HomeFragment extends Fragment {
 
     View view;
     Activity activity;
-    Button btnListado, btnCategorias;
 
 
     public HomeFragment() {

@@ -2,65 +2,131 @@ package com.cabezasfive.truekapp.fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.cabezasfive.truekapp.R;
+import com.cabezasfive.truekapp.adapters.AdapterListarPublicaciones;
+import com.cabezasfive.truekapp.models.Publicacion;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MasVistosFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
 public class MasVistosFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    // Integracion de Firebase
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
-    public MasVistosFragment() {
-        // Required empty public constructor
-    }
+    // Referencia al adaptador
+    private AdapterListarPublicaciones adapter;
+    // Referencia al recyclerView
+    private RecyclerView rvPublicaciones;
+    private RecyclerView.LayoutManager layoutManager;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MasVistosFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MasVistosFragment newInstance(String param1, String param2) {
-        MasVistosFragment fragment = new MasVistosFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private ArrayList<Publicacion> publicaciones = new ArrayList<>();
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+
+
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mas_vistos, container, false);
+        View view= inflater.inflate(R.layout.fragment_mas_vistos, container, false);
+
+
+        // Inicializar Firebase
+        inicializarFirebase();
+
+        rvPublicaciones = view.findViewById(R.id.rv_MasVistos);
+        layoutManager = new LinearLayoutManager(getActivity());
+        rvPublicaciones.setLayoutManager(layoutManager);
+
+        obtenerPublicacionesFirebase();
+
+
+        return view;
+    }
+
+    private void obtenerPublicacionesFirebase() {
+        databaseReference.child("Publicacion").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Valido que el nodo "Publicaciones" existe en la bd
+                if(snapshot.exists()){
+                    // limpia la lista por datos anteriores
+                    publicaciones.clear();
+
+                    // recorrer cada uno de los objetos en el nodo
+                    for(DataSnapshot ds: snapshot.getChildren()){
+
+                        Publicacion p = ds.getValue(Publicacion.class);
+
+                        publicaciones.add(p);
+                    }
+
+                    adapter = new AdapterListarPublicaciones(publicaciones, R.layout.publicacion_item);
+
+                    // Evento de escucha si se da un click sobre el item
+                    adapter.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            // Datos a pasar al Fragment editar
+                            Bundle bundle = new Bundle();
+
+                            String titulo = publicaciones.get(rvPublicaciones.getChildAdapterPosition(view)).getTitulo();
+                            String descr = publicaciones.get(rvPublicaciones.getChildAdapterPosition(view)).getDescripcion();
+                            String uid = publicaciones.get(rvPublicaciones.getChildAdapterPosition(view)).getUid();
+                            bundle.putString("titulo", titulo );
+                            bundle.putString("descripcion", descr );
+                            bundle.putString("uid", uid );
+
+                            EditPublicacionFragment editPublicacionFragment = new EditPublicacionFragment();
+                            editPublicacionFragment.setArguments(bundle);
+                            FragmentManager fm = getActivity().getSupportFragmentManager();
+                            fm.beginTransaction().replace(R.id.contenido, editPublicacionFragment)
+                                    .addToBackStack(null)
+                                    .commit();
+                        }
+                    }); // Fin evento clickListener
+
+                    rvPublicaciones.setAdapter(adapter);
+                }else{
+                    Toast.makeText(getActivity(), "no encontro nada", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
+    // Metodo para inicializar Firebase
+    private void inicializarFirebase() {
+        FirebaseApp.initializeApp(getContext());
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
     }
 }

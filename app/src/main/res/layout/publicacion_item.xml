@@ -15,38 +15,42 @@
         app:contentPadding="4dp"
         >
 
+
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp">
 
+            <ImageView
+                android:id="@+id/imgPublicacion"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/textViewTitulo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="287dp"
+                android:layout_height="41dp"
                 android:textColor="@color/black"
                 android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgPublicacion"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textViewDescripcion"
-                android:layout_width="335dp"
-                android:layout_height="18dp"
-                android:textColor="@color/black"
+                android:layout_width="286dp"
+                android:layout_height="42dp"
                 android:text="Esta es la descripcion del producto"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/textViewTitulo"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewTitulo" />
-
-            <ImageButton
-                android:id="@+id/buttonDelete"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                app:layout_constraintBottom_toBottomOf="@+id/textViewDescripcion"
-                app:layout_constraintEnd_toEndOf="@+id/textViewTitulo"
-                app:layout_constraintTop_toTopOf="@+id/textViewDescripcion"
-                app:srcCompat="@android:drawable/ic_delete" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
