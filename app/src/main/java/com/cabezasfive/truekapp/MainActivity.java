@@ -15,12 +15,12 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cabezasfive.truekapp.fragments.AyudaFragment;
 import com.cabezasfive.truekapp.fragments.CategoriasFragment;
 import com.cabezasfive.truekapp.fragments.DestacadosFragment;
 import com.cabezasfive.truekapp.fragments.HomeFragment;
@@ -203,13 +203,18 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
                 }
 
             case R.id.nav_ayuda:
-                ft = fm.beginTransaction();
-                ft.replace(R.id.contenido,new AyudaFragment());
-                ft.addToBackStack(null);
+                Intent miIntent = new Intent(MainActivity.this, AyudaActivity.class);
+                startActivity(miIntent);
                 break;
             case R.id.nav_pregruntasFrecuentes:
+                /*ft = fm.beginTransaction();
+                ft.replace(R.id.contenido,new PublicarFragment());
+                ft.addToBackStack(null);*/
                 break;
             case R.id.nav_acercaDe:
+                /*ft = fm.beginTransaction();
+                ft.replace(R.id.contenido,new PublicarFragment());
+                ft.addToBackStack(null);*/
                 break;
         }
         ft.commit();
@@ -303,10 +308,8 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
 
     @Override
     public void A_Ayuda() {
-        ft = fm.beginTransaction();
-        ft.replace(R.id.contenido, new AyudaFragment());
-        ft.addToBackStack(null);
-        ft.commit();
+        Intent miIntent = new Intent(MainActivity.this, AyudaActivity.class);
+        startActivity(miIntent);
     }
 
     @Override

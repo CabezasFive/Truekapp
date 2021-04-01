@@ -14,7 +14,9 @@
     <color name="amarillo">#DBC13E</color>
     <color name="gris">#CBCBCB </color>
 
-
+    <color name="colorBlancoTransparente">#cccccc</color>
+    <color name="rojointenso">#F31818</color>
+    <color name="amarillointenso">#E8B10E</color>
 
     #DB3E3E - Rojo
     #DB3E3E - Verde
