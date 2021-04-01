@@ -130,6 +130,9 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
                 ft.addToBackStack(null);*/
                 break;
             case R.id.nav_acercaDe:
+                /*ft = fm.beginTransaction();
+                ft.replace(R.id.contenido,new PublicarFragment());
+                ft.addToBackStack(null);*/
                 break;
         }
         ft.commit();
