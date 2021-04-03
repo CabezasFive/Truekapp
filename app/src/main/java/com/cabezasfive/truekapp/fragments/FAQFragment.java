@@ -16,7 +16,7 @@ import com.cabezasfive.truekapp.R;
  * create an instance of this fragment.
  */
 public class FAQFragment extends Fragment {
-    
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -58,7 +58,6 @@ public class FAQFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_faq, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_faq, container, false);
     }
 }

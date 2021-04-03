@@ -46,4 +46,7 @@
     <string name="Respuesta6">• Respondas a las solicitudes y mensajes que encontraras en "Mis Ofertas" dentro de un lapso razonable.</string>
     <string name="Respuesta7">• Publica lo que necesitas para ayudar a la comunidad a saber que ofrecerte.</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="AcercaDe">Informacion respecto la App</string>
+
 </resources>

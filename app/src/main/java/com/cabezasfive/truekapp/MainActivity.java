@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cabezasfive.truekapp.fragments.AcercaDeFragment;
 import com.cabezasfive.truekapp.fragments.CategoriasFragment;
 import com.cabezasfive.truekapp.fragments.DestacadosFragment;
 import com.cabezasfive.truekapp.fragments.FAQFragment;
@@ -214,9 +215,9 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
                 break;
 
             case R.id.nav_acercaDe:
-                /*ft = fm.beginTransaction();
-                ft.replace(R.id.contenido,new PublicarFragment());
-                ft.addToBackStack(null);*/
+                ft = fm.beginTransaction();
+                ft.replace(R.id.contenido,new AcercaDeFragment());
+                ft.addToBackStack(null);
                 break;
         }
         ft.commit();
