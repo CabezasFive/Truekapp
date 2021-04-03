@@ -10,7 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
-
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -19,10 +19,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cabezasfive.truekapp.fragments.CategoriasFragment;
 import com.cabezasfive.truekapp.fragments.DestacadosFragment;
+import com.cabezasfive.truekapp.fragments.FAQFragment;
 import com.cabezasfive.truekapp.fragments.HomeFragment;
 import com.cabezasfive.truekapp.fragments.LoginFragment;
 import com.cabezasfive.truekapp.fragments.MasVistosFragment;
@@ -206,11 +206,13 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
                 Intent miIntent = new Intent(MainActivity.this, AyudaActivity.class);
                 startActivity(miIntent);
                 break;
+
             case R.id.nav_pregruntasFrecuentes:
-                /*ft = fm.beginTransaction();
-                ft.replace(R.id.contenido,new PublicarFragment());
-                ft.addToBackStack(null);*/
+                ft = fm.beginTransaction();
+                ft.replace(R.id.contenido,new FAQFragment());
+                ft.addToBackStack(null);
                 break;
+
             case R.id.nav_acercaDe:
                 /*ft = fm.beginTransaction();
                 ft.replace(R.id.contenido,new PublicarFragment());

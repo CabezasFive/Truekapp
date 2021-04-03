@@ -4,7 +4,7 @@
     <string name="titulo_publicacion">Ingrese titulo de la publicacion</string>
     <string name="descripcion_publicacion">Ingrese una descripcion</string>
     <string name="guardar">Guardar</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="drawer_open">Open Drawer</string>
     <string name="drawer_close">Close Drawer</string>
 
@@ -19,12 +19,31 @@
     <string name="tab_text_6">Mas Vistos</string>
     <string name="tab_text_7">FAQ</string>
 
+    <!-- Informacion de Ayuda -->
     <string name="ayuda_app_descripcion">App enfocada en la promoción e implementación del trueque como elemento clave en el intercambio de bienes y servicios</string>
     <string name="ayuda_login_register">La pantalla de login o acceso al sistema habilitá a los usuarios al acceso y registro en la aplicación</string>
     <string name="ayuda_publicar_mis_ofertas">Pantalla donde los usuarios podrán iniciar el proceso de publicación de sus articulos en el site y verificar las ofertas recibidas de parte de otros usuarios</string>
     <string name="ayuda_categorias">Clases de articulos agrupados en función de sus atributos, similitud o funcionalidad.</string>
     <string name="ayuda_destacados">Selección de los articulos más importantes o de mayor relevancia en cada una de las categorias del site.</string>
     <string name="ayuda_mas_vistos">Selección de los articulos con mayor cantidad de visitas de usuarios en un intervalo previamente determinado. </string>
-    <string name="ayuda_FAQ">Por mas preguntas que puedas tener, puedes verificar nuestra seccion de FAQ o dirigirte al inicio con los siguientes botones</string>
+    <string name="ayuda_FAQ">Por mas preguntas que puedas tener, puedes dirigirte a la seccion de Preguntas frequentes desde el inicio con el siguiente boton</string>
+
+    <!-- Informacion de FAQ -->
+    <string name="PreguntaFrecuente1">¿Que es TruekApp?</string>
+    <string name="Respuesta1">TruekApp es una App enfocada en la promoción e implementación del trueque como elemento principal en el intercambio de bienes y servicios.</string>
+
+    <string name="PreguntaFrecuente2">¿Como funciona TruekApp?</string>
+    <string name="Respuesta2">TruekApp te permite publicar y ofertar  por cualquier articulo y/o servicio incluido dentro de nuestra comunidad de usuarios.</string>
+
+    <string name="PreguntaFrecuente3">¿Puedo pagar con dinero dentro de TruekApp?</string>
+    <string name="Respuesta3">Las ventas no se encuentran permitidas en Truekapp.</string>
+
+    <string name="PreguntaFrecuente4">¿Que está prohibido publicar u ofertar en la plataforma?</string>
+    <string name="Respuesta4">No se permite el intercambio de seres vivos, promoción o canje  de servicios y/o productos de caracter ilegal, o cualquier otro tipo de producto y/o servicio que pueda ser considerado inapropiado por parte de TruekApp.</string>
+
+    <string name="PreguntaFrecuente5">Te recomendamos que:</string>
+    <string name="Respuesta5">• Fomentes acuerdos honestos y equitativos. </string>
+    <string name="Respuesta6">• Respondas a las solicitudes y mensajes que encontraras en "Mis Ofertas" dentro de un lapso razonable.</string>
+    <string name="Respuesta7">• Publica lo que necesitas para ayudar a la comunidad a saber que ofrecerte.</string>
 
 </resources>
