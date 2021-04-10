@@ -7,18 +7,19 @@
     tools:context=".fragments.LoginFragment"
     android:orientation="vertical"
     android:padding="20dp"
-    android:layout_marginTop="20dp">
+    android:layout_marginTop="20dp"
+    android:background="@drawable/fondoregistro">
 
     <TextView
         android:id="@+id/tituloLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Iniciar Sesion"
+        android:text="@string/iniciar_sesion"
         android:gravity="center"
         android:textSize="30sp"
+        android:textColor="@color/white"
         android:fontFamily="sans-serif-black"
-        android:paddingBottom="20dp"
-        android:background="@color/verde"/>
+        android:paddingBottom="20dp" />
 
 
     <EditText
@@ -26,8 +27,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:ems="10"
+        android:paddingTop="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
         android:inputType="textEmailAddress"
-        android:hint="Correo elecronico"
+        android:hint="@string/correo_elecronico"
+        android:background="@drawable/marco_input"
+        android:drawableLeft="@drawable/ic_baseline_email_24"
         />
 
     <EditText
@@ -35,8 +43,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="Password"
+        android:ems="10"
+        android:paddingTop="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:hint="@string/password"
         android:inputType="textPassword"
+        android:background="@drawable/marco_input"
+        android:drawableLeft="@drawable/ic_baseline_person_24"
         />
 
     <Button
@@ -44,9 +59,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:background="@drawable/btn_contorno"
         android:backgroundTint="@color/verde"
-        android:text="INICIAR SESION"
-        />
+        android:text="@string/iniciar_sesion2"
+        tools:targetApi="lollipop" />
 
     <TextView
         android:id="@+id/tvRegistroDesdeLogin"
@@ -55,7 +71,7 @@
         android:textSize="15sp"
         android:textColor="@color/azul"
         android:layout_gravity="center"
-        android:text="No tienes cuenta - Registrate aqui"
+        android:text="@string/registrate_aqui"
         />
 
 
