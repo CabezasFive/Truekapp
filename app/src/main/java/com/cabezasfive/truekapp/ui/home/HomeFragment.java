@@ -1,12 +1,15 @@
-package com.cabezasfive.truekapp.fragments;
+package com.cabezasfive.truekapp.ui.home;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,10 +24,6 @@ public class HomeFragment extends Fragment {
     //Referencia a los cardViews que funcionaran como botones
     CardView cardCategorias, cardPublicar, cardDestacados, cardMisOfertas, cardMasVistos, cardAyuda;
 
-    IComunicacionFragments iComunica;
-
-
-    View view;
     Activity activity;
 
 
@@ -37,9 +36,14 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         cardCategorias=view.findViewById(R.id.cardCategorias);
         cardAyuda=view.findViewById(R.id.cardAyuda);
@@ -48,6 +52,8 @@ public class HomeFragment extends Fragment {
         cardPublicar=view.findViewById(R.id.cardPublicar);
         cardMisOfertas=view.findViewById(R.id.cardMisOfertas);
 
+        // Referencia al navController
+        final NavController navController = Navigation.findNavController(view);
 
 
         // scucha si se da click en alguno de los cardView del menu
@@ -55,63 +61,45 @@ public class HomeFragment extends Fragment {
         cardPublicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iComunica.A_Publicar();
+
             }
         });
 
         cardCategorias.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iComunica.A_Categorias();
+                navController.navigate(R.id.categoriasFragment);
             }
         });
 
         cardDestacados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iComunica.A_Destacados();
+
             }
         });
 
         cardMisOfertas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iComunica.A_MisOfertas();
+
             }
         });
 
         cardMasVistos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iComunica.A_MasVistos();
+                navController.navigate(R.id.masVistosFragment);
             }
         });
 
         cardAyuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                iComunica.A_Ayuda();
+
             }
         });
-
-
-
-
-        return view;
     }
 
-
-
-
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
-        if (context instanceof Activity){
-            activity= (Activity) context;
-            iComunica = (IComunicacionFragments) activity;
-        }
-    }
 }
 

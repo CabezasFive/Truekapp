@@ -1,11 +1,8 @@
-package com.cabezasfive.truekapp.fragments;
+package com.cabezasfive.truekapp.ui.registroUsuario;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,15 +12,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.cabezasfive.truekapp.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class RegistroFragment extends Fragment {
@@ -106,7 +97,7 @@ public class RegistroFragment extends Fragment {
         if(!nombre.isEmpty() && !apellido.isEmpty() && !direccion.isEmpty() && !nombre.isEmpty()
                 && !email.isEmpty() && !password.isEmpty() && !nick.isEmpty()){
             if (password.length() >= 6){
-                registrarUsuario();
+                //registrarUsuario();
             }else{
                 Toast.makeText(getContext(), "El password debe tener como minimo 6 caracteres", Toast.LENGTH_SHORT).show();
             }
@@ -115,6 +106,7 @@ public class RegistroFragment extends Fragment {
         }
     }
 
+    /*
     private void registrarUsuario() {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -161,4 +153,6 @@ public class RegistroFragment extends Fragment {
             }
         });
     }
+
+     */
 }

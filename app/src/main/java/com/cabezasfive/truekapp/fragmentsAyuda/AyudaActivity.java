@@ -1,29 +1,21 @@
-package com.cabezasfive.truekapp;
+package com.cabezasfive.truekapp.fragmentsAyuda;
 
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.cabezasfive.truekapp.fragments.AyudaCategoriasFragment;
-import com.cabezasfive.truekapp.fragments.AyudaDescripcionFragment;
-import com.cabezasfive.truekapp.fragments.AyudaDestacadosFragment;
-import com.cabezasfive.truekapp.fragments.AyudaFAQFragment;
-import com.cabezasfive.truekapp.fragments.AyudaLoginRegisterFragment;
-import com.cabezasfive.truekapp.fragments.AyudaMasVistosFragment;
-import com.cabezasfive.truekapp.fragments.AyudaPublicarMisOfertasFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
+import com.cabezasfive.truekapp.R;
+import com.cabezasfive.truekapp.fragmentsAyuda.AyudaCategoriasFragment;
+import com.cabezasfive.truekapp.fragmentsAyuda.AyudaDescripcionFragment;
+import com.cabezasfive.truekapp.fragmentsAyuda.AyudaDestacadosFragment;
+import com.cabezasfive.truekapp.fragmentsAyuda.AyudaFAQFragment;
+import com.cabezasfive.truekapp.fragmentsAyuda.AyudaLoginRegisterFragment;
+import com.cabezasfive.truekapp.fragmentsAyuda.AyudaMasVistosFragment;
+import com.cabezasfive.truekapp.fragmentsAyuda.AyudaPublicarMisOfertasFragment;
 
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.text.Html;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 

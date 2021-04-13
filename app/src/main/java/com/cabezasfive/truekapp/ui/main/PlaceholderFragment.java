@@ -13,13 +13,13 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.cabezasfive.truekapp.R;
-import com.cabezasfive.truekapp.fragments.AyudaCategoriasFragment;
-import com.cabezasfive.truekapp.fragments.AyudaDescripcionFragment;
-import com.cabezasfive.truekapp.fragments.AyudaDestacadosFragment;
-import com.cabezasfive.truekapp.fragments.AyudaFAQFragment;
-import com.cabezasfive.truekapp.fragments.AyudaLoginRegisterFragment;
-import com.cabezasfive.truekapp.fragments.AyudaMasVistosFragment;
-import com.cabezasfive.truekapp.fragments.AyudaPublicarMisOfertasFragment;
+import com.cabezasfive.truekapp.fragmentsAyuda.AyudaCategoriasFragment;
+import com.cabezasfive.truekapp.fragmentsAyuda.AyudaDescripcionFragment;
+import com.cabezasfive.truekapp.fragmentsAyuda.AyudaDestacadosFragment;
+import com.cabezasfive.truekapp.fragmentsAyuda.AyudaFAQFragment;
+import com.cabezasfive.truekapp.fragmentsAyuda.AyudaLoginRegisterFragment;
+import com.cabezasfive.truekapp.fragmentsAyuda.AyudaMasVistosFragment;
+import com.cabezasfive.truekapp.fragmentsAyuda.AyudaPublicarMisOfertasFragment;
 
 /**
  * A placeholder fragment containing a simple view.

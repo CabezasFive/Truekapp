@@ -1,4 +1,4 @@
-package com.cabezasfive.truekapp.fragments;
+package com.cabezasfive.truekapp.ui.login;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
@@ -15,21 +14,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.cabezasfive.truekapp.MainActivity;
 import com.cabezasfive.truekapp.R;
-import com.cabezasfive.truekapp.interfaces.IComunicacionFragments;
 import com.cabezasfive.truekapp.interfaces.IComunicacionMain;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 
 public class LoginFragment extends Fragment  {
@@ -81,7 +70,7 @@ public class LoginFragment extends Fragment  {
         btnLogin = view.findViewById(R.id.btnIniciarSesion);
 
 
-
+/*
 
         // Al precionar boton de Iniciar Sesion
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -112,10 +101,11 @@ public class LoginFragment extends Fragment  {
                         .commit();
             }
         });
-
+*/
         return view;
     }
 
+    /*
     private void loginUser() {
         mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -135,6 +125,7 @@ public class LoginFragment extends Fragment  {
             }
         });
     }
+*/
 
     @Override
     public void onAttach(@NonNull Context context) {

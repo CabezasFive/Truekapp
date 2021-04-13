@@ -1,4 +1,4 @@
-package com.cabezasfive.truekapp.fragments;
+package com.cabezasfive.truekapp.ui.masVistos;
 
 import android.os.Bundle;
 
@@ -60,12 +60,12 @@ public class MasVistosFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         rvPublicaciones.setLayoutManager(layoutManager);
 
-        obtenerPublicacionesFirebase();
+    //    obtenerPublicacionesFirebase();
 
 
         return view;
     }
-
+/*
     private void obtenerPublicacionesFirebase() {
         databaseReference.child("Publicacion").addValueEventListener(new ValueEventListener() {
             @Override
@@ -112,7 +112,7 @@ public class MasVistosFragment extends Fragment {
                     rvPublicaciones.setAdapter(adapter);
                 }else{
                     Toast.makeText(getActivity(), "no encontro nada", Toast.LENGTH_SHORT).show();
-                }
+
             }
 
             @Override
@@ -121,7 +121,7 @@ public class MasVistosFragment extends Fragment {
             }
         });
     }
-
+*/
 
     // Metodo para inicializar Firebase
     private void inicializarFirebase() {

@@ -1,10 +1,8 @@
-package com.cabezasfive.truekapp.fragments;
+package com.cabezasfive.truekapp.ui.editarPublicacion;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.cabezasfive.truekapp.R;
-import com.cabezasfive.truekapp.models.Publicacion;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -62,7 +59,7 @@ public class EditPublicacionFragment extends Fragment {
         btnBorrar = view.findViewById(R.id.btn_DeletePub);
 
         inicializarFirebase();
-
+/*
 
         // Al precionar el boton de editar se guarda en la misma posicion con los datos actualizados
 
@@ -109,7 +106,7 @@ public class EditPublicacionFragment extends Fragment {
 
         titulo.setText(tituloP);
         descripcion.setText(descrP);
-
+*/
         return view;
     }
 
