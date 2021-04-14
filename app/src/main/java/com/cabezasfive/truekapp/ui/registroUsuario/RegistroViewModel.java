@@ -4,11 +4,9 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import com.cabezasfive.truekapp.models.UserAccountRepository;
+import com.cabezasfive.truekapp.models.repositories.UserAccountRepository;
 import com.cabezasfive.truekapp.models.Usuario;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.Map;
 
 public class RegistroViewModel extends AndroidViewModel {
 

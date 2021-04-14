@@ -1,9 +1,27 @@
 package com.cabezasfive.truekapp.ui.masVistos;
 
-import androidx.lifecycle.ViewModel;
+import android.app.Application;
 
-public class MAsVistosViewModel extends ViewModel {
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 
-    public MAsVistosViewModel() {
+import com.cabezasfive.truekapp.models.Publicacion;
+import com.cabezasfive.truekapp.models.repositories.PublicacionRepository;
+
+import java.util.ArrayList;
+
+public class MAsVistosViewModel extends AndroidViewModel {
+    private PublicacionRepository publicacionRepository;
+
+    public MAsVistosViewModel(@NonNull Application application) {
+        super(application);
+
+        publicacionRepository = new PublicacionRepository(application);
+
     }
+
+    public ArrayList<Publicacion> getAllPublicaciones(){
+        return publicacionRepository.getAllPublicaciones();
+    }
+
 }
