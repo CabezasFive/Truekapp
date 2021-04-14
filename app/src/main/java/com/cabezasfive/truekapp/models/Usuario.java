@@ -14,7 +14,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String id, String nombre, String apellido, String direccion, String telefono, String email, String nick, String fechaCreado) {
+    public Usuario(String nombre, String apellido, String direccion, String telefono, String email, String nick, String fechaCreado) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -80,5 +80,13 @@ public class Usuario {
 
     public void setFechaCreado(String fechaCreado) {
         this.fechaCreado = fechaCreado;
+    }
+
+    public String getNick() {
+        return nick;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
     }
 }

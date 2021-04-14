@@ -5,7 +5,10 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import com.cabezasfive.truekapp.models.UserAccountRepository;
+import com.cabezasfive.truekapp.models.Usuario;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Map;
 
 public class RegistroViewModel extends AndroidViewModel {
 
@@ -20,8 +23,8 @@ public class RegistroViewModel extends AndroidViewModel {
         userMutableLiveData = userAccountRepository.getUserMutableLiveData();
     }
 
-    public void registrar(String email, String password){
-        userAccountRepository.registro(email, password);
+    public void registrar(String email, String password, Usuario usuario){
+        userAccountRepository.registro(email, password, usuario);
     }
 
 
