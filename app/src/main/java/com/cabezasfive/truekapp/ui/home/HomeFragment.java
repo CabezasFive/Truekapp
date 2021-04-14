@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -21,15 +22,11 @@ import com.cabezasfive.truekapp.interfaces.IComunicacionFragments;
 
 public class HomeFragment extends Fragment {
 
+    private HomeViewModel homeViewModel;
+
     //Referencia a los cardViews que funcionaran como botones
     CardView cardCategorias, cardPublicar, cardDestacados, cardMisOfertas, cardMasVistos, cardAyuda;
 
-    Activity activity;
-
-
-    public HomeFragment() {
-        // Required empty public constructors
-    }
 
 
     @Override
@@ -37,7 +34,11 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
+        return view;
     }
 
 
@@ -75,7 +76,10 @@ public class HomeFragment extends Fragment {
         cardDestacados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //******************************** //
+                //   Pasa a Login de usuario solo a modo de pruba
+                //********************************//
+                navController.navigate(R.id.loginFragment);
             }
         });
 
@@ -83,6 +87,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                //******************************** //
+                //   Pasa a Registro de usuario solo a modo de pruba
+                //********************************//
+                navController.navigate(R.id.registroFragment);
             }
         });
 

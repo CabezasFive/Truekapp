@@ -3,6 +3,9 @@ package com.cabezasfive.truekapp.ui.registroUsuario;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,7 @@ import android.widget.Toast;
 
 import com.cabezasfive.truekapp.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -28,6 +32,8 @@ public class RegistroFragment extends Fragment {
     private EditText editTextpassword;
     private Button btnRegistrar;
 
+    private RegistroViewModel registroViewModel;
+
     // Variables de los datos que se van a registrar
     private String nombre = "";
     private String apellido = "";
@@ -37,23 +43,22 @@ public class RegistroFragment extends Fragment {
     private String nick = "" ;
     private String password = "";
 
-    FirebaseAuth mAuth;
-    DatabaseReference databaseReference;
 
-    public RegistroFragment() {
-        // Required empty public constructor
-    }
-
-    public static RegistroFragment newInstance(String param1, String param2) {
-        RegistroFragment fragment = new RegistroFragment();
-
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        registroViewModel = new ViewModelProvider(this).get(RegistroViewModel.class);
+        registroViewModel.getUserMutableLiveData().observe(this, new Observer<FirebaseUser>() {
+            @Override
+            public void onChanged(FirebaseUser firebaseUser) {
+                if(firebaseUser != null){
+                    Toast.makeText(getContext(), "Usuario registrado", Toast.LENGTH_SHORT).show();
+                    Navigation.findNavController(getView()).navigate(R.id.action_registroFragment_to_homeFragment);
+                }
+            }
+        });
     }
 
     @Override
@@ -61,9 +66,6 @@ public class RegistroFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=  inflater.inflate(R.layout.fragment_registro, container, false);
-
-        mAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         editTextnombre = view.findViewById(R.id.et_Registro_Nombre);
         editTextapellido = view.findViewById(R.id.et_Registro_Apellido);
@@ -86,18 +88,19 @@ public class RegistroFragment extends Fragment {
                 email = editTextemail.getText().toString();
                 password = editTextpassword.getText().toString();
 
-                validarTextos();
+                registroViewModel.registrar(email, password);
+                //validarTextosYRegistrar();
             }
         });
 
         return view;
     }
 
-    private void validarTextos() {
+    private void validarTextosYRegistrar() {
         if(!nombre.isEmpty() && !apellido.isEmpty() && !direccion.isEmpty() && !nombre.isEmpty()
                 && !email.isEmpty() && !password.isEmpty() && !nick.isEmpty()){
             if (password.length() >= 6){
-                //registrarUsuario();
+
             }else{
                 Toast.makeText(getContext(), "El password debe tener como minimo 6 caracteres", Toast.LENGTH_SHORT).show();
             }
