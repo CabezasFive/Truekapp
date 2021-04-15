@@ -4,6 +4,12 @@
     <group android:checkableBehavior="single">
 
         <item
+            android:id="@+id/masVistosFragment"
+            android:title="Mas Vistos"
+            android:icon="@drawable/b_ojo"
+            />
+
+        <item
             android:id="@+id/nav_home"
             android:title="Home"
             android:icon="@drawable/ic_home_24"
@@ -38,12 +44,6 @@
                     android:id="@+id/nav_destacados"
                     android:title="Destacados"
                     android:icon="@drawable/b_estrella"
-                    />
-
-                <item
-                    android:id="@+id/nav_masVistos"
-                    android:title="Mas Vistos"
-                    android:icon="@drawable/b_ojo"
                     />
 
                 <item

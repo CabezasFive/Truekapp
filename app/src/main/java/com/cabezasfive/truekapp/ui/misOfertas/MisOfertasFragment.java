@@ -1,4 +1,4 @@
-package com.cabezasfive.truekapp.fragments;
+package com.cabezasfive.truekapp.ui.misOfertas;
 
 import android.os.Bundle;
 

@@ -1,4 +1,4 @@
-package com.cabezasfive.truekapp.fragments;
+package com.cabezasfive.truekapp.ui.listaCategorias;
 
 import android.os.Bundle;
 

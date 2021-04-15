@@ -1,4 +1,4 @@
-package com.cabezasfive.truekapp.fragments;
+package com.cabezasfive.truekapp.ui.publicar;
 
 import android.os.Bundle;
 
@@ -54,7 +54,7 @@ public class PublicarFragment extends Fragment  {
         // Inicializar Firebase
         inicializarFirebase();
         mAuth = FirebaseAuth.getInstance();
-
+/*
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,7 +100,7 @@ public class PublicarFragment extends Fragment  {
                 ft.commit();
             }
         });
-
+*/
         return view;
     }
 

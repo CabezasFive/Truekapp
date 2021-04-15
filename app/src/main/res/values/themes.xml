@@ -27,17 +27,12 @@
         <item name="actionMenuTextColor">@color/white</item>
     </style>
 
-    <style name="AppThemeCustomMenuToolbar" parent="ThemeOverlay.AppCompat.Light">
-        <item name="overlapAnchor">false</item>
+
+    <style name="Theme.TruekappNoActionBar.NoActionBar" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
-
-    <style name="Theme.TruekappNoActionBar.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="Theme.TruekappNoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.TruekappNoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

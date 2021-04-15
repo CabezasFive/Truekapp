@@ -1,50 +1,35 @@
 package com.cabezasfive.truekapp;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
 
 
 import android.content.Intent;
 import android.content.res.Configuration;
+
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
 
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.cabezasfive.truekapp.fragments.CategoriasFragment;
-import com.cabezasfive.truekapp.fragments.DestacadosFragment;
-import com.cabezasfive.truekapp.fragments.HomeFragment;
-import com.cabezasfive.truekapp.fragments.LoginFragment;
-import com.cabezasfive.truekapp.fragments.MasVistosFragment;
-import com.cabezasfive.truekapp.fragments.MisOfertasFragment;
-import com.cabezasfive.truekapp.fragments.PublicarFragment;
-import com.cabezasfive.truekapp.fragments.RegistroFragment;
-import com.cabezasfive.truekapp.interfaces.IComunicacionFragments;
-import com.cabezasfive.truekapp.interfaces.IComunicacionMain;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity implements IComunicacionFragments, IComunicacionMain, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
+
+    private AppBarConfiguration mAppBarConfiguration;
 
     // referencias a la navegacion
     DrawerLayout drawerLayout;
     NavigationView navigationView;
-    Toolbar toolbar;
 
     // Logo de usuario
     private ImageView btnUser;
@@ -54,11 +39,6 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
     private Button btnCerrarSesion;
     private Button btnInicioSesion;
 
-    // Icono hamburguesa
-    ActionBarDrawerToggle toggle;
-
-    FragmentManager fm = getSupportFragmentManager();
-    FragmentTransaction ft = fm.beginTransaction();
 
     ImageView logoHome;
 
@@ -75,8 +55,15 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         // UI
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navView);
-        toolbar = findViewById(R.id.toolbar);
 
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.homeFragment, R.id.masVistosFragment)
+                .setDrawerLayout(drawerLayout)
+                .build();
+
+        NavController navController = Navigation.findNavController(this, R.id.fragment);
+//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration );
+//        NavigationUI.setupWithNavController(navigationView, navController);
 
 
         logoHome=findViewById(R.id.logoToolbar);
@@ -91,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
 
 
 
-
+/*
         // Boton cerrar Sesion
         btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,43 +105,18 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         getSupportFragmentManager().beginTransaction().add(R.id.contenido, new HomeFragment()).commit();
         setTitle("Home");
 
-        // Setup del toolbar
-        setSupportActionBar(toolbar);
-
-        //setup del icono hamb
-        toggle = new ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                toolbar,
-                R.string.drawer_open,
-                R.string.drawer_close
-        );
-        drawerLayout.addDrawerListener(toggle);
-
         navigationView.setNavigationItemSelectedListener(this);
 
-
     }
 
-
-
-    @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        toggle.syncState();
-    }
-
+*/
+        /*
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         selectItemNav(item);
         return true;
     }
 
-    @Override
-    public void onConfigurationChanged(@NonNull Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        toggle.onConfigurationChanged(newConfig);
-    }
 
     private void selectItemNav(MenuItem item) {
 
@@ -207,16 +169,16 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
                 startActivity(miIntent);
                 break;
             case R.id.nav_pregruntasFrecuentes:
-                /*ft = fm.beginTransaction();
-                ft.replace(R.id.contenido,new PublicarFragment());
-                ft.addToBackStack(null);*/
+
                 break;
             case R.id.nav_acercaDe:
-                /*ft = fm.beginTransaction();
-                ft.replace(R.id.contenido,new PublicarFragment());
-                ft.addToBackStack(null);*/
                 break;
         }
+
+
+
+         */
+        /*
         ft.commit();
         setTitle(item.getTitle());
         drawerLayout.closeDrawers();
@@ -226,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(toggle.onOptionsItemSelected(item)){
+        if(onOptionsItemSelected(item)){
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -345,9 +307,16 @@ public class MainActivity extends AppCompatActivity implements IComunicacionFrag
         }else{
             userName.setText("");
         }
-
+*/
     }
 
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.fragment);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+            ||super.onSupportNavigateUp();
+    }
 }
 
 
