@@ -1,6 +1,8 @@
 package com.cabezasfive.truekapp.models.repositories;
 
 import android.app.Application;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -14,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PublicacionRepository {
 
@@ -21,6 +24,9 @@ public class PublicacionRepository {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private MutableLiveData<Publicacion> publicacionMutableLiveData;
+
+    private ArrayList<Publicacion> publicaciones = new ArrayList<>();
+    private Integer cantidad = 0;
 
     public PublicacionRepository(Application application) {
         this.application = application;
@@ -32,9 +38,8 @@ public class PublicacionRepository {
     }
 
     public ArrayList<Publicacion> getAllPublicaciones(){
-        ArrayList<Publicacion> publicaciones = new ArrayList<>();
-
         databaseReference.child("Publicacion").addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
@@ -43,19 +48,20 @@ public class PublicacionRepository {
 
                     // recorrer cada uno de los objetos en el nodo
                     for(DataSnapshot ds: snapshot.getChildren()){
-                        Publicacion p = ds.getValue(Publicacion.class);
-                        publicaciones.add(p);
+                        Publicacion publicacion =  ds.getValue(Publicacion.class);
+                        publicaciones.add(publicacion);
                     }
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(application, "Error al buscar listado de publicaciones", Toast.LENGTH_SHORT).show();
             }
         });
         return publicaciones;
     }
+
+
 
     public void getPublicacionById(String uid){
 

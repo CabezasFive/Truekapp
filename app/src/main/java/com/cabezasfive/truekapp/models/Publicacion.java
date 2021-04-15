@@ -8,18 +8,27 @@ public class Publicacion {
     private String uid;
     private String titulo;
     private String descripcion;
+/*
     private String f_Creacion;
     private String f_Modificado;
     private Boolean activo;
     private Integer visitas;
     private String imagen01;
     private String idUser;
-
+*/
 
     // Constructores
     public Publicacion() {
     }
 
+    public Publicacion(String descripcion,String uid, String titulo ) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.uid = uid;
+    }
+
+
+/*
     public Publicacion (String uid, String titulo, String descripcion, String imagen01, String idUser ){
         this.uid = uid;
         this.titulo = titulo;
@@ -63,7 +72,7 @@ public class Publicacion {
     public void setImagen01(String imagen01) {
         this.imagen01 = imagen01;
     }
-
+*/
     public String getUid() {
         return uid;
     }
@@ -87,7 +96,7 @@ public class Publicacion {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
+/*
     public Integer getVisitas() {
         return visitas;
     }
@@ -103,5 +112,5 @@ public class Publicacion {
     public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
-
+*/
 }

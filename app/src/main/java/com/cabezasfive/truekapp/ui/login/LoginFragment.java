@@ -39,7 +39,6 @@ public class LoginFragment extends Fragment  {
     private String pass  = "";
 
     private LoginViewModel loginViewModel;
-    private RegistroViewModel registroViewModel;
 
 
     @Override

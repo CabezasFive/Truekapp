@@ -10,10 +10,10 @@ import com.cabezasfive.truekapp.models.repositories.PublicacionRepository;
 
 import java.util.ArrayList;
 
-public class MAsVistosViewModel extends AndroidViewModel {
+public class MasVistosViewModel extends AndroidViewModel {
     private PublicacionRepository publicacionRepository;
 
-    public MAsVistosViewModel(@NonNull Application application) {
+    public MasVistosViewModel(@NonNull Application application) {
         super(application);
 
         publicacionRepository = new PublicacionRepository(application);

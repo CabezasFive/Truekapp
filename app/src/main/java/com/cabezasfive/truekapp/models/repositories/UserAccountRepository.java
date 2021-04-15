@@ -41,6 +41,7 @@ public class UserAccountRepository {
         loggedOutLiveData = new MutableLiveData<>();
     }
 
+
     public void registro(String email, String password, Usuario usuario){
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(ContextCompat.getMainExecutor(application), new OnCompleteListener<AuthResult>() {

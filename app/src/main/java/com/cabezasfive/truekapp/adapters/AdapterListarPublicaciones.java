@@ -13,7 +13,8 @@ import com.cabezasfive.truekapp.models.Publicacion;
 
 import java.util.ArrayList;
 
-public class AdapterListarPublicaciones extends RecyclerView.Adapter<AdapterListarPublicaciones.ViewHolder> implements View.OnClickListener {
+public class AdapterListarPublicaciones extends RecyclerView.Adapter<AdapterListarPublicaciones.ViewHolder>{
+        //implements View.OnClickListener {
 
     private int resource;
     private ArrayList<Publicacion> publicaciones;
@@ -26,12 +27,14 @@ public class AdapterListarPublicaciones extends RecyclerView.Adapter<AdapterList
         this.resource = resource;
     }
 
+
+
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterListarPublicaciones.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(resource, parent, false);
 
-        view.setOnClickListener(this);
+        //view.setOnClickListener(this);
 
         return new ViewHolder(view);
     }
@@ -39,17 +42,17 @@ public class AdapterListarPublicaciones extends RecyclerView.Adapter<AdapterList
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Publicacion publicacion = publicaciones.get(position);
+        //Publicacion publicacion = publicaciones.get(position);
 
-        holder.titulo.setText(publicacion.getTitulo());
-        holder.descripcion.setText(publicacion.getDescripcion());
+        holder.titulo.setText(publicaciones.get(position).getTitulo());
+        holder.descripcion.setText(publicaciones.get(position).getDescripcion());
     }
 
     @Override
     public int getItemCount() {
         return publicaciones.size();
     }
-
+/*
     // Metodos para el clikListener
 
     public void setOnClickListener(View.OnClickListener listener){
@@ -62,17 +65,15 @@ public class AdapterListarPublicaciones extends RecyclerView.Adapter<AdapterList
             listener.onClick(view);
         }
     }
-
+*/
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         private TextView titulo;
         private TextView descripcion;
-        private View view;
 
-        public ViewHolder(View view){
+        public ViewHolder(@NonNull View view){
             super(view);
 
-            this.view = view;
             this.titulo = (TextView) view.findViewById(R.id.textViewTitulo);
             this.descripcion = (TextView) view.findViewById(R.id.textViewDescripcion);
         }
