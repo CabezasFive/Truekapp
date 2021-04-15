@@ -4,7 +4,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
-import com.cabezasfive.truekapp.models.repositories.UserAccountRepository;
+import com.cabezasfive.truekapp.repositories.UserAccountRepository;
 import com.cabezasfive.truekapp.models.Usuario;
 import com.google.firebase.auth.FirebaseUser;
 

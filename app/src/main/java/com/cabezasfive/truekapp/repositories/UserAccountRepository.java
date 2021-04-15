@@ -1,4 +1,4 @@
-package com.cabezasfive.truekapp.models.repositories;
+package com.cabezasfive.truekapp.repositories;
 
 import android.app.Application;
 import android.widget.Toast;
@@ -18,8 +18,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.Map;
 
 public class UserAccountRepository {
     private Application application;
