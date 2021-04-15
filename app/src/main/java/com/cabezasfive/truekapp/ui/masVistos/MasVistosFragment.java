@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.adapters.AdapterListarPublicaciones;
@@ -82,6 +83,15 @@ public class MasVistosFragment extends Fragment {
         @Override
         protected void onPostExecute(ArrayList<Publicacion> resultado){
             adapter = new AdapterListarPublicaciones(publicaciones, R.layout.publicacion_item);
+
+            adapter.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(getContext(), "Publicacion: " +
+                            publicaciones.get(rvPublicaciones.getChildAdapterPosition(view)).getTitulo(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
             rvPublicaciones.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }
