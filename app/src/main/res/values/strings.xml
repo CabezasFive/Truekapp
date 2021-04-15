@@ -26,5 +26,11 @@
     <string name="ayuda_destacados">Selección de los articulos más importantes o de mayor relevancia en cada una de las categorias del site.</string>
     <string name="ayuda_mas_vistos">Selección de los articulos con mayor cantidad de visitas de usuarios en un intervalo previamente determinado. </string>
     <string name="ayuda_FAQ">Por mas preguntas que puedas tener, puedes verificar nuestra seccion de FAQ o dirigirte al inicio con los siguientes botones</string>
+    <string name="Registro">Registro</string>
+    <string name="iniciar_sesion">Iniciar Sesion</string>
+    <string name="correo_elecronico">Correo elecronico</string>
+    <string name="password">Password</string>
+    <string name="registrate_aqui">No tienes cuenta - Registrate aqui</string>
+    <string name="iniciar_sesion2">INICIAR SESION</string>
 
 </resources>
