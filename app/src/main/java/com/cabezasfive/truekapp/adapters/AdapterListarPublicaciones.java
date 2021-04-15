@@ -13,8 +13,7 @@ import com.cabezasfive.truekapp.models.Publicacion;
 
 import java.util.ArrayList;
 
-public class AdapterListarPublicaciones extends RecyclerView.Adapter<AdapterListarPublicaciones.ViewHolder>{
-        //implements View.OnClickListener {
+public class AdapterListarPublicaciones extends RecyclerView.Adapter<AdapterListarPublicaciones.ViewHolder> implements View.OnClickListener {
 
     private int resource;
     private ArrayList<Publicacion> publicaciones;
@@ -34,7 +33,7 @@ public class AdapterListarPublicaciones extends RecyclerView.Adapter<AdapterList
     public AdapterListarPublicaciones.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(resource, parent, false);
 
-        //view.setOnClickListener(this);
+        view.setOnClickListener(this);
 
         return new ViewHolder(view);
     }
@@ -52,7 +51,7 @@ public class AdapterListarPublicaciones extends RecyclerView.Adapter<AdapterList
     public int getItemCount() {
         return publicaciones.size();
     }
-/*
+
     // Metodos para el clikListener
 
     public void setOnClickListener(View.OnClickListener listener){
@@ -65,7 +64,7 @@ public class AdapterListarPublicaciones extends RecyclerView.Adapter<AdapterList
             listener.onClick(view);
         }
     }
-*/
+
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         private TextView titulo;
