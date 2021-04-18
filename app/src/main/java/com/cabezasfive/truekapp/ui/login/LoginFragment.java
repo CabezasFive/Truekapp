@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.interfaces.IComunicacionMain;
+import com.cabezasfive.truekapp.interfaces.IUser;
 import com.cabezasfive.truekapp.ui.registroUsuario.RegistroViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -95,4 +96,6 @@ public class LoginFragment extends Fragment  {
 
         return view;
     }
+
+
 }

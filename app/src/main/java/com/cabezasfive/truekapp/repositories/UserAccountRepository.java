@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.MutableLiveData;
 
+import com.cabezasfive.truekapp.interfaces.IUser;
 import com.cabezasfive.truekapp.models.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,7 +20,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class UserAccountRepository {
+public class UserAccountRepository implements IUser {
     private Application application;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
