@@ -1,13 +1,20 @@
-package com.cabezasfive.truekapp.models.repositories;
+package com.cabezasfive.truekapp.repositories;
 
 import android.app.Application;
+import android.os.AsyncTask;
+import android.view.View;
+import android.view.inputmethod.InputMethodSession;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.MutableLiveData;
 
+import com.cabezasfive.truekapp.R;
+import com.cabezasfive.truekapp.adapters.AdapterListarPublicaciones;
+import com.cabezasfive.truekapp.models.Publicacion;
 import com.cabezasfive.truekapp.models.Usuario;
+import com.cabezasfive.truekapp.ui.masVistos.MasVistosFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -17,19 +24,24 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 
-public class UserAccountRepository {
+import javax.security.auth.callback.Callback;
+
+public class UserAccountRepository{
     private Application application;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
     private MutableLiveData<FirebaseUser> userMutableLiveData;
-    private MutableLiveData<Usuario> usuarioProfileLiveData;
 
-    // Indica si se esta logueado o no
-    private MutableLiveData<Boolean> loggedOutLiveData;
+
+    public Usuario usuario = new Usuario();
+    boolean resultado;
+
 
     public UserAccountRepository(Application application){
         this.application = application;
@@ -38,10 +50,10 @@ public class UserAccountRepository {
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
         userMutableLiveData = new MutableLiveData<>();
-        loggedOutLiveData = new MutableLiveData<>();
     }
 
 
+    /** Registro de un nuevo usuario    */
     public void registro(String email, String password, Usuario usuario){
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(ContextCompat.getMainExecutor(application), new OnCompleteListener<AuthResult>() {
@@ -57,8 +69,7 @@ public class UserAccountRepository {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()){
                                         // Se guarda en Nicks el nick para facilitar la busqueda
-                                        databaseReference.child("nicks").child(usuario.getNick()).setValue(usuario.getNick());
-                                        Toast.makeText(application, "Perfil creado con exito ", Toast.LENGTH_SHORT).show();
+                                        databaseReference.child("nicks").child(usuario.getId()).child("nick").setValue(usuario.getNick());
                                     }else{
                                         Toast.makeText(application, "Error registrando Perfil: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                     }
@@ -72,6 +83,7 @@ public class UserAccountRepository {
                 });
     }
 
+    /** Login de usuario en firebaseAuth por su email y password   */
     public void login(String email, String password){
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(ContextCompat.getMainExecutor(application), new OnCompleteListener<AuthResult>() {
@@ -86,22 +98,14 @@ public class UserAccountRepository {
                 });
     }
 
+
+     /** Cierra sesion en firebaseAuth */
     public void logOut(){
         firebaseAuth.signOut();
-        loggedOutLiveData.postValue(true);
     }
 
-    public MutableLiveData<FirebaseUser> getUserMutableLiveData() {
-        return userMutableLiveData;
-    }
-
-    public MutableLiveData<Boolean> getLoggedOutLiveData() {
-        return loggedOutLiveData;
-    }
-
-
-    public void getProfileById(String id){
-
+    /** Devuelve un usuario por su ID */
+    public Usuario getProfileById(String id){
         databaseReference.child("user").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -110,7 +114,7 @@ public class UserAccountRepository {
                     for(DataSnapshot ds: snapshot.getChildren()){
                        Usuario user = ds.getValue(Usuario.class);
                        if (user.getId() == id){
-                           usuarioProfileLiveData.setValue(user);
+                           usuario = user;
                        }
                     }
                 }
@@ -121,9 +125,61 @@ public class UserAccountRepository {
 
             }
         });
+        return usuario;
     }
 
-    public MutableLiveData<Usuario> getUsuarioProfileLiveData() {
-        return usuarioProfileLiveData;
+    /** Consulta si un usuario esta logueado (Devuelve un booleano) */
+    public boolean isUserLoged() {
+        if(firebaseAuth.getCurrentUser() != null){
+            return true;
+        } else {
+            return false;
+        }
     }
+
+
+    /** Obtiene el nickName de usuario  */
+    /** A REVISAR -- NO ESTA FUNCIONANDO EN MAINACTIVITY PARA MOSTRAR EL NICK CUANDO ESTA LOGUEADO */
+    public String getUserNickname(){
+        String userNick;
+        if(firebaseAuth.getCurrentUser() != null){
+            getProfileById(firebaseAuth.getCurrentUser().getUid());
+            userNick = usuario.getNick();
+        } else {
+            userNick="*----*";
+        }
+        return userNick;
+    }
+
+
+
+    public boolean existNick(String nick){
+
+        Query userNick = databaseReference.child("nicks").orderByChild("nick").equalTo(nick).limitToFirst(1);
+
+        userNick.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    resultado = true;
+                }
+                else {
+                    resultado =false;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return resultado;
+    }
+
+
+
+    public MutableLiveData<FirebaseUser> getUserMutableLiveData() {
+        return userMutableLiveData;
+    }
+
 }

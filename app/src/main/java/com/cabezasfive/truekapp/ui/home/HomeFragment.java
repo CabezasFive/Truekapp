@@ -1,7 +1,5 @@
 package com.cabezasfive.truekapp.ui.home;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,19 +13,28 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.cabezasfive.truekapp.R;
-import com.cabezasfive.truekapp.interfaces.IComunicacionFragments;
+import com.cabezasfive.truekapp.ui.login.LoginViewModel;
 
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
 
     //Referencia a los cardViews que funcionaran como botones
     CardView cardCategorias, cardPublicar, cardDestacados, cardMisOfertas, cardMasVistos, cardAyuda;
 
+    HomeViewModel homeViewModel;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,9 +43,9 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         return view;
+
     }
 
 

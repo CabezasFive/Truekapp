@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
 import com.cabezasfive.truekapp.models.Publicacion;
-import com.cabezasfive.truekapp.models.repositories.PublicacionRepository;
+import com.cabezasfive.truekapp.repositories.PublicacionRepository;
 
 import java.util.ArrayList;
 

@@ -1,12 +1,8 @@
 package com.cabezasfive.truekapp.ui.login;
 
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -19,12 +15,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cabezasfive.truekapp.MainActivity;
 import com.cabezasfive.truekapp.R;
-import com.cabezasfive.truekapp.interfaces.IComunicacionMain;
-import com.cabezasfive.truekapp.ui.registroUsuario.RegistroViewModel;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 
 
 public class LoginFragment extends Fragment  {
@@ -39,6 +32,9 @@ public class LoginFragment extends Fragment  {
     private String pass  = "";
 
     private LoginViewModel loginViewModel;
+
+    private MainActivity mainActivity;
+
 
 
     @Override
@@ -76,6 +72,7 @@ public class LoginFragment extends Fragment  {
 
                 if(!email.isEmpty() && !pass.isEmpty()) {
                     loginViewModel.login(email, pass);
+                    ((MainActivity)getActivity()).activarCerrar();
                 }else{
                     Toast.makeText(getContext(), "Debe ingresar los datos de email y password", Toast.LENGTH_SHORT).show();
                 }
@@ -95,4 +92,6 @@ public class LoginFragment extends Fragment  {
 
         return view;
     }
+
+
 }

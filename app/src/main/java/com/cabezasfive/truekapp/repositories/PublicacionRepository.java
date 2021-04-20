@@ -1,7 +1,6 @@
-package com.cabezasfive.truekapp.models.repositories;
+package com.cabezasfive.truekapp.repositories;
 
 import android.app.Application;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,7 +15,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PublicacionRepository {
 
@@ -60,7 +58,6 @@ public class PublicacionRepository {
         });
         return publicaciones;
     }
-
 
 
     public void getPublicacionById(String uid){

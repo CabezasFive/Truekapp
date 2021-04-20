@@ -1,9 +1,12 @@
 package com.cabezasfive.truekapp.ui.listaDestacados;
 
-import androidx.lifecycle.ViewModel;
+import android.app.Application;
 
-public class DestacadosViewModel extends ViewModel {
+import androidx.lifecycle.AndroidViewModel;
 
-    public DestacadosViewModel() {
+public class DestacadosViewModel extends AndroidViewModel {
+
+    public DestacadosViewModel(Application application) {
+        super(application);
     }
 }

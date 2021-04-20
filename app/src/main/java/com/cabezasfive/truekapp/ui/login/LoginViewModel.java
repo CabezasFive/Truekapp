@@ -5,7 +5,7 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.cabezasfive.truekapp.models.repositories.UserAccountRepository;
+import com.cabezasfive.truekapp.repositories.UserAccountRepository;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginViewModel extends AndroidViewModel {

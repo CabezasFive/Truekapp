@@ -52,7 +52,7 @@ public class AyudaActivity extends AppCompatActivity implements AyudaDescripcion
             puntosSlide[i]=new TextView(this);
             puntosSlide[i].setText(Html.fromHtml("&#8226;"));
             puntosSlide[i].setTextSize(35);
-            puntosSlide[i].setTextColor(getResources().getColor(R.color.colorBlancoTransparente));
+            puntosSlide[i].setTextColor(getResources().getColor(R.color.blancotransparente));
             linearPuntos.addView(puntosSlide[i]);
         }
 

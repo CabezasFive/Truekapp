@@ -8,13 +8,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/PanelTop"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/verde"
@@ -24,7 +25,6 @@
                 android:id="@+id/logoToolbar"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:onClick="clikHome"
                 android:src="@drawable/logo"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -39,9 +39,10 @@
                 android:layout_height="22dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="5dp"
                 android:gravity="center"
                 android:text="Juan"
+                android:autoSizeTextType="uniform"
                 app:layout_constraintStart_toEndOf="@+id/logoToolbar"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,11 +56,12 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="4dp"
                 android:textSize="10sp"
+                android:autoSizeTextType="uniform"
                 app:layout_constraintStart_toEndOf="@+id/logoToolbar"
                 app:layout_constraintTop_toBottomOf="@+id/tv_NombreUsuarioToolbar" />
 
             <Button
-                android:id="@+id/btnInicioSesionToolbar"
+                android:id="@+id/btnIniciarSesion"
                 android:backgroundTint="@color/azul"
                 android:text="Iniciar Sesion"
                 android:layout_width="140dp"
@@ -68,9 +70,9 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="4dp"
                 android:textSize="10sp"
+                android:autoSizeTextType="uniform"
                 app:layout_constraintStart_toEndOf="@+id/logoToolbar"
                 app:layout_constraintTop_toBottomOf="@+id/tv_NombreUsuarioToolbar" />
-
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -80,21 +82,31 @@
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@+id/bottonNavView"
+            android:layout_below="@+id/PanelTop"
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_graph" />
 
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottonNavView"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            app:itemBackground="@color/verde"
+            app:itemIconTint="@color/nav_but_colors"
+            app:itemTextColor="@color/nav_but_colors"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/drawer_menu"
+            app:labelVisibilityMode="labeled"
+            >
 
-    </LinearLayout>
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:menu="@menu/drawer_menu"
-        app:headerLayout="@layout/nav_header"
-        />
+    </RelativeLayout>
+
+
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

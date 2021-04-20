@@ -1,14 +1,25 @@
 package com.cabezasfive.truekapp.ui.home;
 
-import android.view.View;
 
-import androidx.lifecycle.ViewModel;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
+import android.app.Application;
 
-public class HomeViewModel extends ViewModel {
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 
-    public HomeViewModel() {
+import com.cabezasfive.truekapp.repositories.UserAccountRepository;
 
+
+public class HomeViewModel extends AndroidViewModel {
+
+    UserAccountRepository userAccountRepository;
+
+
+    public HomeViewModel(@NonNull Application application) {
+        super(application);
+        userAccountRepository = new UserAccountRepository(application);
+    }
+
+    public boolean isLog(){
+        return userAccountRepository.isUserLoged();
     }
 }
