@@ -8,6 +8,7 @@ import com.cabezasfive.truekapp.repositories.UserAccountRepository;
 import com.cabezasfive.truekapp.models.Usuario;
 import com.google.firebase.auth.FirebaseUser;
 
+
 public class RegistroViewModel extends AndroidViewModel {
 
     private UserAccountRepository userAccountRepository;
@@ -23,6 +24,10 @@ public class RegistroViewModel extends AndroidViewModel {
 
     public void registrar(String email, String password, Usuario usuario){
         userAccountRepository.registro(email, password, usuario);
+    }
+
+    public boolean existNick(String nick){
+        return userAccountRepository.existNick(nick);
     }
 
 

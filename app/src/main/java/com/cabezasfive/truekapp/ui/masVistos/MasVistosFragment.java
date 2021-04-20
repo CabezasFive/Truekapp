@@ -55,14 +55,14 @@ public class MasVistosFragment extends Fragment {
 
         publicaciones = new ArrayList<>();
 
-        TareaAsynkTask tareaAsynkTask = new TareaAsynkTask();
-        tareaAsynkTask.execute();
+        TareaAsyncTask tareaAsyncTask = new TareaAsyncTask();
+        tareaAsyncTask.execute();
 
 
         return view;
     }
 
-    private class TareaAsynkTask extends AsyncTask<Void, Integer, ArrayList<Publicacion>> {
+    private class TareaAsyncTask extends AsyncTask<Void, Integer, ArrayList<Publicacion>> {
 
         @Override
         protected void onPreExecute(){

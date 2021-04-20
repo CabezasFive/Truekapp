@@ -60,7 +60,6 @@ public class PublicacionRepository {
     }
 
 
-
     public void getPublicacionById(String uid){
 
         databaseReference.child("Publicacion").addValueEventListener((new ValueEventListener() {

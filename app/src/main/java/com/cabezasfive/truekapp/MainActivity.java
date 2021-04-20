@@ -1,49 +1,49 @@
 package com.cabezasfive.truekapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 
+import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.cabezasfive.truekapp.interfaces.IUser;
+import com.cabezasfive.truekapp.adapters.AdapterListarPublicaciones;
+import com.cabezasfive.truekapp.models.Publicacion;
+import com.cabezasfive.truekapp.repositories.UserAccountRepository;
+import com.cabezasfive.truekapp.ui.masVistos.MasVistosFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
-    private AppBarConfiguration mAppBarConfiguration;
 
     // referencias a la navegacion
     DrawerLayout drawerLayout;
     BottomNavigationView bottomNavigationView;
 
-    // Logo de usuario
-    private ImageView btnUser;
+
     //TextView nombre de usuario logueado
     private TextView userName;
-
-    private Button btnCerrarSesion;
-    private Button btnInicioSesion;
-
+    private Button btnCerrarSesion, btnIniciarSesion;
 
     ImageView logoHome;
 
-    FirebaseAuth mAuth;
-    private DatabaseReference databaseReference;
+    UserAccountRepository userRepository;
+
+    String nick;
 
 
     @Override
@@ -51,15 +51,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Repository con los metodos de usuario a la bd
+        userRepository = new UserAccountRepository(getApplication());
 
         // UI
         drawerLayout = findViewById(R.id.drawerLayout);
         bottomNavigationView = findViewById(R.id.bottonNavView);
 
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.homeFragment, R.id.masVistosFragment)
-                .setDrawerLayout(drawerLayout)
-                .build();
 
         NavController navController = Navigation.findNavController(this, R.id.fragment);
 
@@ -68,16 +66,32 @@ public class MainActivity extends AppCompatActivity {
         userName=findViewById(R.id.tv_NombreUsuarioToolbar);
 
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
-        btnInicioSesion = findViewById(R.id.btnInicioSesionToolbar);
+        btnIniciarSesion = findViewById(R.id.btnIniciarSesion);
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        mAuth = FirebaseAuth.getInstance();
-
+        // ************************************************
+        // Logo superior si se da click va al fragment HOME
         logoHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 navController.navigate(R.id.homeFragment);
+            }
+        });
+
+
+
+        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userRepository.logOut();
+                ocultarCerrarSesion();
+            }
+        });
+
+        btnIniciarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                navController.navigate(R.id.loginFragment);
             }
         });
 
@@ -99,86 +113,55 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-/*
-        // Boton cerrar Sesion
-        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cerrarSesion();
-            }
-        });
-
-        // Boton iniciar sesion
-        btnInicioSesion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ft = fm.beginTransaction();
-                ft.replace(R.id.contenido, new LoginFragment())
-                    .addToBackStack(null)
-                    .commit();
-            }
-        });
-
-        getUserName();
-
-
-        // Al iniciar se muestra el HomeFragment
-        getSupportFragmentManager().beginTransaction().add(R.id.contenido, new HomeFragment()).commit();
-        setTitle("Home");
-
-
-
     }
 
-*/
-/*
 
-
-
-
-    @Override
     public void activarCerrar() {
-        btnInicioSesion.setVisibility(View.INVISIBLE);
+        btnIniciarSesion.setVisibility(View.INVISIBLE);
         btnCerrarSesion.setVisibility(View.VISIBLE);
-        getUserName();
+        getNickAyncTask getNick= new getNickAyncTask();
+        getNick.execute();
     }
 
-    @Override
-    public void activarLogin() {
-        btnInicioSesion.setVisibility(View.VISIBLE);
+
+
+    public void ocultarCerrarSesion() {
+        btnIniciarSesion.setVisibility(View.VISIBLE);
         btnCerrarSesion.setVisibility(View.INVISIBLE);
-        getUserName();
+        userName.setText("");
     }
-
-    public void getUserName(){
-        if(mAuth.getCurrentUser() !=null ){
-            String id = mAuth.getCurrentUser().getUid();
-            databaseReference.child("users").child(id).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if ( snapshot.exists()){
-                        String nick = snapshot.child("nick").getValue().toString();
-                        userName.setText(nick);
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-        }else{
-            userName.setText("");
-        }
-*/
-    }
-
 
     @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-            ||super.onSupportNavigateUp();
+    protected void onResume() {
+        super.onResume();
+        if(userRepository.isUserLoged()){
+            activarCerrar();
+        }else{
+            ocultarCerrarSesion();
+        }
+    }
+
+    private class getNickAyncTask extends AsyncTask<Void, Integer, String>{
+        @Override
+        protected void onPreExecute(){
+
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            nick = userRepository.getUserNickname();
+            return nick;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values){
+
+        }
+
+        @Override
+        protected void onPostExecute(String resultado){
+            userName.setText(resultado);
+        }
     }
 }
 
