@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_homeFragment_to_categoriasFragment"
             app:destination="@id/categoriasFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_publicarFragment"
+            app:destination="@id/publicarFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -65,6 +68,15 @@
         tools:layout="@layout/fragment_categorias" >
         <action
             android:id="@+id/action_categoriasFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/publicarFragment"
+        android:name="com.cabezasfive.truekapp.ui.publicar.PublicarFragment"
+        android:label="fragment_publicar"
+        tools:layout="@layout/fragment_publicar" >
+        <action
+            android:id="@+id/action_publicarFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

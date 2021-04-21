@@ -9,6 +9,7 @@ import androidx.navigation.Navigation;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cabezasfive.truekapp.adapters.AdapterListarPublicaciones;
+import com.cabezasfive.truekapp.fragmentsAyuda.AyudaActivity;
 import com.cabezasfive.truekapp.models.Publicacion;
 import com.cabezasfive.truekapp.repositories.UserAccountRepository;
 import com.cabezasfive.truekapp.ui.masVistos.MasVistosFragment;
@@ -106,8 +108,15 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_publicaciones:
                         navController.navigate(R.id.masVistosFragment);
                         return true;
+                    case R.id.nav_publicar:
+                        navController.navigate(R.id.publicarFragment);
+                        return true;
                     case R.id.nav_login:
                         navController.navigate(R.id.loginFragment);
+                        return true;
+                    case R.id.nav_ayuda:
+                        Intent miIntent = new Intent(MainActivity.this, AyudaActivity.class);
+                        startActivity(miIntent);
                         return true;
                 }
                 return false;
