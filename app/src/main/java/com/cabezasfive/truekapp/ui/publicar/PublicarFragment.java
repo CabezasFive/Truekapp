@@ -47,9 +47,9 @@ public class PublicarFragment extends Fragment  {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_publicar, container, false);
 
-        inputTitulo = view.findViewById(R.id.et_TituloPub);
-        inputDescripcion = view.findViewById(R.id.et_DescrPub);
-        btnAgregar = view.findViewById(R.id.btn_AddPub);
+        inputTitulo = view.findViewById(R.id.et_Nombre_Producto);
+        inputDescripcion = view.findViewById(R.id.et_Descripción);
+        btnAgregar = view.findViewById(R.id.btn_Agregar_producto);
 
         // Inicializar Firebase
         inicializarFirebase();

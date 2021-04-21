@@ -33,4 +33,12 @@
     <string name="registrate_aqui">No tienes cuenta - Registrate aqui</string>
     <string name="iniciar_sesion2">INICIAR SESION</string>
 
+    <string name="agregar_producto">Ingresar detalles del producto</string>
+    <string name="Nombre_producto">Nombre del producto</string>
+    <string name="Descripcion_producto">Descripción</string>
+    <string name="Direccion_producto">Dirección</string>
+    <string name="Precio_producto">Precio estimado (UY)</string>
+    <string name="Agregar_Foto">Elegir foto del producto</string>
+    <string name="Publicar">Agregar producto</string>
+
 </resources>
