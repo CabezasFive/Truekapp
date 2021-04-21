@@ -47,7 +47,7 @@ public class LoginFragment extends Fragment  {
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser != null){
                     Toast.makeText(getContext(), "Sesión iniciada", Toast.LENGTH_SHORT).show();
-                    Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_homeFragment);
+                    Navigation.findNavController(getView()).navigate(R.id.homeFragment);
                 }
             }
         });

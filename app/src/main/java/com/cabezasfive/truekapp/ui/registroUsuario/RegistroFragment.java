@@ -73,7 +73,7 @@ public class RegistroFragment extends Fragment {
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser != null){
                     Toast.makeText(getContext(), "Usuario registrado", Toast.LENGTH_SHORT).show();
-                    Navigation.findNavController(getView()).navigate(R.id.action_registroFragment_to_homeFragment);
+                    Navigation.findNavController(getView()).navigate(R.id.homeFragment);
                 }
             }
         });

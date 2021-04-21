@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         bottomNavigationView = findViewById(R.id.bottonNavView);
 
-
         NavController navController = Navigation.findNavController(this, R.id.fragment);
 
 
@@ -107,7 +106,13 @@ public class MainActivity extends AppCompatActivity {
                         navController.navigate(R.id.masVistosFragment);
                         return true;
                     case R.id.nav_login:
-                        navController.navigate(R.id.loginFragment);
+                        if(userRepository.isUserLoged()){
+                            // si ya esta logueado va al perfil
+                        }else {
+                            // si no esta logueado va a login
+                            navController.navigate(R.id.loginFragment);
+                        }
+
                         return true;
                 }
                 return false;

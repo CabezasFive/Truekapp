@@ -2,63 +2,125 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#BF2C44A4">
 
-    <androidx.cardview.widget.CardView
+
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/cardViewPublicacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        app:cardBackgroundColor="@color/gris"
-        app:cardCornerRadius="12dp"
-        app:contentPadding="4dp"
+        android:layout_marginVertical="8dp"
+        android:layout_marginHorizontal="15dp"
+        app:cardCornerRadius="15dp"
+        android:backgroundTint="#BFFFFFFF"
         >
 
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayoutItem"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="16dp">
-
-            <ImageView
-                android:id="@+id/imgPublicacion"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textViewTitulo"
-                android:layout_width="287dp"
-                android:layout_height="41dp"
-                android:textColor="@color/black"
-                android:textSize="30sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imgPublicacion"
-                app:layout_constraintTop_toTopOf="parent" />
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="5dp"
+                android:text="Titulo"
+                android:autoSizeTextType="uniform"
+                />
 
-            <TextView
-                android:id="@+id/textViewDescripcion"
-                android:layout_width="286dp"
-                android:layout_height="42dp"
-                android:text="Esta es la descripcion del producto"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/textViewTitulo"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewTitulo" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-    </androidx.cardview.widget.CardView>
-
+                <ImageView
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/producto"/>
 
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/textViewCategoria"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Categoria del producto"
+                        android:textColor="@color/purple_500"
+                        android:fontFamily="sans-serif-light"
+                        android:layout_marginBottom="8dp"
+                        android:textSize="14sp"
+                        android:autoSizeTextType="uniform"
+                        />
+
+                    <TextView
+                        android:id="@+id/textViewDescripcion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:textColor="@color/cardview_dark_background"
+                        android:text="Descripcion"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="20dp"
+                        android:text="VER PUBLICACION"
+                        android:textSize="16sp"
+                        tools:ignore="RtlCompat"
+                        android:autoSizeTextType="uniform"/>
+
+                    <ImageButton
+                        android:id="@+id/sharePubli"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="20dp"
+                        android:background="@null"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_share"
+                        tools:ignore="RtlCompat" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>
