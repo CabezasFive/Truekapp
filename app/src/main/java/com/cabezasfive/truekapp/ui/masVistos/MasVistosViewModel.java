@@ -24,4 +24,8 @@ public class MasVistosViewModel extends AndroidViewModel {
         return publicacionRepository.getAllPublicaciones();
     }
 
+    public ArrayList<Publicacion> searchPublicacion(String search){
+        return publicacionRepository.searchPublicacion(search);
+    }
+
 }

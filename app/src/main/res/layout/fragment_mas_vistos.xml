@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.masVistos.MasVistosFragment"
-    android:backgroundTint="@color/teal_700">
+    android:background="#2C44A4">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_MasVistos"

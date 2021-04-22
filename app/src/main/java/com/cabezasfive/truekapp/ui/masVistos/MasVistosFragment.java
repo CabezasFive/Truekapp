@@ -3,6 +3,7 @@ package com.cabezasfive.truekapp.ui.masVistos;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -32,6 +33,8 @@ public class MasVistosFragment extends Fragment {
 
     private MasVistosViewModel masVistosViewModel;
 
+    private String findText;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +44,13 @@ public class MasVistosFragment extends Fragment {
     }
 
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (getArguments() != null){
+            findText = getArguments().getString("text");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,8 +66,11 @@ public class MasVistosFragment extends Fragment {
 
         publicaciones = new ArrayList<>();
 
-        TareaAsyncTask tareaAsyncTask = new TareaAsyncTask();
-        tareaAsyncTask.execute();
+
+            TareaAsyncTask tareaAsyncTask = new TareaAsyncTask();
+            tareaAsyncTask.execute();
+
+
 
 
         return view;
@@ -72,8 +85,14 @@ public class MasVistosFragment extends Fragment {
 
         @Override
         protected ArrayList<Publicacion> doInBackground(Void... voids) {
-            publicaciones = masVistosViewModel.getAllPublicaciones();
-            return publicaciones;
+            if (findText != null){
+                publicaciones = masVistosViewModel.searchPublicacion(findText);
+                return publicaciones;
+            }else {
+                publicaciones = masVistosViewModel.getAllPublicaciones();
+                return publicaciones;
+            }
+
         }
 
         @Override
