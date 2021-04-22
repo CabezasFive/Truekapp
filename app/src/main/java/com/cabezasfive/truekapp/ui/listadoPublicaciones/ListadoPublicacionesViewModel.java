@@ -1,4 +1,4 @@
-package com.cabezasfive.truekapp.ui.masVistos;
+package com.cabezasfive.truekapp.ui.listadoPublicaciones;
 
 import android.app.Application;
 
@@ -10,10 +10,10 @@ import com.cabezasfive.truekapp.repositories.PublicacionRepository;
 
 import java.util.ArrayList;
 
-public class MasVistosViewModel extends AndroidViewModel {
+public class ListadoPublicacionesViewModel extends AndroidViewModel {
     private PublicacionRepository publicacionRepository;
 
-    public MasVistosViewModel(@NonNull Application application) {
+    public ListadoPublicacionesViewModel(@NonNull Application application) {
         super(application);
 
         publicacionRepository = new PublicacionRepository(application);

@@ -1,4 +1,4 @@
-package com.cabezasfive.truekapp.ui.masVistos;
+package com.cabezasfive.truekapp.ui.listadoPublicaciones;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ import com.cabezasfive.truekapp.models.Publicacion;
 
 import java.util.ArrayList;
 
-public class MasVistosFragment extends Fragment {
+public class ListadoPublicacionesFragment extends Fragment {
 
     // Referencia al adaptador y recyclerView
     private AdapterListarPublicaciones adapter;
@@ -31,7 +31,7 @@ public class MasVistosFragment extends Fragment {
 
     private ArrayList<Publicacion> publicaciones;
 
-    private MasVistosViewModel masVistosViewModel;
+    private ListadoPublicacionesViewModel listadoPublicacionesViewModel;
 
     private String findText;
 
@@ -40,7 +40,7 @@ public class MasVistosFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        masVistosViewModel = new ViewModelProvider(this).get(MasVistosViewModel.class);
+        listadoPublicacionesViewModel = new ViewModelProvider(this).get(ListadoPublicacionesViewModel.class);
     }
 
 
@@ -56,8 +56,7 @@ public class MasVistosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_mas_vistos, container, false);
-
+        View view= inflater.inflate(R.layout.fragment_listado_publicaciones, container, false);
 
         rvPublicaciones = view.findViewById(R.id.rv_MasVistos);
         layoutManager = new LinearLayoutManager(getContext());
@@ -66,15 +65,12 @@ public class MasVistosFragment extends Fragment {
 
         publicaciones = new ArrayList<>();
 
-
-            TareaAsyncTask tareaAsyncTask = new TareaAsyncTask();
-            tareaAsyncTask.execute();
-
-
-
+        TareaAsyncTask tareaAsyncTask = new TareaAsyncTask();
+        tareaAsyncTask.execute();
 
         return view;
     }
+
 
     private class TareaAsyncTask extends AsyncTask<Void, Integer, ArrayList<Publicacion>> {
 
@@ -86,10 +82,10 @@ public class MasVistosFragment extends Fragment {
         @Override
         protected ArrayList<Publicacion> doInBackground(Void... voids) {
             if (findText != null){
-                publicaciones = masVistosViewModel.searchPublicacion(findText);
+                publicaciones = listadoPublicacionesViewModel.searchPublicacion(findText);
                 return publicaciones;
             }else {
-                publicaciones = masVistosViewModel.getAllPublicaciones();
+                publicaciones = listadoPublicacionesViewModel.getAllPublicaciones();
                 return publicaciones;
             }
 
@@ -112,7 +108,6 @@ public class MasVistosFragment extends Fragment {
                     Navigation.findNavController(getView()).navigate(R.id.verPublicacion);
                 }
             });
-
             rvPublicaciones.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }

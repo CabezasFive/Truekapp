@@ -1,6 +1,5 @@
 package com.cabezasfive.truekapp.ui.home;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,24 +9,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cabezasfive.truekapp.R;
-import com.cabezasfive.truekapp.adapters.AdapterListarPublicaciones;
-import com.cabezasfive.truekapp.models.Publicacion;
-import com.cabezasfive.truekapp.ui.login.LoginViewModel;
-import com.cabezasfive.truekapp.ui.masVistos.MasVistosFragment;
-
-import java.util.ArrayList;
 
 
 public class HomeFragment extends Fragment {
@@ -58,24 +47,6 @@ public class HomeFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-
-
-        textSearch = view.findViewById(R.id.searchField);
-        btnSearch = view.findViewById(R.id.btnSearch);
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                search = textSearch.getText().toString();
-                textSearch.setText("");
-                Bundle bundle = new Bundle();
-                bundle.putString("text", search);
-                Navigation.findNavController(view).navigate(R.id.masVistosFragment, bundle);
-
-            }
-        });
-
 
 
         return view;

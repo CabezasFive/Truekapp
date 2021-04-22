@@ -45,9 +45,9 @@
     </fragment>
     <fragment
         android:id="@+id/masVistosFragment"
-        android:name="com.cabezasfive.truekapp.ui.masVistos.MasVistosFragment"
+        android:name="com.cabezasfive.truekapp.ui.listadoPublicaciones.ListadoPublicacionesFragment"
         android:label="fragment_mas_vistos"
-        tools:layout="@layout/fragment_mas_vistos" >
+        tools:layout="@layout/fragment_listado_publicaciones" >
         <action
             android:id="@+id/action_masVistosFragment_to_verPublicacion"
             app:destination="@id/verPublicacion" />

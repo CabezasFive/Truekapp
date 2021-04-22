@@ -1,7 +1,6 @@
 package com.cabezasfive.truekapp;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -12,21 +11,17 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.cabezasfive.truekapp.adapters.AdapterListarPublicaciones;
-import com.cabezasfive.truekapp.models.Publicacion;
 import com.cabezasfive.truekapp.repositories.UserAccountRepository;
-import com.cabezasfive.truekapp.ui.masVistos.MasVistosFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +34,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView userName;
     private Button btnCerrarSesion, btnIniciarSesion;
 
-    ImageView logoHome;
+    private ImageView logoHome;
+
+    private EditText textSearch;
+    private ImageButton btnBuscar;
 
     UserAccountRepository userRepository;
 
@@ -62,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         logoHome=findViewById(R.id.logoToolbar);
+
+
+        btnBuscar = findViewById(R.id.btnSearch);
+        textSearch = findViewById(R.id.searchField);
+
         userName=findViewById(R.id.tv_NombreUsuarioToolbar);
 
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
@@ -74,6 +77,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 navController.navigate(R.id.homeFragment);
+            }
+        });
+
+
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String search;
+                search = textSearch.getText().toString();
+                textSearch.setText("");
+                Bundle bundle = new Bundle();
+                bundle.putString("text", search);
+                //cerrarTeclado();
+                InputMethodManager imm =(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                navController.navigate(R.id.masVistosFragment, bundle);
             }
         });
 

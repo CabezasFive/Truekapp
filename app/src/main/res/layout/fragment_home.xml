@@ -12,58 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="3dp"
-            android:fontFamily="@font/nunito_bold"
-            android:text="Buscar"
-            android:textColor="#555555"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/searchField"
-            android:layout_width="254dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginStart="36dp"
-            android:layout_marginLeft="36dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_toStartOf="@+id/btnSearch"
-            android:layout_toLeftOf="@+id/btnSearch"
-            android:background="@drawable/search_layout"
-            android:ems="10"
-            android:fontFamily="@font/nunito_semibold"
-            android:hint="Buscar articulo"
-            android:inputType="textPersonName"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingRight="20dp"
-            android:paddingBottom="10dp"
-            android:textColor="#999999"
-            android:textSize="16sp" />
-
-        <ImageButton
-            android:id="@+id/btnSearch"
-            android:layout_width="97dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="33dp"
-            android:layout_marginEnd="9dp"
-            android:layout_marginRight="9dp"
-            android:background="@drawable/search_layout"
-            android:backgroundTint="@color/azul"
-            android:src="@android:drawable/ic_menu_search" />
 
         <androidx.gridlayout.widget.GridLayout
             android:id="@+id/idGrid"
