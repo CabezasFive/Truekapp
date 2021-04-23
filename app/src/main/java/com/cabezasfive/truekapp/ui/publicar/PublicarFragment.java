@@ -72,7 +72,6 @@ public class PublicarFragment extends Fragment  {
     DatabaseReference databaseReference;
     StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("img_comprimidas");
     Bitmap thumb_bitmap = null;
-    ProgressDialog cargando;
 
     ImageView Foto;
 
@@ -151,7 +150,7 @@ public class PublicarFragment extends Fragment  {
             CropImage.activity(imagenuri)
                     .setGuidelines(CropImageView.Guidelines.ON)
                     .setRequestedSize(640,480)
-                    .setAspectRatio(2,1)
+                    .setAspectRatio(2,2)
                     .start(getContext(), this);
         }
 
@@ -242,10 +241,10 @@ public class PublicarFragment extends Fragment  {
                             Toast.makeText(getContext(), "Usuario no registrado", Toast.LENGTH_SHORT).show();
 
                             //Falla navegation para login
-                            //Navigation.findNavController(getView()).navigate(R.id.action_publicarFragment_to_loginFragment);
+                            Navigation.findNavController(getView()).navigate(R.id.action_publicarFragment_to_loginFragment);
                         }
                         //Falla navegation para home
-                        //Navigation.findNavController(getView()).navigate(R.id.action_publicarFragment_to_homeFragment);
+                        Navigation.findNavController(getView()).navigate(R.id.action_publicarFragment_to_homeFragment);
                     }
                 });
 
