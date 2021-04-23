@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
                 textSearch.setText("");
                 Bundle bundle = new Bundle();
                 bundle.putString("text", search);
-                //cerrarTeclado();
                 InputMethodManager imm =(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 navController.navigate(R.id.masVistosFragment, bundle);

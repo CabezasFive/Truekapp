@@ -3,6 +3,7 @@ package com.cabezasfive.truekapp.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.models.Publicacion;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -42,9 +44,14 @@ public class AdapterListarPublicaciones extends RecyclerView.Adapter<AdapterList
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         //Publicacion publicacion = publicaciones.get(position);
-
         holder.titulo.setText(publicaciones.get(position).getTitulo());
         holder.descripcion.setText(publicaciones.get(position).getDescripcion());
+        if(publicaciones.get(position).getImagen01() != null){
+            String url = publicaciones.get(position).getImagen01();
+            Picasso.get()
+                    .load(url)
+                    .into(holder.foto);
+        }
     }
 
     @Override
@@ -69,12 +76,14 @@ public class AdapterListarPublicaciones extends RecyclerView.Adapter<AdapterList
 
         private TextView titulo;
         private TextView descripcion;
+        private ImageView foto;
 
         public ViewHolder(@NonNull View view){
             super(view);
 
             this.titulo = (TextView) view.findViewById(R.id.textViewTitulo);
             this.descripcion = (TextView) view.findViewById(R.id.textViewDescripcion);
+            this.foto = (ImageView) view.findViewById(R.id.imViewCardPublicacion);
         }
     }
 

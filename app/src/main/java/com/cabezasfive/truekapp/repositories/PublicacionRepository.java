@@ -23,10 +23,12 @@ public class PublicacionRepository {
     Application application;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
-    private MutableLiveData<Publicacion> publicacionMutableLiveData;
+    public MutableLiveData<Publicacion> publicacionMutableLiveData = new MutableLiveData<Publicacion>();
 
     private ArrayList<Publicacion> publicaciones = new ArrayList<>();
     private Integer cantidad = 0;
+
+    private Publicacion find = new Publicacion();
 
     public PublicacionRepository(Application application) {
         this.application = application;
@@ -34,7 +36,6 @@ public class PublicacionRepository {
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        publicacionMutableLiveData = new MutableLiveData<>();
     }
 
 
@@ -64,18 +65,24 @@ public class PublicacionRepository {
     }
 
 
-    public void getPublicacionById(String uid){
+    /** Busca una publicacion por el id pasado como argumento   */
 
-        databaseReference.child("Publicacion").addValueEventListener((new ValueEventListener() {
+    public Publicacion getPublicacionById(String uid){
+
+        Query query = databaseReference.child("Publicacion");
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     for (DataSnapshot ds : snapshot.getChildren()){
                         Publicacion publicacion = ds.getValue(Publicacion.class);
                         if (publicacion.getUid() == uid){
-                            publicacionMutableLiveData.setValue(publicacion);
+                            find = publicacion;
+                            addPublicacionMutable(publicacion);
                         }
                     }
+                }else {
+                    Toast.makeText(application, "No encontro el id de publicacion", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -83,7 +90,9 @@ public class PublicacionRepository {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        }));
+        });
+
+        return find;
     }
 
 
@@ -91,9 +100,7 @@ public class PublicacionRepository {
     /** Convierte a mayusculas el string para buscar dentro de las publicaciones el nodo titulo_upper donde se guarda el titulo completo en mayusculas   */
     public ArrayList<Publicacion> searchPublicacion(String search){
 
-
         Query firebaseSearchQuery = databaseReference.child("Publicacion").orderByChild("titulo_upper").startAt(search.toUpperCase()).endAt(search.toUpperCase() + "\uf8ff");
-
 
         firebaseSearchQuery.addValueEventListener(new ValueEventListener() {
             @Override
@@ -105,7 +112,6 @@ public class PublicacionRepository {
                     // recorrer cada uno de los objetos en el nodo
                     for(DataSnapshot ds: snapshot.getChildren()){
                         Publicacion publicacion =  ds.getValue(Publicacion.class);
-                        Toast.makeText(application, "Find: " + publicacion.getTitulo(), Toast.LENGTH_SHORT).show();
                         publicaciones.add(publicacion);
                     }
                 }
@@ -119,7 +125,14 @@ public class PublicacionRepository {
         return publicaciones;
     }
 
+    public void addPublicacionMutable(Publicacion pub){
+        publicacionMutableLiveData.setValue(pub);
+    }
+
     public MutableLiveData<Publicacion> getPublicacionMutableLiveData() {
+        if (publicacionMutableLiveData == null){
+            publicacionMutableLiveData = new MutableLiveData<Publicacion>();
+        }
         return publicacionMutableLiveData;
     }
 }

@@ -20,6 +20,7 @@ import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.adapters.AdapterListarPublicaciones;
 import com.cabezasfive.truekapp.models.Publicacion;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ListadoPublicacionesFragment extends Fragment {
@@ -103,9 +104,16 @@ public class ListadoPublicacionesFragment extends Fragment {
             adapter.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getContext(), "Publicacion: " +
-                            publicaciones.get(rvPublicaciones.getChildAdapterPosition(view)).getTitulo(), Toast.LENGTH_SHORT).show();
-                    Navigation.findNavController(getView()).navigate(R.id.verPublicacion);
+
+                    // ************************************************************** //
+                    //   Pasa a verPublicacion el uid de la publicacion seleccionada //
+
+                    Publicacion pub = publicaciones.get(rvPublicaciones.getChildAdapterPosition(view));
+
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("publicacion", pub );
+                    //bundle.putString("uid", uidPublicacion);
+                    Navigation.findNavController(getView()).navigate(R.id.verPublicacion, bundle);
                 }
             });
             rvPublicaciones.setAdapter(adapter);
