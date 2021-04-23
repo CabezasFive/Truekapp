@@ -60,9 +60,7 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         bottomNavigationView = findViewById(R.id.bottonNavView);
 
-
         NavController navController = Navigation.findNavController(this, R.id.fragment);
-
 
         logoHome=findViewById(R.id.logoToolbar);
         userName=findViewById(R.id.tv_NombreUsuarioToolbar);
