@@ -6,20 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".ui.publicar.PublicarFragment">
 
-    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:background="#dcdfe4"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:background="@color/verdeFondo"
             android:gravity="center"
             android:text="@string/agregar_producto"
             android:textColor="#000000"
-            android:textSize="17sp" />
+            android:textStyle="bold"
+            android:textSize="20sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -89,12 +90,11 @@
             android:textAllCaps="false"/>
 
         <ImageView
-            android:id="@+id/Imange_Producto"
+            android:id="@+id/Imagen_Producto"
             android:layout_width="match_parent"
             android:layout_height="275dp"
             android:layout_margin="10dp"
-            android:contentDescription="Imagen_Producto"
-            android:scaleType="fitXY" />
+            android:contentDescription="Imagen_Producto" />
 
         <Button
             android:id="@+id/btn_Agregar_producto"

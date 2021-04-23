@@ -7,7 +7,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
