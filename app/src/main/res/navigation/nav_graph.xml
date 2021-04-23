@@ -16,14 +16,20 @@
             app:enterAnim="@anim/nav_default_pop_enter_anim"
             app:exitAnim="@anim/nav_default_pop_exit_anim" />
         <action
-            android:id="@+id/action_homeFragment_to_masVistosFragment"
-            app:destination="@id/masVistosFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_registroFragment"
             app:destination="@id/registroFragment" />
         <action
             android:id="@+id/action_homeFragment_to_categoriasFragment"
             app:destination="@id/categoriasFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_listadoPublicacionesFragment"
+            app:destination="@id/listadoPublicacionesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_misOfertasFragment"
+            app:destination="@id/misOfertasFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_ayudaActivity"
+            app:destination="@id/ayudaActivity" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -31,8 +37,8 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_loginFragment_to_registroFragment"
+            app:destination="@id/registroFragment" />
     </fragment>
     <fragment
         android:id="@+id/registroFragment"
@@ -42,29 +48,30 @@
         <action
             android:id="@+id/action_registroFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_registroFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_registroFragment_to_homeFragment2"
-            app:destination="@id/homeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/masVistosFragment"
-        android:name="com.cabezasfive.truekapp.ui.masVistos.MasVistosFragment"
-        android:label="fragment_mas_vistos"
-        tools:layout="@layout/fragment_mas_vistos" >
-        <action
-            android:id="@+id/action_masVistosFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriasFragment"
         android:name="com.cabezasfive.truekapp.ui.listaCategorias.CategoriasFragment"
         android:label="fragment_categorias"
-        tools:layout="@layout/fragment_categorias" >
-        <action
-            android:id="@+id/action_categoriasFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_categorias" />
+    <fragment
+        android:id="@+id/verPublicacion"
+        android:name="com.cabezasfive.truekapp.ui.verPublicacion.VerPublicacion"
+        android:label="fragment_ver_publicacion"
+        tools:layout="@layout/fragment_ver_publicacion" />
+    <fragment
+        android:id="@+id/listadoPublicacionesFragment"
+        android:name="com.cabezasfive.truekapp.ui.listadoPublicaciones.ListadoPublicacionesFragment"
+        android:label="fragment_listado_publicaciones"
+        tools:layout="@layout/fragment_listado_publicaciones" />
+    <fragment
+        android:id="@+id/misOfertasFragment"
+        android:name="com.cabezasfive.truekapp.ui.misOfertas.MisOfertasFragment"
+        android:label="fragment_mis_ofertas"
+        tools:layout="@layout/fragment_mis_ofertas" />
+    <activity
+        android:id="@+id/ayudaActivity"
+        android:name="com.cabezasfive.truekapp.fragmentsAyuda.AyudaActivity"
+        android:label="activity_ayuda"
+        tools:layout="@layout/activity_ayuda" />
 </navigation>

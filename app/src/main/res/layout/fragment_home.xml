@@ -8,8 +8,6 @@
     android:background="@drawable/fondo_gris">
 
 
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -30,7 +28,7 @@
             app:rowCount="3">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardCategorias"
+                android:id="@+id/cardListado"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginLeft="16dp"
@@ -53,21 +51,21 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="0dp"
+                        android:layout_gravity="center_horizontal"
                         android:layout_weight="2"
                         android:paddingTop="2dp"
-                        android:layout_gravity="center_horizontal"
                         android:src="@drawable/b_lista" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="1"
                         android:layout_gravity="center_horizontal"
-                        android:text="CATEGORIAS"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
+                        android:layout_weight="1"
                         android:autoSizeTextType="uniform"
                         android:padding="2dp"
+                        android:text="LISTADO"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -100,21 +98,21 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="0dp"
+                        android:layout_gravity="center_horizontal"
                         android:layout_weight="2"
                         android:paddingTop="2dp"
-                        android:layout_gravity="center_horizontal"
                         android:src="@drawable/b_vender" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="1"
                         android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:autoSizeTextType="uniform"
+                        android:padding="2dp"
                         android:text="PUBLICAR"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:autoSizeTextType="uniform"
-                        android:padding="2dp"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -146,21 +144,21 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="0dp"
+                        android:layout_gravity="center_horizontal"
                         android:layout_weight="2"
                         android:paddingTop="2dp"
-                        android:layout_gravity="center_horizontal"
                         android:src="@drawable/b_estrella" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="1"
                         android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:autoSizeTextType="uniform"
+                        android:padding="2dp"
                         android:text="DESTACADOS"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:autoSizeTextType="uniform"
-                        android:padding="2dp"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -193,21 +191,21 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="0dp"
+                        android:layout_gravity="center_horizontal"
                         android:layout_weight="2"
                         android:paddingTop="2dp"
-                        android:layout_gravity="center_horizontal"
                         android:src="@drawable/b_cesta" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="1"
                         android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:autoSizeTextType="uniform"
+                        android:padding="2dp"
                         android:text="MIS OFERTAS"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:autoSizeTextType="uniform"
-                        android:padding="2dp"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -240,21 +238,21 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="0dp"
+                        android:layout_gravity="center_horizontal"
                         android:layout_weight="2"
                         android:paddingTop="2dp"
-                        android:layout_gravity="center_horizontal"
                         android:src="@drawable/b_ojo" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="1"
                         android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:autoSizeTextType="uniform"
+                        android:padding="2dp"
                         android:text="MAS VISTOS"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:autoSizeTextType="uniform"
-                        android:padding="2dp"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -287,21 +285,21 @@
                     <ImageView
                         android:layout_width="50dp"
                         android:layout_height="0dp"
+                        android:layout_gravity="center_horizontal"
                         android:layout_weight="2"
                         android:paddingTop="2dp"
-                        android:layout_gravity="center_horizontal"
                         android:src="@drawable/b_informacion" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:layout_weight="1"
                         android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:autoSizeTextType="uniform"
+                        android:padding="2dp"
                         android:text="AYUDA"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:autoSizeTextType="uniform"
-                        android:padding="2dp"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 

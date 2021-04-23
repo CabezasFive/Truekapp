@@ -1,5 +1,6 @@
 package com.cabezasfive.truekapp.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,26 +14,39 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.cabezasfive.truekapp.R;
-import com.cabezasfive.truekapp.ui.login.LoginViewModel;
+import com.cabezasfive.truekapp.fragmentsAyuda.AyudaActivity;
+import com.cabezasfive.truekapp.repositories.UserAccountRepository;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class HomeFragment extends Fragment {
 
 
     //Referencia a los cardViews que funcionaran como botones
-    CardView cardCategorias, cardPublicar, cardDestacados, cardMisOfertas, cardMasVistos, cardAyuda;
+    CardView cardListado, cardPublicar, cardDestacados, cardMisOfertas, cardMasVistos, cardAyuda;
 
     HomeViewModel homeViewModel;
+
+    UserAccountRepository userRepository;
+    private FirebaseAuth firebaseAuth;
+
+
+    private ImageButton btnSearch;
+    private EditText textSearch;
+    private String search;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-
+        userRepository = new UserAccountRepository(getActivity().getApplication());
+        firebaseAuth = FirebaseAuth.getInstance();
 
     }
 
@@ -53,7 +67,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        cardCategorias=view.findViewById(R.id.cardCategorias);
+        cardListado =view.findViewById(R.id.cardListado);
         cardAyuda=view.findViewById(R.id.cardAyuda);
         cardMasVistos=view.findViewById(R.id.cardMasVistos);
         cardDestacados=view.findViewById(R.id.cardDestacados);
@@ -63,20 +77,25 @@ public class HomeFragment extends Fragment {
         // Referencia al navController
         final NavController navController = Navigation.findNavController(view);
 
+        boolean logueado = userRepository.isUserLoged();
 
         // scucha si se da click en alguno de los cardView del menu
         // se comunica con la interface IComunicacionFragment para ejecutar desde el mainActivity y no desde este fragemnt
         cardPublicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (isLoged()){
+                    // Dirige a publicar
+                }else{
+                    navController.navigate(R.id.loginFragment);
+                }
             }
         });
 
-        cardCategorias.setOnClickListener(new View.OnClickListener() {
+        cardListado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navController.navigate(R.id.categoriasFragment);
+                navController.navigate(R.id.listadoPublicacionesFragment);
             }
         });
 
@@ -84,36 +103,47 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //******************************** //
-                //   Pasa a Login de usuario solo a modo de pruba
+                //   Debe ir a un listado con las publicaciones marcadas como destacadas
                 //********************************//
-                navController.navigate(R.id.loginFragment);
             }
         });
 
         cardMisOfertas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (isLoged()){
+                    navController.navigate(R.id.misOfertasFragment);
+                }else{
+                    navController.navigate(R.id.loginFragment);
+                }
 
-                //******************************** //
-                //   Pasa a Registro de usuario solo a modo de pruba
-                //********************************//
-                navController.navigate(R.id.registroFragment);
             }
         });
 
         cardMasVistos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                navController.navigate(R.id.masVistosFragment);
+                //******************************** //
+                //   Debe ir a un listado con las publicaciones ordenadas por las mas visitadas
+                //********************************//
             }
         });
 
         cardAyuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent (getContext(), AyudaActivity.class);
+                startActivityForResult(intent, 0);
             }
         });
+    }
+
+    private boolean isLoged(){
+        if(firebaseAuth.getCurrentUser() != null){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

@@ -1,11 +1,13 @@
-package com.cabezasfive.truekapp.ui.masVistos;
+package com.cabezasfive.truekapp.ui.listadoPublicaciones;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,9 +20,10 @@ import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.adapters.AdapterListarPublicaciones;
 import com.cabezasfive.truekapp.models.Publicacion;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class MasVistosFragment extends Fragment {
+public class ListadoPublicacionesFragment extends Fragment {
 
     // Referencia al adaptador y recyclerView
     private AdapterListarPublicaciones adapter;
@@ -29,24 +32,32 @@ public class MasVistosFragment extends Fragment {
 
     private ArrayList<Publicacion> publicaciones;
 
-    private MasVistosViewModel masVistosViewModel;
+    private ListadoPublicacionesViewModel listadoPublicacionesViewModel;
+
+    private String findText;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        masVistosViewModel = new ViewModelProvider(this).get(MasVistosViewModel.class);
+        listadoPublicacionesViewModel = new ViewModelProvider(this).get(ListadoPublicacionesViewModel.class);
     }
 
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (getArguments() != null){
+            findText = getArguments().getString("text");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_mas_vistos, container, false);
-
+        View view= inflater.inflate(R.layout.fragment_listado_publicaciones, container, false);
 
         rvPublicaciones = view.findViewById(R.id.rv_MasVistos);
         layoutManager = new LinearLayoutManager(getContext());
@@ -58,9 +69,9 @@ public class MasVistosFragment extends Fragment {
         TareaAsyncTask tareaAsyncTask = new TareaAsyncTask();
         tareaAsyncTask.execute();
 
-
         return view;
     }
+
 
     private class TareaAsyncTask extends AsyncTask<Void, Integer, ArrayList<Publicacion>> {
 
@@ -71,8 +82,14 @@ public class MasVistosFragment extends Fragment {
 
         @Override
         protected ArrayList<Publicacion> doInBackground(Void... voids) {
-            publicaciones = masVistosViewModel.getAllPublicaciones();
-            return publicaciones;
+            if (findText != null){
+                publicaciones = listadoPublicacionesViewModel.searchPublicacion(findText);
+                return publicaciones;
+            }else {
+                publicaciones = listadoPublicacionesViewModel.getAllPublicaciones();
+                return publicaciones;
+            }
+
         }
 
         @Override
@@ -82,16 +99,23 @@ public class MasVistosFragment extends Fragment {
 
         @Override
         protected void onPostExecute(ArrayList<Publicacion> resultado){
-            adapter = new AdapterListarPublicaciones(publicaciones, R.layout.publicacion_item);
+            adapter = new AdapterListarPublicaciones(publicaciones, R.layout.publicacion_item, getContext());
 
             adapter.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getContext(), "Publicacion: " +
-                            publicaciones.get(rvPublicaciones.getChildAdapterPosition(view)).getTitulo(), Toast.LENGTH_SHORT).show();
+
+                    // ************************************************************** //
+                    //   Pasa a verPublicacion el uid de la publicacion seleccionada //
+
+                    Publicacion pub = publicaciones.get(rvPublicaciones.getChildAdapterPosition(view));
+
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("publicacion", pub );
+                    //bundle.putString("uid", uidPublicacion);
+                    Navigation.findNavController(getView()).navigate(R.id.verPublicacion, bundle);
                 }
             });
-
             rvPublicaciones.setAdapter(adapter);
             adapter.notifyDataSetChanged();
         }

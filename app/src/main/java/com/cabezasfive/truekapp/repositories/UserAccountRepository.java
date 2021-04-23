@@ -1,20 +1,13 @@
 package com.cabezasfive.truekapp.repositories;
 
 import android.app.Application;
-import android.os.AsyncTask;
-import android.view.View;
-import android.view.inputmethod.InputMethodSession;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.MutableLiveData;
 
-import com.cabezasfive.truekapp.R;
-import com.cabezasfive.truekapp.adapters.AdapterListarPublicaciones;
-import com.cabezasfive.truekapp.models.Publicacion;
 import com.cabezasfive.truekapp.models.Usuario;
-import com.cabezasfive.truekapp.ui.masVistos.MasVistosFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -26,11 +19,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
-
-import javax.security.auth.callback.Callback;
 
 public class UserAccountRepository{
     private Application application;
