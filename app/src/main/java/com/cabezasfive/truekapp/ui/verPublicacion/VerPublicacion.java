@@ -1,6 +1,7 @@
 package com.cabezasfive.truekapp.ui.verPublicacion;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,19 +13,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.models.Publicacion;
+import com.squareup.picasso.Picasso;
 
 public class VerPublicacion extends Fragment {
 
 
     private Button btnVolver;
 
-    private TextView tvTitulo;
+    private TextView tvTitulo, tvDescripcion;
+    private ImageView ivVerPublicacion;
 
+    private ImageButton btnShare;
 
     private Publicacion publicacion;
 
@@ -36,11 +43,6 @@ public class VerPublicacion extends Fragment {
 
     }
 
-    public static VerPublicacion newInstance(String param1, String param2) {
-        VerPublicacion fragment = new VerPublicacion();
-
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,9 @@ public class VerPublicacion extends Fragment {
         btnVolver = view.findViewById(R.id.btnVolverVerPublicacion);
 
         tvTitulo = view.findViewById(R.id.tituloVerPublicacion);
+        tvDescripcion = view.findViewById(R.id.descripcionVerPublicacion);
+        ivVerPublicacion = view.findViewById(R.id.imagenVerPublicacion);
+        btnShare = view.findViewById(R.id.shareVerPublicacion);
 
 
         btnVolver.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +77,29 @@ public class VerPublicacion extends Fragment {
             }
         });
 
+        btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("text/plain");
+                String shareBody = "http://www.store-a-descarga-de-app-Tuekapp/";
+                String shareSubject = "Mira esta publicación que encontré en Truekapp\n" + publicacion.getTitulo() + "\n Truekapp – Una aplicación donde podés intercambiar lo que desees sin gastar un peso";
+                i.putExtra(Intent.EXTRA_SUBJECT,shareSubject);
+                i.putExtra(Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(i,"Truekapp Link"));
+                Toast.makeText(getContext(), "Share!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         tvTitulo.setText(publicacion.getTitulo());
+        tvDescripcion.setText(publicacion.getDescripcion());
+
+        if (publicacion.getImagen01() != null){
+            String url = publicacion.getImagen01();
+            Picasso.get().load(url).into(ivVerPublicacion);
+        }else {
+            ivVerPublicacion.setImageResource(R.drawable.sin_imagen);
+        }
 
 
         return view;

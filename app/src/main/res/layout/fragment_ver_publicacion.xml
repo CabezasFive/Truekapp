@@ -29,8 +29,8 @@
         android:text="Titulo de la publicacion"
         android:gravity="left"
         android:paddingLeft="15dp"
-        android:textSize="20sp"
-        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textColor="#FFFFFF"
         android:fontFamily="sans-serif-medium"
         android:autoSizeTextType="uniform"
         />
@@ -39,7 +39,7 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
+        android:layout_marginHorizontal="8dp"
         android:layout_marginVertical="10dp"
         cardCornerRadius="15dp"
         android:backgroundTint="#40FFFFFF"
@@ -58,8 +58,8 @@
 
                 <ImageView
                     android:id="@+id/imagenVerPublicacion"
-                    android:layout_width="140dp"
-                    android:layout_height="140dp"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
                     android:layout_marginTop="20dp"
                     android:scaleType="centerCrop"
                     android:layout_gravity="center"
@@ -70,15 +70,15 @@
                     android:id="@+id/descripcionVerPublicacion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     android:text="Descripcion de toda la publicacion
                                     que debe de ser mas largo que el resto de los textos"
                     android:gravity="left"
                     android:paddingLeft="10dp"
-                    android:textSize="15sp"
-                    android:textColor="#5E5E5E"
+                    android:textSize="20sp"
+                    android:textColor="#000000"
                     android:fontFamily="sans-serif"
-                    android:lineSpacingExtra="10dp"
+                    android:lineSpacingExtra="5dp"
                     android:autoSizeTextType="uniform"
                     />
 

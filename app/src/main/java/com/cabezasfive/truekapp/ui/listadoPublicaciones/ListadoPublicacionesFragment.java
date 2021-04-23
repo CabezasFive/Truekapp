@@ -99,7 +99,7 @@ public class ListadoPublicacionesFragment extends Fragment {
 
         @Override
         protected void onPostExecute(ArrayList<Publicacion> resultado){
-            adapter = new AdapterListarPublicaciones(publicaciones, R.layout.publicacion_item);
+            adapter = new AdapterListarPublicaciones(publicaciones, R.layout.publicacion_item, getContext());
 
             adapter.setOnClickListener(new View.OnClickListener() {
                 @Override

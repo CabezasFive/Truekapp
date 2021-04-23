@@ -48,7 +48,7 @@
                     android:scaleType="centerCrop"
                     android:layout_marginTop="8dp"
                     android:layout_marginLeft="8dp"
-                    android:src="@drawable/producto"/>
+                    android:src="@drawable/sin_imagen"/>
 
 
                 <LinearLayout
@@ -109,12 +109,15 @@
                         android:id="@+id/sharePubli"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
+                        android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="20dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="80dp"
+                        android:layout_marginRight="122dp"
                         android:background="@null"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_share"
-                        tools:ignore="RtlCompat" />
+                        android:src="@drawable/ic_share" />
 
                 </RelativeLayout>
 
