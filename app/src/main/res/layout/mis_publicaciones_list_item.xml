@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view_misPublicaciones"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="8dp"
+    android:layout_marginBottom="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#99076E07"
+        android:outlineAmbientShadowColor="@color/azul"
+        android:paddingBottom="4dp">
+
+        <ImageView
+            android:id="@+id/ivMisPublicacionesCard"
+            android:layout_width="117dp"
+            android:layout_height="124dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/sin_imagen"/>
+
+        <TextView
+            android:id="@+id/tituloMisPublicacionesCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            android:layout_alignTop="@id/ivMisPublicacionesCard"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:text="Titulo de la publicacion"
+            android:layout_toRightOf="@id/ivMisPublicacionesCard"
+            android:layout_toEndOf="@id/ivMisPublicacionesCard"
+            />
+
+        <TextView
+            android:id="@+id/descripcionMisPublicaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/tituloMisPublicacionesCard"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:text="descripcion de la publicacion mayor en cantidad de carcteres que el titulo"
+            android:layout_toRightOf="@id/ivMisPublicacionesCard"
+            android:layout_toEndOf="@id/ivMisPublicacionesCard"
+            />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

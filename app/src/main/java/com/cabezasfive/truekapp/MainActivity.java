@@ -8,6 +8,7 @@ import androidx.navigation.Navigation;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -20,8 +21,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.cabezasfive.truekapp.fragmentsAyuda.AyudaActivity;
 import com.cabezasfive.truekapp.repositories.UserAccountRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,8 +43,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton btnBuscar;
 
     UserAccountRepository userRepository;
+    private FirebaseAuth firebaseAuth;
 
-    String nick;
+    private String nick;
 
 
     @Override
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Repository con los metodos de usuario a la bd
         userRepository = new UserAccountRepository(getApplication());
+        firebaseAuth = FirebaseAuth.getInstance();
 
         // UI
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -69,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
         btnIniciarSesion = findViewById(R.id.btnIniciarSesion);
+
 
 
         // ************************************************
@@ -91,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putString("text", search);
                 InputMethodManager imm =(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                navController.navigate(R.id.masVistosFragment, bundle);
+                navController.navigate(R.id.listadoPublicacionesFragment, bundle);
             }
         });
 
@@ -102,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 userRepository.logOut();
                 ocultarCerrarSesion();
+                navController.navigate(R.id.homeFragment);
             }
         });
 
@@ -116,22 +123,34 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                boolean logueado = userRepository.isUserLoged();
+
                 switch (item.getItemId()){
                     case R.id.nav_inicio:
                         navController.navigate(R.id.homeFragment);
                         return true;
                     case R.id.nav_publicaciones:
-                        navController.navigate(R.id.masVistosFragment);
+                        navController.navigate(R.id.listadoPublicacionesFragment);
                         return true;
                     case R.id.nav_login:
-                        if(userRepository.isUserLoged()){
+                        if(isLoged()){
                             // si ya esta logueado va al perfil
                         }else {
                             // si no esta logueado va a login
                             navController.navigate(R.id.loginFragment);
                         }
-
                         return true;
+                    case R.id.nav_publicar:
+                        if(isLoged()){
+                            // va a publicar fragment
+                        }else{
+                            navController.navigate(R.id.loginFragment);
+                        }
+                        return true;
+                    case R.id.nav_ayuda:
+                        navController.navigate(R.id.ayudaActivity);
+                        return true;
+
                 }
                 return false;
             }
@@ -157,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(userRepository.isUserLoged()){
+        if(isLoged()){
             activarCerrar();
         }else{
             ocultarCerrarSesion();
@@ -186,6 +205,15 @@ public class MainActivity extends AppCompatActivity {
             userName.setText(resultado);
         }
     }
+
+    private boolean isLoged(){
+        if(firebaseAuth.getCurrentUser() != null){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
 
 
