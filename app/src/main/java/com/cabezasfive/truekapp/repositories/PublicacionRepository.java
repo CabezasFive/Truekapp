@@ -65,8 +65,36 @@ public class PublicacionRepository {
     }
 
 
-    /** Busca una publicacion por el id pasado como argumento   */
 
+
+    /** Obtener todas las publicaciones de un usuario pasando su id  */
+    public ArrayList<Publicacion> getAllPublicacionesUser(String userId){
+        databaseReference.child("users").child(userId).child("publicaciones").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    publicaciones.clear();
+
+                    for (DataSnapshot ds : snapshot.getChildren()){
+                        Publicacion publicacion = ds.getValue(Publicacion.class);
+//                        Toast.makeText(application, "Tiene: " + publicacion.getTitulo() + " y esta: " + publicacion.getActivo(), Toast.LENGTH_SHORT).show();
+                        publicaciones.add(publicacion);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return publicaciones;
+    }
+
+
+
+
+    /** Busca una publicacion por el id pasado como argumento   */
     public Publicacion getPublicacionById(String uid){
 
         Query query = databaseReference.child("Publicacion");
@@ -94,6 +122,15 @@ public class PublicacionRepository {
 
         return find;
     }
+
+
+    /** Se cambia el estado de la publicacion */
+    /** Se modifican las dos tablas Publicaciones y Publicaciones dentro del usuario **/
+    public void cambiarEstado(String id, String userId, String estado){
+        databaseReference.child("Publicacion").child(id).child("activo").setValue(estado);
+        databaseReference.child("users").child(userId).child("publicaciones").child(id).child("activo").setValue(estado);
+    }
+
 
 
     /** Busca todas las publicaciones que comienzan con el string pasado   */

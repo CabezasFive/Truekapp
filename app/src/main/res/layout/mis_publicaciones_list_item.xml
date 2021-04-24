@@ -9,9 +9,10 @@
     android:layout_marginBottom="16dp">
 
     <RelativeLayout
+        android:id="@+id/misPublicacionesItem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#99076E07"
+        android:background="#999A0A2A"
         android:outlineAmbientShadowColor="@color/azul"
         android:paddingBottom="4dp">
 
@@ -52,6 +53,37 @@
             android:text="descripcion de la publicacion mayor en cantidad de carcteres que el titulo"
             android:layout_toRightOf="@id/ivMisPublicacionesCard"
             android:layout_toEndOf="@id/ivMisPublicacionesCard"
+            />
+
+        <TextView
+            android:id="@+id/tvEstadoMisPublicaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/descripcionMisPublicaciones"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_toEndOf="@+id/ivMisPublicacionesCard"
+            android:layout_toRightOf="@+id/ivMisPublicacionesCard"
+            android:fontFamily="@font/crete_round_italic"
+            android:text="Estado: Pausado"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnEstadoMisPublicaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PAUSAR"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginHorizontal="15dp"
+            android:backgroundTint="@color/rojo"
+            android:layout_below="@id/ivMisPublicacionesCard"
+            android:layout_marginTop="15dp"
             />
 
 

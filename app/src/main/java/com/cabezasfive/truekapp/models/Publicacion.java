@@ -13,9 +13,8 @@ public class Publicacion implements Serializable {
     private String titulo_upper;
     private String descripcion;
     private String imagen01;
-    private String titulo_upper;
     private String f_Creacion;
-    private Boolean activo;
+    private String activo;
     private Integer visitas;
 
 
@@ -25,7 +24,7 @@ public class Publicacion implements Serializable {
     }
 
     public Publicacion (String uid, String idUser, String titulo, String titulo_upper, String descripcion,
-                        String f_Creacion, String imagen01, Boolean activo, Integer visitas){
+                        String f_Creacion, String imagen01, String activo, Integer visitas){
 
         this.uid = uid;
         this.idUser = idUser;
@@ -34,7 +33,7 @@ public class Publicacion implements Serializable {
         this.descripcion = descripcion;
         this.f_Creacion = f_Creacion;
         this.imagen01 = imagen01;
-        this.activo = true;
+        this.activo = activo;
         this.visitas = visitas;
     }
 
@@ -85,11 +84,11 @@ public class Publicacion implements Serializable {
         }
 
 
-        public Boolean getActivo() {
+        public String getActivo() {
             return activo;
         }
 
-        public void setActivo(Boolean activo) {
+        public void setActivo(String activo) {
             this.activo = activo;
         }
 

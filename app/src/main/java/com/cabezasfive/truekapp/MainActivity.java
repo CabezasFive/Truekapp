@@ -134,9 +134,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_publicaciones:
                         navController.navigate(R.id.listadoPublicacionesFragment);
                         return true;
-                    case R.id.nav_publicar:
-                        navController.navigate(R.id.publicarFragment);
-                        return true;
                     case R.id.nav_login:
                         if(isLoged()){
                             // si ya esta logueado va al perfil
@@ -147,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_publicar:
                         if(isLoged()){
-                            // va a publicar fragment
+                            navController.navigate(R.id.publicarFragment);
                         }else{
                             navController.navigate(R.id.loginFragment);
                         }

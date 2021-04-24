@@ -22,4 +22,12 @@ public class MisOfertasViewModel extends AndroidViewModel {
     public ArrayList<Publicacion> getAllPublicaciones(){
         return publicacionRepository.getAllPublicaciones();
     }
+
+    public ArrayList<Publicacion> getAllPublicacionesUser(String userId){
+        return publicacionRepository.getAllPublicacionesUser(userId);
+    }
+
+    public void cambiarEstado(String id, String userId, String estado){
+        publicacionRepository.cambiarEstado(id,userId, estado);
+    }
 }

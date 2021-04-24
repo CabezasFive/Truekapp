@@ -45,9 +45,13 @@ public class RegistroFragment extends Fragment {
     private String nick = "" ;
     private String password = "";
 
+    Usuario user;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        user = new Usuario();
 
         registroViewModel = new ViewModelProvider(this).get(RegistroViewModel.class);
         registroViewModel.getUserMutableLiveData().observe(this, new Observer<FirebaseUser>() {
@@ -91,7 +95,7 @@ public class RegistroFragment extends Fragment {
                 if (validarTextos()){
 
                     String fecha = new Date().toString();
-                    Usuario user = new Usuario(nombre, apellido, direccion, telefono, email, nick, fecha);
+                    user = new Usuario(nombre, apellido, direccion, telefono, email, nick, fecha);
 
                     TareaAsyncTask tareaAsyncTask = new TareaAsyncTask();
                     tareaAsyncTask.execute();
@@ -142,7 +146,7 @@ public class RegistroFragment extends Fragment {
                 Log.d("RESULTADO", "Existe el usuario");
             }else {
                 Log.d("RESULTADO", "No existe se va a guardar");
-                //registroViewModel.registrar(email, password, user);
+                registroViewModel.registrar(email, password, user);
             }
         }
     }

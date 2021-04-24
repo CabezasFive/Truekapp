@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ import com.cabezasfive.truekapp.adapters.AdapterListarPublicaciones;
 import com.cabezasfive.truekapp.adapters.AdapterMisPublicaciones;
 import com.cabezasfive.truekapp.models.Publicacion;
 import com.cabezasfive.truekapp.ui.listadoPublicaciones.ListadoPublicacionesFragment;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -32,6 +34,10 @@ public class MisOfertasFragment extends Fragment {
     private AdapterMisPublicaciones adapterMisPublicaciones;
 
     MisOfertasViewModel misOfertasViewModel;
+
+    String userId;
+    private FirebaseAuth mAuth;
+
 
 
     public MisOfertasFragment() {
@@ -62,26 +68,17 @@ public class MisOfertasFragment extends Fragment {
         // *************************************
         // Obtener las publicaciones del usuario
         // *************************************
-        publicaciones = misOfertasViewModel.getAllPublicaciones();
+        //publicaciones = misOfertasViewModel.getAllPublicaciones();
 
-//        adapterMisPublicaciones = new AdapterMisPublicaciones(getContext(), publicaciones);
         listView.setAdapter(adapterMisPublicaciones);
+        mAuth = FirebaseAuth.getInstance();
+        userId = mAuth.getCurrentUser().getUid();
 
 
         TareaAsyncTask tareaAsyncTask = new TareaAsyncTask();
         tareaAsyncTask.execute();
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                Publicacion publicacion = publicaciones.get(position);
-//
-//                Toast.makeText(getContext(), "Selecciono: " + publicacion.getTitulo(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        InputMethodManager imm =(InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-//        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
 
         return view;
     }
@@ -97,7 +94,7 @@ public class MisOfertasFragment extends Fragment {
 
         @Override
         protected ArrayList<Publicacion> doInBackground(Void... voids) {
-            publicaciones = misOfertasViewModel.getAllPublicaciones();
+            publicaciones = misOfertasViewModel.getAllPublicacionesUser(userId);
             return publicaciones;
         }
 
@@ -108,14 +105,14 @@ public class MisOfertasFragment extends Fragment {
 
         @Override
         protected void onPostExecute(ArrayList<Publicacion> resultado){
-            adapterMisPublicaciones = new AdapterMisPublicaciones(getContext(), publicaciones);
+            adapterMisPublicaciones = new AdapterMisPublicaciones(getActivity().getApplication() ,getContext(), resultado);
 
             listView.setAdapter(adapterMisPublicaciones);
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    Publicacion publicacion = publicaciones.get(position);
+                    Publicacion publicacion = resultado.get(position);
 
                     Toast.makeText(getContext(), "Selecciono: " + publicacion.getTitulo(), Toast.LENGTH_SHORT).show();
                 }

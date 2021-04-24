@@ -20,6 +20,7 @@ import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -150,7 +151,7 @@ public class PublicarFragment extends Fragment  {
             CropImage.activity(imagenuri)
                     .setGuidelines(CropImageView.Guidelines.ON)
                     .setRequestedSize(640,480)
-                    .setAspectRatio(2,2)
+                    .setAspectRatio(4,3)
                     .start(getContext(), this);
         }
 
@@ -162,7 +163,9 @@ public class PublicarFragment extends Fragment  {
                 Uri resulturi = result.getUri();
                 File url = new File(resulturi.getPath());
 
-                Picasso.with(getContext()).load(url).into(Foto);
+                Picasso.get()
+                        .load(url)
+                        .into(Foto);
 
                 // Comprimiendo
                 try{
@@ -207,7 +210,7 @@ public class PublicarFragment extends Fragment  {
                                 p.setDescripcion(descripcion);
                                 Date Fecha = new Date(); // Sistema actual La fecha y la hora se asignan a objDate
                                 p.setF_Creacion(Fecha.toString());
-                                p.setActivo(true);
+                                p.setActivo("true");
                                 p.setVisitas(0);
 
                                 //Subir imagen en storage
@@ -229,22 +232,27 @@ public class PublicarFragment extends Fragment  {
                                         Uri downloaduri = task.getResult();
                                         String URLFoto = downloaduri.toString();
                                         p.setImagen01(URLFoto);
+
+                                        // Guarda en la bd la publicacion dentro de Publicacion
+                                        // y una copia dentro del usuario con el id de la publicacion
                                         databaseReference.child("Publicacion").child(p.getUid()).setValue(p);
+                                        databaseReference.child("users").child(p.getIdUser()).child("publicaciones").child(p.getUid()).setValue(p);
                                     }
                                 });
 
                                 Toast.makeText(getActivity(), "Publicacion creada correctamente", Toast.LENGTH_SHORT).show();
-
+                                InputMethodManager imm =(InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                                 limpiarDatos();
                             }
                         }else{
                             Toast.makeText(getContext(), "Usuario no registrado", Toast.LENGTH_SHORT).show();
 
                             //Falla navegation para login
-                            Navigation.findNavController(getView()).navigate(R.id.action_publicarFragment_to_loginFragment);
+                            Navigation.findNavController(getView()).navigate(R.id.loginFragment);
                         }
                         //Falla navegation para home
-                        Navigation.findNavController(getView()).navigate(R.id.action_publicarFragment_to_homeFragment);
+                        Navigation.findNavController(getView()).navigate(R.id.homeFragment);
                     }
                 });
 

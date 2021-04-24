@@ -91,7 +91,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (isLoged()){
-                    // Dirige a publicar
+                    navController.navigate(R.id.publicarFragment);
                 }else{
                     navController.navigate(R.id.loginFragment);
                 }
