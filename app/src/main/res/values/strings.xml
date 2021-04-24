@@ -32,6 +32,8 @@
     <string name="password">Password</string>
     <string name="registrate_aqui">No tienes cuenta - Registrate aqui</string>
     <string name="iniciar_sesion2">INICIAR SESION</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="agregar_producto">Ingresar detalles del producto</string>
     <string name="Nombre_producto">Nombre del producto</string>

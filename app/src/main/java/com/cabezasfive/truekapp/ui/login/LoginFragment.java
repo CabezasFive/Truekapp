@@ -1,5 +1,6 @@
 package com.cabezasfive.truekapp.ui.login;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -33,9 +35,6 @@ public class LoginFragment extends Fragment  {
 
     private LoginViewModel loginViewModel;
 
-    private MainActivity mainActivity;
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,8 +45,7 @@ public class LoginFragment extends Fragment  {
             @Override
             public void onChanged(FirebaseUser firebaseUser) {
                 if(firebaseUser != null){
-                    Toast.makeText(getContext(), "Sesión iniciada", Toast.LENGTH_SHORT).show();
-                    Navigation.findNavController(getView()).navigate(R.id.action_loginFragment_to_homeFragment);
+                    Navigation.findNavController(getView()).navigate(R.id.homeFragment);
                 }
             }
         });
@@ -72,6 +70,8 @@ public class LoginFragment extends Fragment  {
 
                 if(!email.isEmpty() && !pass.isEmpty()) {
                     loginViewModel.login(email, pass);
+                    InputMethodManager imm =(InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                     ((MainActivity)getActivity()).activarCerrar();
                 }else{
                     Toast.makeText(getContext(), "Debe ingresar los datos de email y password", Toast.LENGTH_SHORT).show();

@@ -1,17 +1,24 @@
 package com.cabezasfive.truekapp.models;
 
-public class Publicacion {
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class Publicacion implements Serializable {
+
 
     private String uid;
     private String idUser;
     private String titulo;
     private String titulo_upper;
     private String descripcion;
-
-    private String f_Creacion;
     private String imagen01;
+    private String titulo_upper;
+    private String f_Creacion;
     private Boolean activo;
     private Integer visitas;
+
+
 
     // Constructores
     public Publicacion() {
@@ -31,7 +38,6 @@ public class Publicacion {
         this.visitas = visitas;
     }
 
-    // Getters and Setters
 
     public String getUid() {
         return uid;
@@ -65,21 +71,27 @@ public class Publicacion {
         this.titulo_upper = titulo_upper;
     }
 
-    public String getF_Creacion() {
-        return f_Creacion;
-    }
 
-    public void setF_Creacion(String f_Creacion) {
-        this.f_Creacion = f_Creacion;
-    }
 
-    public Boolean getActivo() {
-        return activo;
-    }
 
-    public void setActivo(Boolean activo) {
-        this.activo = activo;
-    }
+        // Getters and Setters
+
+        public String getF_Creacion() {
+            return f_Creacion;
+        }
+  
+        public void setF_Creacion(String f_Creacion) {
+            this.f_Creacion = f_Creacion;
+        }
+
+
+        public Boolean getActivo() {
+            return activo;
+        }
+
+        public void setActivo(Boolean activo) {
+            this.activo = activo;
+        }
 
     public String getImagen01() {
         return imagen01;
@@ -88,6 +100,8 @@ public class Publicacion {
     public void setImagen01(String imagen01) {
         this.imagen01 = imagen01;
     }
+
+
 
     public String getDescripcion() {
         return descripcion;
