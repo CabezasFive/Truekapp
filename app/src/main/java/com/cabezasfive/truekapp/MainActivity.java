@@ -6,7 +6,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -21,7 +20,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
+import com.cabezasfive.truekapp.adapters.AdapterListarPublicaciones;
 import com.cabezasfive.truekapp.fragmentsAyuda.AyudaActivity;
+import com.cabezasfive.truekapp.models.Publicacion;
+
 import com.cabezasfive.truekapp.repositories.UserAccountRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -62,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottonNavView);
 
         NavController navController = Navigation.findNavController(this, R.id.fragment);
-
 
         logoHome=findViewById(R.id.logoToolbar);
 
@@ -131,6 +133,9 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_publicaciones:
                         navController.navigate(R.id.listadoPublicacionesFragment);
+                        return true;
+                    case R.id.nav_publicar:
+                        navController.navigate(R.id.publicarFragment);
                         return true;
                     case R.id.nav_login:
                         if(isLoged()){

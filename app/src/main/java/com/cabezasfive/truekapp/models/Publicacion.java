@@ -6,82 +6,38 @@ import java.util.Date;
 
 public class Publicacion implements Serializable {
 
+
     private String uid;
+    private String idUser;
     private String titulo;
+    private String titulo_upper;
     private String descripcion;
     private String imagen01;
     private String titulo_upper;
-/*
     private String f_Creacion;
-    private String f_Modificado;
     private Boolean activo;
     private Integer visitas;
 
-    private String idUser;
-*/
+
 
     // Constructores
     public Publicacion() {
     }
 
-    public Publicacion(String descripcion,String uid, String titulo ) {
-        this.titulo = titulo;
-        this.descripcion = descripcion;
+    public Publicacion (String uid, String idUser, String titulo, String titulo_upper, String descripcion,
+                        String f_Creacion, String imagen01, Boolean activo, Integer visitas){
+
         this.uid = uid;
-    }
-
-    public Publicacion(String uid, String titulo, String descripcion, String imagen01) {
-        this.uid = uid;
+        this.idUser = idUser;
         this.titulo = titulo;
+        this.titulo_upper = titulo_upper;
         this.descripcion = descripcion;
+        this.f_Creacion = f_Creacion;
         this.imagen01 = imagen01;
+        this.activo = true;
+        this.visitas = visitas;
     }
 
-    /*
-        public Publicacion (String uid, String titulo, String descripcion, String imagen01, String idUser ){
-            this.uid = uid;
-            this.titulo = titulo;
-            this.descripcion = descripcion;
-            this.activo = true;
-            this.imagen01 = imagen01;
-            this.idUser = idUser;
-        }
-
-
-        // Getters and Setters
-
-        public String getF_Creacion() {
-            return f_Creacion;
-        }
-
-        public void setF_Creacion(String f_Creacion) {
-            this.f_Creacion = f_Creacion;
-        }
-
-        public String getF_Modificado() {
-            return f_Modificado;
-        }
-
-        public void setF_Modificado(String f_Modificado) {
-            this.f_Modificado = f_Modificado;
-        }
-
-        public Boolean getActivo() {
-            return activo;
-        }
-
-        public void setActivo(Boolean activo) {
-            this.activo = activo;
-        }
-    */
-
-    public String getImagen01() {
-        return imagen01;
-    }
-
-    public void setImagen01(String imagen01) {
-        this.imagen01 = imagen01;
-    }
 
     public String getUid() {
         return uid;
@@ -89,6 +45,14 @@ public class Publicacion implements Serializable {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
     }
 
     public String getTitulo() {
@@ -99,14 +63,6 @@ public class Publicacion implements Serializable {
         this.titulo = titulo;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public String getTitulo_upper() {
         return titulo_upper;
     }
@@ -115,7 +71,46 @@ public class Publicacion implements Serializable {
         this.titulo_upper = titulo_upper;
     }
 
-    /*
+
+
+
+        // Getters and Setters
+
+        public String getF_Creacion() {
+            return f_Creacion;
+        }
+  
+        public void setF_Creacion(String f_Creacion) {
+            this.f_Creacion = f_Creacion;
+        }
+
+
+        public Boolean getActivo() {
+            return activo;
+        }
+
+        public void setActivo(Boolean activo) {
+            this.activo = activo;
+        }
+
+    public String getImagen01() {
+        return imagen01;
+    }
+
+    public void setImagen01(String imagen01) {
+        this.imagen01 = imagen01;
+    }
+
+
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     public Integer getVisitas() {
         return visitas;
     }
@@ -124,12 +119,4 @@ public class Publicacion implements Serializable {
         this.visitas = visitas;
     }
 
-    public String getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
-    }
-*/
 }

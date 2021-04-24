@@ -17,10 +17,14 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import com.cabezasfive.truekapp.MainActivity;
 import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.fragmentsAyuda.AyudaActivity;
+
+import com.cabezasfive.truekapp.ui.login.LoginViewModel;
 import com.cabezasfive.truekapp.repositories.UserAccountRepository;
 import com.google.firebase.auth.FirebaseAuth;
+
 
 
 public class HomeFragment extends Fragment {
@@ -45,6 +49,7 @@ public class HomeFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
         userRepository = new UserAccountRepository(getActivity().getApplication());
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -56,7 +61,6 @@ public class HomeFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
 
         return view;
 
@@ -77,9 +81,11 @@ public class HomeFragment extends Fragment {
         // Referencia al navController
         final NavController navController = Navigation.findNavController(view);
 
+
+        // escucha si se da click en alguno de los cardView del menu
+
         boolean logueado = userRepository.isUserLoged();
 
-        // scucha si se da click en alguno de los cardView del menu
         // se comunica con la interface IComunicacionFragment para ejecutar desde el mainActivity y no desde este fragemnt
         cardPublicar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +95,7 @@ public class HomeFragment extends Fragment {
                 }else{
                     navController.navigate(R.id.loginFragment);
                 }
+
             }
         });
 
@@ -132,8 +139,10 @@ public class HomeFragment extends Fragment {
         cardAyuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent (getContext(), AyudaActivity.class);
                 startActivityForResult(intent, 0);
+
             }
         });
     }

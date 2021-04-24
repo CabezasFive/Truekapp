@@ -22,6 +22,10 @@
             android:id="@+id/action_homeFragment_to_categoriasFragment"
             app:destination="@id/categoriasFragment" />
         <action
+
+            android:id="@+id/action_homeFragment_to_publicarFragment"
+            app:destination="@id/publicarFragment" />
+
             android:id="@+id/action_homeFragment_to_listadoPublicacionesFragment"
             app:destination="@id/listadoPublicacionesFragment" />
         <action
@@ -30,6 +34,7 @@
         <action
             android:id="@+id/action_homeFragment_to_ayudaActivity"
             app:destination="@id/ayudaActivity" />
+
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -53,6 +58,7 @@
         android:id="@+id/categoriasFragment"
         android:name="com.cabezasfive.truekapp.ui.listaCategorias.CategoriasFragment"
         android:label="fragment_categorias"
+
         tools:layout="@layout/fragment_categorias" />
     <fragment
         android:id="@+id/verPublicacion"
@@ -74,4 +80,5 @@
         android:name="com.cabezasfive.truekapp.fragmentsAyuda.AyudaActivity"
         android:label="activity_ayuda"
         tools:layout="@layout/activity_ayuda" />
+
 </navigation>
