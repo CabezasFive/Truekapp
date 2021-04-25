@@ -1,54 +1,46 @@
-package com.cabezasfive.truekapp.ui.misOfertas;
+package com.cabezasfive.truekapp.ui.misPublicaciones;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.cabezasfive.truekapp.R;
-import com.cabezasfive.truekapp.adapters.AdapterListarPublicaciones;
 import com.cabezasfive.truekapp.adapters.AdapterMisPublicaciones;
 import com.cabezasfive.truekapp.models.Publicacion;
-import com.cabezasfive.truekapp.ui.listadoPublicaciones.ListadoPublicacionesFragment;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
 
-public class MisOfertasFragment extends Fragment {
+public class MisPublicacionesFragment extends Fragment {
 
     private ListView listView;
     private ArrayList<Publicacion> publicaciones;
     private AdapterMisPublicaciones adapterMisPublicaciones;
 
-    MisOfertasViewModel misOfertasViewModel;
+    MisPublicacionesViewModel misPublicacionesViewModel;
 
     String userId;
     private FirebaseAuth mAuth;
 
 
 
-    public MisOfertasFragment() {
+    public MisPublicacionesFragment() {
         // Required empty public constructor
     }
 
 
-    public static MisOfertasFragment newInstance(String param1, String param2) {
-        MisOfertasFragment fragment = new MisOfertasFragment();
+    public static MisPublicacionesFragment newInstance(String param1, String param2) {
+        MisPublicacionesFragment fragment = new MisPublicacionesFragment();
         return fragment;
     }
 
@@ -56,14 +48,14 @@ public class MisOfertasFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        misOfertasViewModel = new ViewModelProvider(this).get(MisOfertasViewModel.class);
+        misPublicacionesViewModel = new ViewModelProvider(this).get(MisPublicacionesViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_mis_ofertas, container, false);
+        View view =  inflater.inflate(R.layout.fragment_mis_publicaciones, container, false);
 
         listView = view.findViewById(R.id.listviewMisPublicaciones);
 
@@ -95,7 +87,7 @@ public class MisOfertasFragment extends Fragment {
 
         @Override
         protected ArrayList<Publicacion> doInBackground(Void... voids) {
-            publicaciones = misOfertasViewModel.getAllPublicacionesUser(userId);
+            publicaciones = misPublicacionesViewModel.getAllPublicacionesUser(userId);
             return publicaciones;
         }
 

@@ -3,8 +3,6 @@ package com.cabezasfive.truekapp.ui.solicitudIntercambio;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -17,14 +15,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.adapters.AdapterListaPublicacionesIntercambio;
-import com.cabezasfive.truekapp.adapters.AdapterMisPublicaciones;
 import com.cabezasfive.truekapp.models.Publicacion;
-import com.cabezasfive.truekapp.ui.misOfertas.MisOfertasFragment;
-import com.cabezasfive.truekapp.ui.misOfertas.MisOfertasViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 

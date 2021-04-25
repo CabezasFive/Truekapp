@@ -3,30 +3,21 @@ package com.cabezasfive.truekapp.adapters;
 import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.AlertDialogLayout;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.cabezasfive.truekapp.MainActivity;
 import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.models.Publicacion;
 import com.cabezasfive.truekapp.repositories.PublicacionRepository;
-import com.cabezasfive.truekapp.ui.misOfertas.MisOfertasViewModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
