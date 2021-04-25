@@ -4,24 +4,109 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.solicitudIntercambio.SolicitudFragment"
-    android:orientation="horizontal"
+    android:orientation="vertical"
+    android:background="@drawable/fondo01"
     >
 
 
     <TextView
         android:id="@+id/tvTituloSolicitud"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:background="@color/azul"
         android:fontFamily="@font/nunito_semibold"
-        android:text="Enviar Solicitud de Intercambio"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
         android:gravity="center_horizontal"
         android:paddingTop="15dp"
         android:paddingBottom="10dp"
-        android:background="@color/azul"
+        android:text="Enviar Solicitud de Intercambio"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        app:cardCornerRadius="8dp"
+        android:backgroundTint="@color/blancotransparente"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:textSize="18sp"
+                android:text="Solicitaras un intercambio por:"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginVertical="10dp"
+                >
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/sin_imagen"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:text="Titulo de la publicacion"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@color/teal_700"
+        android:layout_marginHorizontal="8dp"
+        android:paddingVertical="8dp"
+        android:textAlignment="center"
+        android:text="Selecciona por que lo deseas intercambiar:"
+        android:gravity="center_horizontal"
         />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginHorizontal="8dp"
+        android:background="@color/blancotransparente">
+
+    </ListView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:text="Siguiente"
+        />
+
+
 </LinearLayout>
