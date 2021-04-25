@@ -18,7 +18,7 @@ public class PerfilFragment extends Fragment {
     CardView cardPerfil, cardPublicaciones, cardCreditos, cardSolicitudes;
 
 
-    public static PerfilFragment newInstance(String param1, String param2) {
+    public static PerfilFragment newInstance() {
         PerfilFragment fragment = new PerfilFragment();
 
         return fragment;

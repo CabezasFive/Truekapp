@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.perfilUsuario.PerfilFragment"
     android:orientation="vertical"
     android:background="@drawable/fondoregistro">
 
     <TextView
-        android:id="@+id/tvTituloSolicitud"
+        android:id="@+id/tvTituloMiPerfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/teal_700"
@@ -114,7 +112,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_weight="2"
                     android:paddingTop="2dp"
-                    android:src="@drawable/ic_exchange" />
+                    android:src="@drawable/ic_intercambio" />
 
                 <TextView
                     android:layout_width="match_parent"

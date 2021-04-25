@@ -43,7 +43,7 @@ public class PublicacionBorradaFragment extends Fragment {
         btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.misOfertasFragment);
+                Navigation.findNavController(view).navigate(R.id.misPublicacionesFragment);
             }
         });
 

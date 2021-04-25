@@ -110,10 +110,10 @@ public class AdapterMisPublicaciones extends BaseAdapter {
             public void onClick(View view) {
                 if (state.equals(publicacion.getActivo())){
                     publicacionRepository.cambiarEstado(publicacion.getUid(),userId, "false");
-                    Navigation.findNavController(view).navigate(R.id.misOfertasFragment);
+                    Navigation.findNavController(view).navigate(R.id.misPublicacionesFragment);
                 }else{
                     publicacionRepository.cambiarEstado(publicacion.getUid(),userId, "true");
-                    Navigation.findNavController(view).navigate(R.id.misOfertasFragment);
+                    Navigation.findNavController(view).navigate(R.id.misPublicacionesFragment);
                 }
             }
         });
