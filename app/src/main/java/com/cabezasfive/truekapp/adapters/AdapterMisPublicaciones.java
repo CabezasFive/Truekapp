@@ -75,7 +75,7 @@ public class AdapterMisPublicaciones extends BaseAdapter {
         ImageButton btnEliminar = view.findViewById(R.id.btnEliminarMiPub);
         TextView tvPausarReanudar = view.findViewById(R.id.tePausarMiPub);
 
-        RelativeLayout rlPublicacion = view.findViewById(R.id.misPublicacionesItem);
+        RelativeLayout rlPublicacion = view.findViewById(R.id.itemPubIntercambio);
 
         tvTitulo.setText(publicacion.getTitulo());
         if(publicaciones.get(i).getImagen01() != null){

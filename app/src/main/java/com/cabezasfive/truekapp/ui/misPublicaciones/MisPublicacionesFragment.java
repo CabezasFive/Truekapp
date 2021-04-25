@@ -74,7 +74,6 @@ public class MisPublicacionesFragment extends Fragment {
         // *************************************
         // Obtener las publicaciones del usuario
         // *************************************
-        //publicaciones = misOfertasViewModel.getAllPublicaciones();
 
         listView.setAdapter(adapterMisPublicaciones);
         mAuth = FirebaseAuth.getInstance();
