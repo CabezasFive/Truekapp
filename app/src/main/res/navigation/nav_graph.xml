@@ -130,6 +130,9 @@
         <action
             android:id="@+id/action_perfilFragment_to_misPublicacionesFragment"
             app:destination="@id/misPublicacionesFragment" />
+        <action
+            android:id="@+id/action_perfilFragment_to_solicitudesRecibidasFragment"
+            app:destination="@id/solicitudesRecibidasFragment" />
     </fragment>
     <fragment
         android:id="@+id/misPublicacionesFragment"
@@ -140,5 +143,10 @@
             android:id="@+id/action_misPublicacionesFragment_to_publicacionBorradaFragment"
             app:destination="@id/publicacionBorradaFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/solicitudesRecibidasFragment"
+        android:name="com.cabezasfive.truekapp.ui.solicitudesRecibidas.SolicitudesRecibidasFragment"
+        android:label="fragment_solicitudes_recibidas"
+        tools:layout="@layout/fragment_solicitudes_recibidas" />
 
 </navigation>
