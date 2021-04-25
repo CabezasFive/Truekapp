@@ -115,7 +115,7 @@ public class MisOfertasFragment extends Fragment {
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                     Publicacion publicacion = resultado.get(position);
 
-                    Toast.makeText(getContext(), "Selecciono: " + publicacion.getTitulo(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "A editar Publicacion: " + publicacion.getTitulo(), Toast.LENGTH_SHORT).show();
                 }
             });
 

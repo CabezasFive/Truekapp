@@ -27,6 +27,7 @@ public class PublicacionRepository {
 
     private ArrayList<Publicacion> publicaciones = new ArrayList<>();
     private Integer cantidad = 0;
+    String estado;
 
     private Publicacion find = new Publicacion();
 
@@ -41,6 +42,7 @@ public class PublicacionRepository {
 
     /** Trae todas las publicaciones y devuelve un arrayList con ellas   */
     public ArrayList<Publicacion> getAllPublicaciones(){
+        estado = "true";
         databaseReference.child("Publicacion").addValueEventListener(new ValueEventListener() {
 
             @Override
@@ -52,7 +54,10 @@ public class PublicacionRepository {
                     // recorrer cada uno de los objetos en el nodo
                     for(DataSnapshot ds: snapshot.getChildren()){
                         Publicacion publicacion =  ds.getValue(Publicacion.class);
-                        publicaciones.add(publicacion);
+                        if (estado.equals(publicacion.getActivo())){
+                            publicaciones.add(publicacion);
+                        }
+
                     }
                 }
             }
@@ -142,7 +147,7 @@ public class PublicacionRepository {
     /** Busca todas las publicaciones que comienzan con el string pasado   */
     /** Convierte a mayusculas el string para buscar dentro de las publicaciones el nodo titulo_upper donde se guarda el titulo completo en mayusculas   */
     public ArrayList<Publicacion> searchPublicacion(String search){
-
+        estado = "true";
         Query firebaseSearchQuery = databaseReference.child("Publicacion").orderByChild("titulo_upper").startAt(search.toUpperCase()).endAt(search.toUpperCase() + "\uf8ff");
 
         firebaseSearchQuery.addValueEventListener(new ValueEventListener() {
@@ -155,7 +160,10 @@ public class PublicacionRepository {
                     // recorrer cada uno de los objetos en el nodo
                     for(DataSnapshot ds: snapshot.getChildren()){
                         Publicacion publicacion =  ds.getValue(Publicacion.class);
-                        publicaciones.add(publicacion);
+                        if (estado.equals(publicacion.getActivo())){
+                            publicaciones.add(publicacion);
+                        }
+
                     }
                 }
             }

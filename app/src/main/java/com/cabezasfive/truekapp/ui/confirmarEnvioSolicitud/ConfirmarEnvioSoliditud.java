@@ -1,7 +1,9 @@
 package com.cabezasfive.truekapp.ui.confirmarEnvioSolicitud;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -11,17 +13,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.models.Publicacion;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 
 public class ConfirmarEnvioSoliditud extends Fragment {
 
-
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
 
     private Publicacion pubSeleccionada, pubIntercambio;
+
+    private String idUserPub, idInterPub;
 
     public ConfirmarEnvioSoliditud() {
         // Required empty public constructor
@@ -46,9 +54,18 @@ public class ConfirmarEnvioSoliditud extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_confirmar_envio_soliditud, container, false);
 
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+
         if (getArguments() != null) {
+            // Publicacion que el usuario selecciono para intercambiar
             pubSeleccionada = (Publicacion) getArguments().getSerializable("miPub");
+            // Publicacion por la cual se envia la solicitud
             pubIntercambio = (Publicacion) getArguments().getSerializable("xPub");
+
+            idUserPub = pubSeleccionada.getUid();
+            idInterPub = pubIntercambio.getUid();
         }
 
         ImageView ivMiPub, ivXPub;
@@ -89,7 +106,29 @@ public class ConfirmarEnvioSoliditud extends Fragment {
             }
         });
 
+        btnConfirmar = view.findViewById(R.id.btnConfirmacionSolicitud);
+        btnConfirmar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /** Se guarda en la BD un intercambio pendiente con los id de las publicaciones y la publicacion solicitante */
+                DatabaseReference reference= databaseReference.child("users").child(pubIntercambio.getIdUser())
+                                                .child("int_pendiente").child(idInterPub);
+                reference.child(idUserPub).setValue(pubSeleccionada);
 
+                // Confirmacion de solicitud enviada
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Envio de solicitud");
+                builder.setMessage("Se ha enviado una solicitud de intercambio al dueño de la publicacion \nTe avisaremos si el usuario lo acepta!!")
+                        .setPositiveButton("Entendido - llevame al listado", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Navigation.findNavController(view).navigate(R.id.listadoPublicacionesFragment);
+                            }
+                        })
+                        .setCancelable(false)
+                        .show();
+            }
+        });
 
         return view;
     }

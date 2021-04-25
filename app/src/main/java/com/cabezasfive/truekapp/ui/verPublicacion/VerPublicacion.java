@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,8 +80,9 @@ public class VerPublicacion extends Fragment {
         btnSolicitud = view.findViewById(R.id.btnEnvioSolicitudVerPub);
 
         String userId = firebaseAuth.getUid();
-        Toast.makeText(getContext(), "Id de usuario: " + userId + "Publicacion ID: " + publicacion.getIdUser(), Toast.LENGTH_SHORT).show();
-
+        String pubOwner = publicacion.getIdUser();
+        Log.e("IDUser", "el id de usuario es " + userId);
+        Log.e("IDPub", "el id de pub es: " + pubOwner);
 
         btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,7 +101,6 @@ public class VerPublicacion extends Fragment {
                 i.putExtra(Intent.EXTRA_SUBJECT,shareSubject);
                 i.putExtra(Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(i,"Truekapp Link"));
-                Toast.makeText(getContext(), "Share!!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -113,18 +114,20 @@ public class VerPublicacion extends Fragment {
             ivVerPublicacion.setImageResource(R.drawable.sin_imagen);
         }
 
+        if (pubOwner == userId){
+            btnEditar.setVisibility(view.VISIBLE);
+            btnSolicitud.setVisibility(view.INVISIBLE);
+            btnIniciar.setVisibility(view.INVISIBLE);
+        }
+        if (isLoged() && pubOwner != userId){
+            btnEditar.setVisibility(view.INVISIBLE);
+            btnSolicitud.setVisibility(view.VISIBLE);
+            btnIniciar.setVisibility(view.INVISIBLE);
+        }
         if (!isLoged()){
             btnEditar.setVisibility(view.INVISIBLE);
             btnSolicitud.setVisibility(view.INVISIBLE);
             btnIniciar.setVisibility(view.VISIBLE);
-        }else if (publicacion.getIdUser() == userId){
-            btnEditar.setVisibility(view.VISIBLE);
-            btnSolicitud.setVisibility(view.INVISIBLE);
-            btnIniciar.setVisibility(view.INVISIBLE);
-        }else{
-            btnEditar.setVisibility(view.INVISIBLE);
-            btnSolicitud.setVisibility(view.VISIBLE);
-            btnIniciar.setVisibility(view.INVISIBLE);
         }
 
         /*** Envio de solicitud de intercambio  **/
