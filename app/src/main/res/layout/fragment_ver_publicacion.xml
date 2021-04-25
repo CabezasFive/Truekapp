@@ -126,15 +126,47 @@
                     android:layout_marginHorizontal="10dp"
                     />
 
-                <Button
-                    android:id="@+id/btnEnvioSolicitudVerPub"
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enviar Solicitud de Intercambio"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginHorizontal="15dp"
-                    />
+                    >
+
+                    <Button
+                        android:id="@+id/btnEnvioSolicitudVerPub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Enviar Solicitud de Intercambio"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginHorizontal="15dp"
+                        />
+
+                    <Button
+                        android:id="@+id/btnNeedLoginSolicitudVerPub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Inicia sesion o registrate aqui para enviarle una solicitud de intercambio"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginHorizontal="15dp"
+                        android:backgroundTint="@color/verdeFondo"
+                        />
+
+                    <Button
+                        android:id="@+id/btnMiPubSolicitudVerPub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Puedes editar tu publicacion aqui"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginHorizontal="15dp"
+                        android:backgroundTint="@color/teal_700"
+                        />
+
+
+                </RelativeLayout>
+
 
 
             </LinearLayout>

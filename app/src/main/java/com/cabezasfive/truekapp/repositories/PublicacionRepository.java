@@ -66,7 +66,6 @@ public class PublicacionRepository {
 
 
 
-
     /** Obtener todas las publicaciones de un usuario pasando su id  */
     public ArrayList<Publicacion> getAllPublicacionesUser(String userId){
         databaseReference.child("users").child(userId).child("publicaciones").addValueEventListener(new ValueEventListener() {
@@ -90,7 +89,6 @@ public class PublicacionRepository {
         });
         return publicaciones;
     }
-
 
 
 
@@ -131,6 +129,14 @@ public class PublicacionRepository {
         databaseReference.child("users").child(userId).child("publicaciones").child(id).child("activo").setValue(estado);
     }
 
+
+    /** Elimina una publicacion pasandole su id e id de usuario */
+    public void deletePublicacion(String id, String userId){
+        databaseReference.child("Publicacion").child(id).setValue(null);
+        databaseReference.child("users").child(userId).child("publicaciones").child(id).setValue(null);
+
+        // Borrar la imagen de la publicacion del Storage
+    }
 
 
     /** Busca todas las publicaciones que comienzan con el string pasado   */

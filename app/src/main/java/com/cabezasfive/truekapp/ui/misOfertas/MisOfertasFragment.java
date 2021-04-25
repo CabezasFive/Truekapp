@@ -1,9 +1,11 @@
 package com.cabezasfive.truekapp.ui.misOfertas;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -82,7 +84,6 @@ public class MisOfertasFragment extends Fragment {
 
         return view;
     }
-
 
 
     private class TareaAsyncTask extends AsyncTask<Void, Integer, ArrayList<Publicacion>> {

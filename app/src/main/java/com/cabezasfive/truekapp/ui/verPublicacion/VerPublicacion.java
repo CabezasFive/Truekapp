@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.models.Publicacion;
+import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 public class VerPublicacion extends Fragment {
@@ -33,9 +34,11 @@ public class VerPublicacion extends Fragment {
 
     private ImageButton btnShare;
 
+    private Button btnSolicitud, btnIniciar, btnEditar;
+
     private Publicacion publicacion;
 
-
+    private FirebaseAuth firebaseAuth;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -62,12 +65,18 @@ public class VerPublicacion extends Fragment {
             publicacion = (Publicacion) getPublicaicon.getSerializable("publicacion");
         }
 
+        firebaseAuth = FirebaseAuth.getInstance();
+
         btnVolver = view.findViewById(R.id.btnVolverVerPublicacion);
 
         tvTitulo = view.findViewById(R.id.tituloVerPublicacion);
         tvDescripcion = view.findViewById(R.id.descripcionVerPublicacion);
         ivVerPublicacion = view.findViewById(R.id.imagenVerPublicacion);
         btnShare = view.findViewById(R.id.shareVerPublicacion);
+
+        btnIniciar = view.findViewById(R.id.btnNeedLoginSolicitudVerPub);
+        btnEditar = view.findViewById(R.id.btnMiPubSolicitudVerPub);
+        btnSolicitud = view.findViewById(R.id.btnEnvioSolicitudVerPub);
 
 
         btnVolver.setOnClickListener(new View.OnClickListener() {
@@ -101,8 +110,26 @@ public class VerPublicacion extends Fragment {
             ivVerPublicacion.setImageResource(R.drawable.sin_imagen);
         }
 
+        if (!isLoged()){
+            btnEditar.setVisibility(view.INVISIBLE);
+            btnSolicitud.setVisibility(view.INVISIBLE);
+            btnIniciar.setVisibility(view.VISIBLE);
+        }else {
+            btnEditar.setVisibility(view.INVISIBLE);
+            btnSolicitud.setVisibility(view.VISIBLE);
+            btnIniciar.setVisibility(view.INVISIBLE);
+        }
+
 
         return view;
+    }
+
+    private boolean isLoged(){
+        if(firebaseAuth.getCurrentUser() != null){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
