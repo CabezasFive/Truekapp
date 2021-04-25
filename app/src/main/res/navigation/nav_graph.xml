@@ -67,7 +67,11 @@
         android:id="@+id/verPublicacion"
         android:name="com.cabezasfive.truekapp.ui.verPublicacion.VerPublicacion"
         android:label="fragment_ver_publicacion"
-        tools:layout="@layout/fragment_ver_publicacion" />
+        tools:layout="@layout/fragment_ver_publicacion" >
+        <action
+            android:id="@+id/action_verPublicacion_to_solicitudFragment"
+            app:destination="@id/solicitudFragment" />
+    </fragment>
     <fragment
         android:id="@+id/listadoPublicacionesFragment"
         android:name="com.cabezasfive.truekapp.ui.listadoPublicaciones.ListadoPublicacionesFragment"
@@ -95,6 +99,15 @@
         <action
             android:id="@+id/action_publicarFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/solicitudFragment"
+        android:name="com.cabezasfive.truekapp.ui.solicitudIntercambio.SolicitudFragment"
+        android:label="fragment_solicitud"
+        tools:layout="@layout/fragment_solicitud" >
+        <action
+            android:id="@+id/action_solicitudFragment_to_verPublicacion"
+            app:destination="@id/verPublicacion" />
     </fragment>
 
 </navigation>

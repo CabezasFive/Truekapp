@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     //TextView nombre de usuario logueado
-    private TextView userName;
+    public TextView userName;
     private Button btnCerrarSesion, btnIniciarSesion;
 
     private ImageView logoHome;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     UserAccountRepository userRepository;
     private FirebaseAuth firebaseAuth;
 
-    private String nick;
+    public String nick = "";
 
 
     @Override
@@ -129,14 +129,17 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.nav_inicio:
+                        userName.setText(nick);
                         navController.navigate(R.id.homeFragment);
                         return true;
                     case R.id.nav_publicaciones:
+                        userName.setText(nick);
                         navController.navigate(R.id.listadoPublicacionesFragment);
                         return true;
                     case R.id.nav_login:
                         if(isLoged()){
                             // si ya esta logueado va al perfil
+                            userName.setText(nick);
                         }else {
                             // si no esta logueado va a login
                             navController.navigate(R.id.loginFragment);
@@ -144,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_publicar:
                         if(isLoged()){
+                            userName.setText(nick);
                             navController.navigate(R.id.publicarFragment);
                         }else{
                             navController.navigate(R.id.loginFragment);
@@ -165,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
         btnCerrarSesion.setVisibility(View.VISIBLE);
         getNickAyncTask getNick= new getNickAyncTask();
         getNick.execute();
+        userName.setText(nick);
     }
 
 
@@ -172,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
     public void ocultarCerrarSesion() {
         btnIniciarSesion.setVisibility(View.VISIBLE);
         btnCerrarSesion.setVisibility(View.INVISIBLE);
+        nick = "";
         userName.setText("");
     }
 
@@ -204,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String resultado){
+            nick = resultado;
             userName.setText(resultado);
         }
     }

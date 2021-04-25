@@ -120,6 +120,30 @@ public class VerPublicacion extends Fragment {
             btnIniciar.setVisibility(view.INVISIBLE);
         }
 
+        /*** Envio de solicitud de intercambio  **/
+        btnSolicitud.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.solicitudFragment);
+            }
+        });
+
+        /**  Boton iniciar sesion si no esta logueado no podra intercambiar **/
+        btnIniciar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.loginFragment);
+            }
+        });
+
+        /** Boton editar si la publicacion es del usuario que la ve **/
+        btnEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Aqui se debe ir a editar publicacion
+            }
+        });
+
 
         return view;
     }

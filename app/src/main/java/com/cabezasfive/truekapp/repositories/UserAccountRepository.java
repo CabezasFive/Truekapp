@@ -138,6 +138,7 @@ public class UserAccountRepository{
                     if (snapshot.exists()){
                         for (DataSnapshot ds: snapshot.getChildren()){
                             userNick   = ds.getValue().toString();
+                            Toast.makeText(application, "Usuario: " + userNick, Toast.LENGTH_SHORT).show();
 //                            userNick = nick;
                         }
                     }
