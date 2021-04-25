@@ -138,7 +138,7 @@ public class AdapterMisPublicaciones extends BaseAdapter {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 publicacionRepository.deletePublicacion(publicacion.getUid(), userId);
-                                Navigation.findNavController(view).navigate(R.id.homeFragment);
+                                Navigation.findNavController(view).navigate(R.id.publicacionBorradaFragment);
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {

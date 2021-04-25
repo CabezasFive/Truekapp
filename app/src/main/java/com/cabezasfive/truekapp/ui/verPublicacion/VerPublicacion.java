@@ -60,9 +60,9 @@ public class VerPublicacion extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ver_publicacion, container, false);
 
 
-        Bundle getPublicaicon = getArguments();
-        if (getPublicaicon != null){
-            publicacion = (Publicacion) getPublicaicon.getSerializable("publicacion");
+        Bundle getPublicacion = getArguments();
+        if (getPublicacion != null){
+            publicacion = (Publicacion) getPublicacion.getSerializable("publicacion");
         }
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -124,7 +124,9 @@ public class VerPublicacion extends Fragment {
         btnSolicitud.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.solicitudFragment);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("publicacion", publicacion);
+                Navigation.findNavController(view).navigate(R.id.solicitudFragment, bundle);
             }
         });
 

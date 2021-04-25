@@ -149,9 +149,6 @@ public class PublicarFragment extends Fragment  {
 
             //Recorta imagen
             CropImage.activity(imagenuri)
-                    .setGuidelines(CropImageView.Guidelines.ON)
-                    .setRequestedSize(640,480)
-                    .setAspectRatio(4,3)
                     .start(getContext(), this);
         }
 
@@ -211,6 +208,7 @@ public class PublicarFragment extends Fragment  {
                                 Date Fecha = new Date(); // Sistema actual La fecha y la hora se asignan a objDate
                                 p.setF_Creacion(Fecha.toString());
                                 p.setActivo("true");
+                                p.setPrecio(precio);
                                 p.setVisitas(0);
 
                                 //Subir imagen en storage

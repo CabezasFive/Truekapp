@@ -15,6 +15,7 @@ public class Publicacion implements Serializable {
     private String imagen01;
     private String f_Creacion;
     private String activo;
+    private String precio;
     private Integer visitas;
 
 
@@ -24,7 +25,7 @@ public class Publicacion implements Serializable {
     }
 
     public Publicacion (String uid, String idUser, String titulo, String titulo_upper, String descripcion,
-                        String f_Creacion, String imagen01, String activo, Integer visitas){
+                        String f_Creacion, String imagen01, String activo, String precio, Integer visitas){
 
         this.uid = uid;
         this.idUser = idUser;
@@ -35,8 +36,16 @@ public class Publicacion implements Serializable {
         this.imagen01 = imagen01;
         this.activo = activo;
         this.visitas = visitas;
+        this.precio = precio;
     }
 
+    public String getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(String precio) {
+        this.precio = precio;
+    }
 
     public String getUid() {
         return uid;
