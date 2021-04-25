@@ -82,15 +82,6 @@
             android:id="@+id/action_listadoPublicacionesFragment_to_verPublicacion"
             app:destination="@id/verPublicacion" />
     </fragment>
-    <fragment
-        android:id="@+id/misOfertasFragment"
-        android:name="com.cabezasfive.truekapp.ui.misPublicaciones.MisPublicacionesFragment"
-        android:label="fragment_mis_ofertas"
-        tools:layout="@layout/fragment_mis_publicaciones" >
-        <action
-            android:id="@+id/action_misOfertasFragment_to_publicacionBorradaFragment"
-            app:destination="@id/publicacionBorradaFragment" />
-    </fragment>
     <activity
         android:id="@+id/ayudaActivity"
         android:name="com.cabezasfive.truekapp.fragmentsAyuda.AyudaActivity"
@@ -121,11 +112,7 @@
         android:id="@+id/publicacionBorradaFragment"
         android:name="com.cabezasfive.truekapp.ui.publicacionBorrada.PublicacionBorradaFragment"
         android:label="fragment_publicacion_borrada"
-        tools:layout="@layout/fragment_publicacion_borrada" >
-        <action
-            android:id="@+id/action_publicacionBorradaFragment_to_misOfertasFragment"
-            app:destination="@id/misOfertasFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_publicacion_borrada" />
     <fragment
         android:id="@+id/confirmarEnvioSoliditud"
         android:name="com.cabezasfive.truekapp.ui.confirmarEnvioSolicitud.ConfirmarEnvioSoliditud"
@@ -141,8 +128,17 @@
         android:label="fragment_perfil"
         tools:layout="@layout/fragment_perfil" >
         <action
-            android:id="@+id/action_perfilFragment_to_misOfertasFragment"
-            app:destination="@id/misOfertasFragment" />
+            android:id="@+id/action_perfilFragment_to_misPublicacionesFragment"
+            app:destination="@id/misPublicacionesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/misPublicacionesFragment"
+        android:name="com.cabezasfive.truekapp.ui.misPublicaciones.MisPublicacionesFragment"
+        android:label="fragment_mis_publicaciones"
+        tools:layout="@layout/fragment_mis_publicaciones" >
+        <action
+            android:id="@+id/action_misPublicacionesFragment_to_publicacionBorradaFragment"
+            app:destination="@id/publicacionBorradaFragment" />
     </fragment>
 
 </navigation>
