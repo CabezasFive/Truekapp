@@ -6,9 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".ui.misPublicaciones.MisPublicacionesFragment"
-    android:background="@drawable/fondo_gris">
+    android:background="@drawable/fondo_gris"
+    android:orientation="vertical">
 
-
+    <Button
+        android:id="@+id/btnVolverDeMisPub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_volver_flecha"
+        android:text="VOLVER"
+        android:textColor="@color/black"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#5929D135"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        />
 
     <ListView
         android:id="@+id/listviewMisPublicaciones"

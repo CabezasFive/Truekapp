@@ -5,11 +5,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,13 +25,14 @@ import java.util.ArrayList;
 
 public class MisPublicacionesFragment extends Fragment {
 
+    private Button btnVolver;
     private ListView listView;
     private ArrayList<Publicacion> publicaciones;
     private AdapterMisPublicaciones adapterMisPublicaciones;
 
     MisPublicacionesViewModel misPublicacionesViewModel;
 
-    String userId;
+    private String userId;
     private FirebaseAuth mAuth;
 
 
@@ -56,6 +59,15 @@ public class MisPublicacionesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_mis_publicaciones, container, false);
+
+        btnVolver = view.findViewById(R.id.btnVolverDeMisPub);
+        btnVolver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).popBackStack();
+            }
+        });
+
 
         listView = view.findViewById(R.id.listviewMisPublicaciones);
 

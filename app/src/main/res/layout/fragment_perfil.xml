@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.perfilUsuario.PerfilFragment"
+    android:orientation="vertical"
+    android:background="@drawable/fondoregistro"
+    >
+
+    <TextView
+        android:id="@+id/tvTituloSolicitud"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/teal_700"
+        android:fontFamily="@font/nunito_semibold"
+        android:gravity="center_horizontal"
+        android:paddingTop="15dp"
+        android:paddingBottom="10dp"
+        android:text="Mi Perfil"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/btnVolverDeMiPerfil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_volver_flecha"
+        android:text="VOLVER"
+        android:textColor="@color/black"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#5929D135"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        />
+
+
+</LinearLayout>

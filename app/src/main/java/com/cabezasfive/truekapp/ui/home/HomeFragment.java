@@ -17,11 +17,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.cabezasfive.truekapp.MainActivity;
 import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.fragmentsAyuda.AyudaActivity;
 
-import com.cabezasfive.truekapp.ui.login.LoginViewModel;
 import com.cabezasfive.truekapp.repositories.UserAccountRepository;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -31,7 +29,7 @@ public class HomeFragment extends Fragment {
 
 
     //Referencia a los cardViews que funcionaran como botones
-    CardView cardListado, cardPublicar, cardDestacados, cardMisOfertas, cardMasVistos, cardAyuda;
+    CardView cardListado, cardPublicar, cardDestacados, cardMiPerfil, cardMasVistos, cardAyuda;
 
     HomeViewModel homeViewModel;
 
@@ -76,7 +74,7 @@ public class HomeFragment extends Fragment {
         cardMasVistos=view.findViewById(R.id.cardMasVistos);
         cardDestacados=view.findViewById(R.id.cardDestacados);
         cardPublicar=view.findViewById(R.id.cardPublicar);
-        cardMisOfertas=view.findViewById(R.id.cardMisOfertas);
+        cardMiPerfil =view.findViewById(R.id.cardMiPerfil);
 
         // Referencia al navController
         final NavController navController = Navigation.findNavController(view);
@@ -115,11 +113,11 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        cardMisOfertas.setOnClickListener(new View.OnClickListener() {
+        cardMiPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (isLoged()){
-                    navController.navigate(R.id.misOfertasFragment);
+                    navController.navigate(R.id.perfilFragment);
                 }else{
                     navController.navigate(R.id.loginFragment);
                 }

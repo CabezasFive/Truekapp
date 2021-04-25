@@ -7,7 +7,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -20,10 +19,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
-import com.cabezasfive.truekapp.adapters.AdapterListarPublicaciones;
-import com.cabezasfive.truekapp.fragmentsAyuda.AyudaActivity;
-import com.cabezasfive.truekapp.models.Publicacion;
 
 import com.cabezasfive.truekapp.repositories.UserAccountRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -136,10 +131,11 @@ public class MainActivity extends AppCompatActivity {
                         userName.setText(nick);
                         navController.navigate(R.id.listadoPublicacionesFragment);
                         return true;
-                    case R.id.nav_login:
+                    case R.id.nav_perfil:
                         if(isLoged()){
                             // si ya esta logueado va al perfil
                             userName.setText(nick);
+                            navController.navigate(R.id.perfilFragment);
                         }else {
                             // si no esta logueado va a login
                             navController.navigate(R.id.loginFragment);
@@ -156,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_ayuda:
                         navController.navigate(R.id.ayudaActivity);
                         return true;
+
 
                 }
                 return false;

@@ -24,19 +24,20 @@
         <action
 
             android:id="@+id/action_homeFragment_to_publicarFragment"
-            app:destination="@id/publicarFragment" />
+            app:destination="@id/publicarFragment" /><![CDATA[
 
             android:id="@+id/action_homeFragment_to_listadoPublicacionesFragment"
             app:destination="@id/listadoPublicacionesFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_misOfertasFragment"
-            app:destination="@id/misOfertasFragment" />
+        ]]>
         <action
             android:id="@+id/action_homeFragment_to_ayudaActivity"
             app:destination="@id/ayudaActivity" />
         <action
             android:id="@+id/action_homeFragment_to_listadoPublicacionesFragment"
             app:destination="@id/listadoPublicacionesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_perfilFragment"
+            app:destination="@id/perfilFragment" />
 
     </fragment>
     <fragment
@@ -133,6 +134,15 @@
         <action
             android:id="@+id/action_confirmarEnvioSoliditud_to_solicitudFragment"
             app:destination="@id/solicitudFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/perfilFragment"
+        android:name="com.cabezasfive.truekapp.ui.perfilUsuario.PerfilFragment"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_perfilFragment_to_misOfertasFragment"
+            app:destination="@id/misOfertasFragment" />
     </fragment>
 
 </navigation>

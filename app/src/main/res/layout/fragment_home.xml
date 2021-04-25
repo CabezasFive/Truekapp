@@ -168,7 +168,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cardMisOfertas"
+                android:id="@+id/cardMiPerfil"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginLeft="16dp"
@@ -194,7 +194,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_weight="2"
                         android:paddingTop="2dp"
-                        android:src="@drawable/b_cesta" />
+                        android:src="@drawable/user" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -203,7 +203,7 @@
                         android:layout_weight="1"
                         android:autoSizeTextType="uniform"
                         android:padding="2dp"
-                        android:text="MIS OFERTAS"
+                        android:text="MI PERFIL"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="16sp"
