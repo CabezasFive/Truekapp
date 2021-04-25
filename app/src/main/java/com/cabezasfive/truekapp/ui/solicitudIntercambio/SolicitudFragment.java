@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -39,6 +40,8 @@ public class SolicitudFragment extends Fragment {
     private Publicacion pubXIntercambio;
     private ImageView ivImagenPub;
     private TextView tvTituloPub;
+
+    private Button btnVolver;
 
     SolicitudViewModel solicitudViewModel;
 
@@ -71,6 +74,16 @@ public class SolicitudFragment extends Fragment {
             pubXIntercambio = (Publicacion) getPublicacion.getSerializable("publicacion");
         }
 
+        /** Boton Volver al Listado */
+        btnVolver = view.findViewById(R.id.btnVolverAListado);
+        btnVolver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).popBackStack();
+            }
+        });
+
+
         listView = view.findViewById(R.id.lvMisArticulosSolicitud);
         listView.setAdapter(adapterPublicaciones);
 
@@ -91,6 +104,7 @@ public class SolicitudFragment extends Fragment {
 
         TareaAsyncTask tareaAsyncTask = new TareaAsyncTask();
         tareaAsyncTask.execute();
+
 
         return view;
     }
@@ -128,8 +142,6 @@ public class SolicitudFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                     Publicacion publicacion = resultado.get(position);
-
-                    Toast.makeText(getContext(), "Selecciono: " + publicacion.getTitulo(), Toast.LENGTH_SHORT).show();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("miPub", publicacion);
                     bundle.putSerializable("xPub", pubXIntercambio);

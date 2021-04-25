@@ -78,6 +78,9 @@ public class VerPublicacion extends Fragment {
         btnEditar = view.findViewById(R.id.btnMiPubSolicitudVerPub);
         btnSolicitud = view.findViewById(R.id.btnEnvioSolicitudVerPub);
 
+        String userId = firebaseAuth.getUid();
+        Toast.makeText(getContext(), "Id de usuario: " + userId + "Publicacion ID: " + publicacion.getIdUser(), Toast.LENGTH_SHORT).show();
+
 
         btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +117,11 @@ public class VerPublicacion extends Fragment {
             btnEditar.setVisibility(view.INVISIBLE);
             btnSolicitud.setVisibility(view.INVISIBLE);
             btnIniciar.setVisibility(view.VISIBLE);
-        }else {
+        }else if (publicacion.getIdUser() == userId){
+            btnEditar.setVisibility(view.VISIBLE);
+            btnSolicitud.setVisibility(view.INVISIBLE);
+            btnIniciar.setVisibility(view.INVISIBLE);
+        }else{
             btnEditar.setVisibility(view.INVISIBLE);
             btnSolicitud.setVisibility(view.VISIBLE);
             btnIniciar.setVisibility(view.INVISIBLE);
