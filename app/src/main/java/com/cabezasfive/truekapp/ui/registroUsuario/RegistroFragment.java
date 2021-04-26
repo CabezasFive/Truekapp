@@ -99,7 +99,6 @@ public class RegistroFragment extends Fragment {
 
                     TareaAsyncTask tareaAsyncTask = new TareaAsyncTask();
                     tareaAsyncTask.execute();
-                    Log.d("DATO", "FINISH");
 
                 }
             }

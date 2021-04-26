@@ -43,6 +43,7 @@ public class VerSolicitudesDeIntercambioFragment extends Fragment {
     VerSolicitudesViewModel solicitudesViewModel;
     private AdapterPubXInt adapterPub;
     private Handler handler;
+    private String pubId;
 
     public static VerSolicitudesDeIntercambioFragment newInstance(String param1, String param2) {
         VerSolicitudesDeIntercambioFragment fragment = new VerSolicitudesDeIntercambioFragment();
@@ -92,9 +93,11 @@ public class VerSolicitudesDeIntercambioFragment extends Fragment {
         listView = view.findViewById(R.id.lvPubParaInt);
         listView.setAdapter(adapterPub);
 
-        // userId = mPublicacion.getIdUser();
         mAuth = FirebaseAuth.getInstance();
         userId = mAuth.getCurrentUser().getUid();
+
+        pubId = mPublicacion.getUid();
+        Toast.makeText(getContext(), "Id Pub" + mPublicacion.getUid(), Toast.LENGTH_SHORT).show();
 
 
         handler = new Handler() {
@@ -103,14 +106,14 @@ public class VerSolicitudesDeIntercambioFragment extends Fragment {
                 Bundle bundle = message.getData();
                 publicaciones = (ArrayList<Publicacion>) bundle.getSerializable("pub");
 
-                adapterPub = new AdapterPubXInt(getContext(), publicaciones, getActivity().getApplication());
+                adapterPub = new AdapterPubXInt(getContext(), publicaciones, getActivity().getApplication(), mPublicacion);
 
                 listView.setAdapter(adapterPub);
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Toast.makeText(getContext(), "Pub" + publicaciones.get(i).getTitulo(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(), "Pub" + publicaciones.get(i).getTitulo(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -133,7 +136,7 @@ public class VerSolicitudesDeIntercambioFragment extends Fragment {
 
             ArrayList<Publicacion> pubs;
 
-            pubs = solicitudesViewModel.getPublicacionesInter(userId);
+            pubs = solicitudesViewModel.getPublicacionesInter(userId, pubId);
 
             bundle.putSerializable("pub", pubs);
             message.setData(bundle);
