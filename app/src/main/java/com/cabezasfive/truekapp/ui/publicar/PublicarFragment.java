@@ -1,8 +1,8 @@
 package com.cabezasfive.truekapp.ui.publicar;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -10,6 +10,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -20,6 +21,7 @@ import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -148,9 +150,6 @@ public class PublicarFragment extends Fragment  {
 
             //Recorta imagen
             CropImage.activity(imagenuri)
-                    .setGuidelines(CropImageView.Guidelines.ON)
-                    .setRequestedSize(640,480)
-                    .setAspectRatio(2,2)
                     .start(getContext(), this);
         }
 
@@ -162,7 +161,9 @@ public class PublicarFragment extends Fragment  {
                 Uri resulturi = result.getUri();
                 File url = new File(resulturi.getPath());
 
-                Picasso.with(getContext()).load(url).into(Foto);
+                Picasso.get()
+                        .load(url)
+                        .into(Foto);
 
                 // Comprimiendo
                 try{
@@ -193,7 +194,6 @@ public class PublicarFragment extends Fragment  {
                             if (titulo.equals("") || descripcion.equals("") || precio.equals("")){
                                 validacion();
                             } else {
-                                Toast.makeText(getActivity(), "Creando Publicacion", Toast.LENGTH_SHORT).show();
 
                                 // crear un objeto (instancia de la clase Publicacion)
                                 Publicacion p = new Publicacion();
@@ -207,8 +207,10 @@ public class PublicarFragment extends Fragment  {
                                 p.setDescripcion(descripcion);
                                 Date Fecha = new Date(); // Sistema actual La fecha y la hora se asignan a objDate
                                 p.setF_Creacion(Fecha.toString());
-                                p.setActivo(true);
+                                p.setActivo("true");
+                                p.setPrecio(precio);
                                 p.setVisitas(0);
+                                p.setInt_pendiente("0");
 
                                 //Subir imagen en storage
 
@@ -229,22 +231,37 @@ public class PublicarFragment extends Fragment  {
                                         Uri downloaduri = task.getResult();
                                         String URLFoto = downloaduri.toString();
                                         p.setImagen01(URLFoto);
+
+                                        // Guarda en la bd la publicacion dentro de Publicacion
+                                        // y una copia dentro del usuario con el id de la publicacion
                                         databaseReference.child("Publicacion").child(p.getUid()).setValue(p);
+                                        databaseReference.child("users").child(p.getIdUser()).child("publicaciones").child(p.getUid()).setValue(p);
                                     }
                                 });
 
-                                Toast.makeText(getActivity(), "Publicacion creada correctamente", Toast.LENGTH_SHORT).show();
-
-                                limpiarDatos();
+                                androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                builder.setTitle("Eliminar Publicación");
+                                builder.setMessage("Publicacion creada con exito!")
+                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                InputMethodManager imm =(InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                                                limpiarDatos();
+                                                Navigation.findNavController(view).navigate(R.id.homeFragment);
+                                            }
+                                        })
+                                        .setCancelable(false)
+                                        .show();
                             }
                         }else{
                             Toast.makeText(getContext(), "Usuario no registrado", Toast.LENGTH_SHORT).show();
 
                             //Falla navegation para login
-                            Navigation.findNavController(getView()).navigate(R.id.action_publicarFragment_to_loginFragment);
+                            Navigation.findNavController(getView()).navigate(R.id.loginFragment);
                         }
                         //Falla navegation para home
-                        Navigation.findNavController(getView()).navigate(R.id.action_publicarFragment_to_homeFragment);
+//                        Navigation.findNavController(getView()).navigate(R.id.homeFragment);
                     }
                 });
 

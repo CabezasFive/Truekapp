@@ -13,10 +13,11 @@ public class Publicacion implements Serializable {
     private String titulo_upper;
     private String descripcion;
     private String imagen01;
-    private String titulo_upper;
     private String f_Creacion;
-    private Boolean activo;
+    private String activo;
+    private String precio;
     private Integer visitas;
+    private String int_pendiente;
 
 
 
@@ -24,8 +25,24 @@ public class Publicacion implements Serializable {
     public Publicacion() {
     }
 
+    public Publicacion(String uid, String idUser, String titulo, String titulo_upper,
+                       String descripcion, String imagen01, String f_Creacion, String activo,
+                       String precio, Integer visitas, String int_pendiente) {
+        this.uid = uid;
+        this.idUser = idUser;
+        this.titulo = titulo;
+        this.titulo_upper = titulo_upper;
+        this.descripcion = descripcion;
+        this.imagen01 = imagen01;
+        this.f_Creacion = f_Creacion;
+        this.activo = activo;
+        this.precio = precio;
+        this.visitas = visitas;
+        this.int_pendiente = int_pendiente;
+    }
+
     public Publicacion (String uid, String idUser, String titulo, String titulo_upper, String descripcion,
-                        String f_Creacion, String imagen01, Boolean activo, Integer visitas){
+                        String f_Creacion, String imagen01, String activo, String precio, Integer visitas){
 
         this.uid = uid;
         this.idUser = idUser;
@@ -34,10 +51,26 @@ public class Publicacion implements Serializable {
         this.descripcion = descripcion;
         this.f_Creacion = f_Creacion;
         this.imagen01 = imagen01;
-        this.activo = true;
+        this.activo = activo;
         this.visitas = visitas;
+        this.precio = precio;
     }
 
+    public String getInt_pendiente() {
+        return int_pendiente;
+    }
+
+    public void setInt_pendiente(String int_pendiente) {
+        this.int_pendiente = int_pendiente;
+    }
+
+    public String getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(String precio) {
+        this.precio = precio;
+    }
 
     public String getUid() {
         return uid;
@@ -85,11 +118,11 @@ public class Publicacion implements Serializable {
         }
 
 
-        public Boolean getActivo() {
+        public String getActivo() {
             return activo;
         }
 
-        public void setActivo(Boolean activo) {
+        public void setActivo(String activo) {
             this.activo = activo;
         }
 

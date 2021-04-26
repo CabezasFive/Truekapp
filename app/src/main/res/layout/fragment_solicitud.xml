@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.solicitudIntercambio.SolicitudFragment"
+    android:orientation="vertical"
+    android:background="@drawable/fondo01"
+    >
+
+
+    <TextView
+        android:id="@+id/tvTituloSolicitud"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/azul"
+        android:fontFamily="@font/nunito_semibold"
+        android:gravity="center_horizontal"
+        android:paddingTop="15dp"
+        android:paddingBottom="10dp"
+        android:text="Enviar Solicitud de Intercambio"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnVolverAListado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_volver_flecha"
+        android:text="VOLVER"
+        android:textColor="@color/black"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#5929D135"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        app:cardCornerRadius="8dp"
+        android:backgroundTint="@color/blancotransparente"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:textSize="18sp"
+                android:text="Solicitaras un intercambio por:"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginVertical="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/ivArticuloSolicitud"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/sin_imagen"
+                    />
+
+                <TextView
+                    android:id="@+id/tvTituloArtSolicitud"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:text="Titulo de la publicacion"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@color/teal_700"
+        android:layout_marginHorizontal="8dp"
+        android:paddingVertical="8dp"
+        android:textAlignment="center"
+        android:text="Selecciona por cual de tus publicaciones deseas solicitar un intercambio:"
+        android:gravity="center_horizontal"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ListView
+            android:id="@+id/lvMisArticulosSolicitud"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:background="@color/blancotransparente">
+
+        </ListView>
+
+<!--        <Button-->
+<!--            android:id="@+id/btnSiguienteSolicitud"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginHorizontal="10dp"-->
+<!--            android:text="Siguiente"-->
+<!--            />-->
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -9,9 +9,10 @@
     android:layout_marginBottom="16dp">
 
     <RelativeLayout
+        android:id="@+id/itemPubIntercambio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#99076E07"
+        android:background="#999A0A2A"
         android:outlineAmbientShadowColor="@color/azul"
         android:paddingBottom="4dp">
 
@@ -27,9 +28,9 @@
             android:id="@+id/tituloMisPublicacionesCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="13dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="italic"
             android:layout_alignTop="@id/ivMisPublicacionesCard"
@@ -40,19 +41,116 @@
             android:layout_toEndOf="@id/ivMisPublicacionesCard"
             />
 
+
         <TextView
-            android:id="@+id/descripcionMisPublicaciones"
+            android:id="@+id/tvEstadoMisPublicaciones"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_below="@id/tituloMisPublicacionesCard"
-            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tituloMisPublicacionesCard"
             android:layout_alignParentEnd="true"
-            android:text="descripcion de la publicacion mayor en cantidad de carcteres que el titulo"
-            android:layout_toRightOf="@id/ivMisPublicacionesCard"
-            android:layout_toEndOf="@id/ivMisPublicacionesCard"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/ivMisPublicacionesCard"
+            android:layout_toRightOf="@+id/ivMisPublicacionesCard"
+            android:fontFamily="@font/crete_round_italic"
+            android:text="Estado: Pausado"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            android:background="@color/verde"
             />
+
+
+
+        <TextView
+            android:id="@+id/teEditarMiPub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_below="@+id/tvEstadoMisPublicaciones"
+            android:layout_toEndOf="@+id/ivMisPublicacionesCard"
+            android:layout_toRightOf="@+id/ivMisPublicacionesCard"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:text="EDITAR"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/teal_700"
+            />
+
+        <TextView
+            android:id="@+id/tePausarMiPub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_below="@+id/tvEstadoMisPublicaciones"
+            android:layout_toEndOf="@+id/teEditarMiPub"
+            android:layout_toRightOf="@+id/teEditarMiPub"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="15dp"
+            android:text="PAUSAR"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/verdeFondo"
+            />
+
+        <TextView
+            android:id="@+id/teEliminarMiPub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/tvEstadoMisPublicaciones"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="15dp"
+            android:text="ELIMINAR"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/rojointenso"
+            />
+
+        <ImageButton
+            android:id="@+id/btnEditarMiPub"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_edit"
+            android:backgroundTint="@color/teal_200"
+            android:scaleType="fitCenter"
+            android:layout_toEndOf="@+id/ivMisPublicacionesCard"
+            android:layout_toRightOf="@+id/ivMisPublicacionesCard"
+            android:layout_below="@id/teEditarMiPub"
+            android:layout_marginLeft="10dp"
+            />
+
+        <ImageButton
+            android:id="@+id/btnPausarMiPub"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_pause"
+            android:backgroundTint="@color/verdeFondo"
+            android:scaleType="fitCenter"
+            android:layout_toEndOf="@id/btnEditarMiPub"
+            android:layout_toRightOf="@id/btnEditarMiPub"
+            android:layout_below="@id/tePausarMiPub"
+            android:layout_marginLeft="10dp"
+            />
+
+        <ImageButton
+            android:id="@+id/btnEliminarMiPub"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_delete"
+            android:backgroundTint="@color/rojointenso"
+            android:scaleType="fitCenter"
+            android:layout_toEndOf="@id/btnPausarMiPub"
+            android:layout_toRightOf="@id/btnPausarMiPub"
+            android:layout_below="@id/teEliminarMiPub"
+            android:layout_marginLeft="10dp"
+            />
+
+
 
 
     </RelativeLayout>

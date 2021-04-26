@@ -7,10 +7,11 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.os.Handler;
+import android.os.Message;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -20,10 +21,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-
-import com.cabezasfive.truekapp.adapters.AdapterListarPublicaciones;
-import com.cabezasfive.truekapp.fragmentsAyuda.AyudaActivity;
-import com.cabezasfive.truekapp.models.Publicacion;
 
 import com.cabezasfive.truekapp.repositories.UserAccountRepository;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -37,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     //TextView nombre de usuario logueado
-    private TextView userName;
+    public TextView userName;
     private Button btnCerrarSesion, btnIniciarSesion;
 
     private ImageView logoHome;
@@ -48,7 +45,9 @@ public class MainActivity extends AppCompatActivity {
     UserAccountRepository userRepository;
     private FirebaseAuth firebaseAuth;
 
-    private String nick;
+    public String nick = "";
+
+    Handler handler;
 
 
     @Override
@@ -129,17 +128,18 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.nav_inicio:
+                        userName.setText(nick);
                         navController.navigate(R.id.homeFragment);
                         return true;
                     case R.id.nav_publicaciones:
+                        userName.setText(nick);
                         navController.navigate(R.id.listadoPublicacionesFragment);
                         return true;
-                    case R.id.nav_publicar:
-                        navController.navigate(R.id.publicarFragment);
-                        return true;
-                    case R.id.nav_login:
+                    case R.id.nav_perfil:
                         if(isLoged()){
                             // si ya esta logueado va al perfil
+                            userName.setText(nick);
+                            navController.navigate(R.id.perfilFragment);
                         }else {
                             // si no esta logueado va a login
                             navController.navigate(R.id.loginFragment);
@@ -147,7 +147,8 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.nav_publicar:
                         if(isLoged()){
-                            // va a publicar fragment
+                            userName.setText(nick);
+                            navController.navigate(R.id.publicarFragment);
                         }else{
                             navController.navigate(R.id.loginFragment);
                         }
@@ -155,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_ayuda:
                         navController.navigate(R.id.ayudaActivity);
                         return true;
+
 
                 }
                 return false;
@@ -166,8 +168,22 @@ public class MainActivity extends AppCompatActivity {
     public void activarCerrar() {
         btnIniciarSesion.setVisibility(View.INVISIBLE);
         btnCerrarSesion.setVisibility(View.VISIBLE);
-        getNickAyncTask getNick= new getNickAyncTask();
-        getNick.execute();
+//        getNickAyncTask getNick= new getNickAyncTask();
+//        getNick.execute();
+
+        handler = new Handler(){
+            @Override
+            public void handleMessage(Message message){
+                Bundle bundle= message.getData();
+                nick = bundle.getString("nik");
+
+                userName.setText(nick);
+            }
+        };
+
+        Thread thread = new Thread(new HiloNickUser());
+        thread.start();
+
     }
 
 
@@ -175,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
     public void ocultarCerrarSesion() {
         btnIniciarSesion.setVisibility(View.VISIBLE);
         btnCerrarSesion.setVisibility(View.INVISIBLE);
+        nick = "";
         userName.setText("");
     }
 
@@ -187,6 +204,36 @@ public class MainActivity extends AppCompatActivity {
             ocultarCerrarSesion();
         }
     }
+
+
+    class HiloNickUser implements Runnable{
+        @Override
+        public void run(){
+            Message message = new Message();
+            Bundle bundle = new Bundle();
+
+            String usernick;
+            try {
+                Thread.sleep(1000);
+            }catch (InterruptedException e){
+
+            }
+
+            usernick =userRepository.getUserNickname();
+
+            bundle.putString("nik", usernick);
+            message.setData(bundle);
+            try {
+                Thread.sleep(1050);
+            }catch (InterruptedException e){
+
+            }
+            handler.sendMessage(message);
+
+        }
+    }
+
+
 
     private class getNickAyncTask extends AsyncTask<Void, Integer, String>{
         @Override
@@ -207,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String resultado){
+            nick = resultado;
             userName.setText(resultado);
         }
     }

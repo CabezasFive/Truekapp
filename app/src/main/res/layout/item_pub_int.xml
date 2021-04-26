@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view_publicacionesInt"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="8dp"
+    android:layout_marginBottom="16dp">
+
+    <RelativeLayout
+        android:id="@+id/itemPubInt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#BFCBCBCB"
+        android:outlineAmbientShadowColor="@color/azul"
+        android:paddingBottom="4dp">
+
+        <ImageView
+            android:id="@+id/ivPubIntCard"
+            android:layout_width="117dp"
+            android:layout_height="124dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/sin_imagen"/>
+
+        <TextView
+            android:id="@+id/tituloPubIntCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            android:layout_alignTop="@id/ivPubIntCard"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:text="Titulo de la publicacion"
+            android:layout_toRightOf="@id/ivPubIntCard"
+            android:layout_toEndOf="@id/ivPubIntCard"
+            />
+
+        <Button
+            android:id="@+id/btnVerPubInt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:text="VER"
+            android:layout_below="@id/tituloPubIntCard"
+            android:layout_toEndOf="@id/ivPubIntCard"
+            android:layout_toRightOf="@id/ivPubIntCard"
+            />
+
+        <TextView
+            android:id="@+id/tvAceptarInt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_below="@+id/btnVerPubInt"
+            android:layout_toEndOf="@+id/ivPubIntCard"
+            android:layout_toRightOf="@+id/ivPubIntCard"
+            android:layout_marginLeft="45dp"
+            android:text="ACEPTAR"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/teal_700"
+            />
+
+        <TextView
+            android:id="@+id/tvRechazarInt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="false"
+            android:layout_below="@+id/btnVerPubInt"
+            android:layout_toEndOf="@+id/tvAceptarInt"
+            android:layout_toRightOf="@+id/tvAceptarInt"
+            android:layout_marginLeft="75dp"
+            android:text="RECHAZAR"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/rojointenso"
+            />
+
+
+        <ImageButton
+            android:id="@+id/btnEditarMiPub"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_check"
+            android:backgroundTint="@color/teal_700"
+            android:scaleType="fitCenter"
+            android:layout_toEndOf="@+id/ivPubIntCard"
+            android:layout_toRightOf="@+id/ivPubIntCard"
+            android:layout_below="@id/tvAceptarInt"
+            android:layout_marginLeft="20dp"
+            />
+
+        <ImageButton
+            android:id="@+id/btnPausarMiPub"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_not"
+            android:backgroundTint="@color/rojo"
+            android:scaleType="fitCenter"
+            android:layout_toEndOf="@id/btnEditarMiPub"
+            android:layout_toRightOf="@id/btnEditarMiPub"
+            android:layout_below="@id/tvRechazarInt"
+            android:layout_marginLeft="40dp"
+            />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

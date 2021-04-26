@@ -125,17 +125,30 @@ public class UserAccountRepository{
         }
     }
 
-
+    private String userNick;
     /** Obtiene el nickName de usuario  */
     /** A REVISAR -- NO ESTA FUNCIONANDO EN MAINACTIVITY PARA MOSTRAR EL NICK CUANDO ESTA LOGUEADO */
     public String getUserNickname(){
-        String userNick;
-        if(firebaseAuth.getCurrentUser() != null){
-            getProfileById(firebaseAuth.getCurrentUser().getUid());
-            userNick = usuario.getNick();
-        } else {
-            userNick="*----*";
-        }
+
+            String id = firebaseAuth.getCurrentUser().getUid();
+            databaseReference.child("users").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.exists()){
+                        for (DataSnapshot ds: snapshot.getChildren()){
+                            Usuario user = ds.getValue(Usuario.class);
+                            if (id == user.getId()){
+                                userNick = user.getNick();
+                            }
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+
+            });
         return userNick;
     }
 

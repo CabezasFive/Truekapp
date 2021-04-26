@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.confirmarEnvioSolicitud.ConfirmarEnvioSoliditud"
+    android:orientation="vertical"
+    android:background="@drawable/fondo01">
+
+
+    <TextView
+        android:id="@+id/tvTituloSolicitud"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/teal_700"
+        android:fontFamily="@font/nunito_semibold"
+        android:gravity="center_horizontal"
+        android:paddingTop="15dp"
+        android:paddingBottom="10dp"
+        android:text="Confirma el envio de solicitud para un intercambio"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnVolverSolicitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_volver_flecha"
+        android:text="VOLVER"
+        android:textColor="@color/black"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="#5929D135"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="12dp"
+        app:cardCornerRadius="8dp"
+        android:backgroundTint="@color/blancotransparente"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="18sp"
+                android:gravity="left"
+                android:layout_marginTop="25dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Intercambiaras:"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginVertical="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/ivMiPubIntercambio"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/sin_imagen"
+                    />
+
+                <TextView
+                    android:id="@+id/tvMiPubIntercambio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:text="Titulo de la publicacion"
+                    />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/gris"
+                android:layout_marginVertical="5dp"
+                android:layout_marginHorizontal="1dp"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:textSize="18sp"
+                android:gravity="left"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Por:"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginVertical="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/ivPubXIntercambio"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@drawable/sin_imagen"
+                    />
+
+                <TextView
+                    android:id="@+id/tvPubXIntercambio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"
+                    android:text="Titulo de la publicacion"
+                    />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/btnConfirmacionSolicitud"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:backgroundTint="@color/teal_700"
+        android:text="CONFIRMAR"
+        />
+
+
+
+</LinearLayout>
