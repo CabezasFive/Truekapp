@@ -2,6 +2,7 @@ package com.cabezasfive.truekapp.adapters;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.Navigation;
 
 import com.cabezasfive.truekapp.R;
@@ -92,7 +94,22 @@ public class AdapterPubXInt extends BaseAdapter {
         btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                publicacionRepository.intAceptado(publicacion.getUid(), publicacion.getIdUser());
+                publicacionRepository.intAceptado(pubOwner.getUid(), pubOwner.getIdUser());
+
+                // Confirmacion de solicitud
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Solicitud Aceptada");
+                builder.setMessage("Aceptastes el intercambio de: " + pubOwner.getTitulo()
+                                    + "\nPor: " + publicacion.getTitulo() + "\n"
+                        + "Ambas partes recibiran por correo los datos para ponerse en contacto")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Navigation.findNavController(view).navigate(R.id.solicitudesRecibidasFragment);
+                            }
+                        })
+                        .setCancelable(false)
+                        .show();
             }
         });
 
@@ -100,7 +117,21 @@ public class AdapterPubXInt extends BaseAdapter {
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                publicacionRepository.cancelarSolicitudDeInt(publicacion.getUid(), publicacion.getIdUser(), pubOwner.getUid());
+                publicacionRepository.cancelarSolicitudDeInt(pubOwner.getUid(), pubOwner.getIdUser(), pubOwner.getUid());
+
+                // Cancelacion de solicitud
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Solicitud Cancelada");
+                builder.setMessage("Se ha cancelado la solicitud de intercambio")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Navigation.findNavController(view).navigate(R.id.solicitudesRecibidasFragment);
+                            }
+                        })
+                        .setCancelable(false)
+                        .show();
+
             }
         });
 

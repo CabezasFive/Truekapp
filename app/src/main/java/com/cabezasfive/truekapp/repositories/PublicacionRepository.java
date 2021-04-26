@@ -166,9 +166,7 @@ public class PublicacionRepository {
                 if (snapshot != null){
                     Publicacion publicacion = snapshot.getValue(Publicacion.class);
                     cantInt = Integer.parseInt(publicacion.getInt_pendiente());
-                    cantInt = cantInt - 1;
-                    databaseReference.child("Publicacion").child(pubId).child("int_pendiente").setValue(cantInt.toString());
-                }
+                 }
             }
 
             @Override
@@ -176,8 +174,10 @@ public class PublicacionRepository {
 
             }
         });
+        //cantInt = cantInt - 1;
+        databaseReference.child("Publicacion").child(pubId).child("int_pendiente").setValue(cantInt.toString());
+        databaseReference.child("users").child(userId).child("publicaciones").child(mPubId).child("int_pendiente").setValue(cantInt.toString());
 
-        databaseReference.child("users").child(userId).child("int_pendiente").child(pubId).child(mPubId).setValue(null);
     }
 
 

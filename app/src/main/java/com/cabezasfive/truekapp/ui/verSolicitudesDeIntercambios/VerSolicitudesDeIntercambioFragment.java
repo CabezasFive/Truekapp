@@ -97,7 +97,7 @@ public class VerSolicitudesDeIntercambioFragment extends Fragment {
         userId = mAuth.getCurrentUser().getUid();
 
         pubId = mPublicacion.getUid();
-        Toast.makeText(getContext(), "Id Pub" + mPublicacion.getUid(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "Id Pub" + mPublicacion.getUid(), Toast.LENGTH_SHORT).show();
 
 
         handler = new Handler() {
