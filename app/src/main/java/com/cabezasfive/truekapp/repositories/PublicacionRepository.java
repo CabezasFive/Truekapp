@@ -26,7 +26,7 @@ public class PublicacionRepository {
     public MutableLiveData<Publicacion> publicacionMutableLiveData = new MutableLiveData<Publicacion>();
 
     private ArrayList<Publicacion> publicaciones = new ArrayList<>();
-    private Integer cantidad = 0;
+    private final Integer cantidad = 0;
 
     private Publicacion find = new Publicacion();
 

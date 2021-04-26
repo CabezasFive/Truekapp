@@ -162,7 +162,7 @@ public class PublicarFragment extends Fragment  {
                 Uri resulturi = result.getUri();
                 File url = new File(resulturi.getPath());
 
-                Picasso.with(getContext()).load(url).into(Foto);
+                Picasso.get().load(url).into(Foto);
 
                 // Comprimiendo
                 try{
@@ -241,10 +241,10 @@ public class PublicarFragment extends Fragment  {
                             Toast.makeText(getContext(), "Usuario no registrado", Toast.LENGTH_SHORT).show();
 
                             //Falla navegation para login
-                            Navigation.findNavController(getView()).navigate(R.id.action_publicarFragment_to_loginFragment);
+                            Navigation.findNavController(getView()).navigate(R.id.publicarFragment);
                         }
                         //Falla navegation para home
-                        Navigation.findNavController(getView()).navigate(R.id.action_publicarFragment_to_homeFragment);
+                        Navigation.findNavController(getView()).navigate(R.id.publicarFragment);
                     }
                 });
 

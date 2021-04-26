@@ -64,12 +64,23 @@
         android:id="@+id/verPublicacion"
         android:name="com.cabezasfive.truekapp.ui.verPublicacion.VerPublicacion"
         android:label="fragment_ver_publicacion"
-        tools:layout="@layout/fragment_ver_publicacion" />
+        tools:layout="@layout/fragment_ver_publicacion" >
+        <action
+            android:id="@+id/action_verPublicacion_to_listadoPublicacionesFragment"
+            app:destination="@id/listadoPublicacionesFragment" />
+        <action
+            android:id="@+id/action_verPublicacion_to_publicarFragment"
+            app:destination="@id/publicarFragment" />
+    </fragment>
     <fragment
         android:id="@+id/listadoPublicacionesFragment"
         android:name="com.cabezasfive.truekapp.ui.listadoPublicaciones.ListadoPublicacionesFragment"
         android:label="fragment_listado_publicaciones"
-        tools:layout="@layout/fragment_listado_publicaciones" />
+        tools:layout="@layout/fragment_listado_publicaciones" >
+        <action
+            android:id="@+id/action_listadoPublicacionesFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/misOfertasFragment"
         android:name="com.cabezasfive.truekapp.ui.misOfertas.MisOfertasFragment"
@@ -80,5 +91,19 @@
         android:name="com.cabezasfive.truekapp.fragmentsAyuda.AyudaActivity"
         android:label="activity_ayuda"
         tools:layout="@layout/activity_ayuda" />
+    <fragment
+        android:id="@+id/publicarFragment"
+        android:name="com.cabezasfive.truekapp.ui.publicar.PublicarFragment"
+        android:label="fragment_publicar"
+        tools:layout="@layout/fragment_publicar" />
+    <fragment
+        android:id="@+id/editarUsuarioFragment"
+        android:name="com.cabezasfive.truekapp.ui.editarUsuario.EditarUsuarioFragment"
+        android:label="editar_usuario_fragment"
+        tools:layout="@layout/editar_usuario_fragment" >
+        <action
+            android:id="@+id/action_editarUsuarioFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 
 </navigation>

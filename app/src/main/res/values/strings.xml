@@ -42,5 +42,11 @@
     <string name="Precio_producto">Precio estimado (UY)</string>
     <string name="Agregar_Foto">Elegir foto del producto</string>
     <string name="Publicar">Agregar producto</string>
+    <string name="nombre_de_usuario">NickName</string>
+    <string name="nombre">nombre</string>
+    <string name="apellido">apellido</string>
+    <string name="direccion">direccion</string>
+    <string name="telefono">telefono</string>
+    <string name="modificar">modificar</string>
 
 </resources>

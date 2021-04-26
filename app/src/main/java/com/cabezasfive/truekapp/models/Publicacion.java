@@ -13,7 +13,6 @@ public class Publicacion implements Serializable {
     private String titulo_upper;
     private String descripcion;
     private String imagen01;
-    private String titulo_upper;
     private String f_Creacion;
     private Boolean activo;
     private Integer visitas;
