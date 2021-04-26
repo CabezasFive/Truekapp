@@ -8,6 +8,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +38,8 @@ public class LoginFragment extends Fragment  {
 
     private LoginViewModel loginViewModel;
     UserAccountRepository userRepository;
+
+    Handler handler;
 
 
     @Override
@@ -76,7 +80,7 @@ public class LoginFragment extends Fragment  {
                     loginViewModel.login(email, pass);
                     InputMethodManager imm =(InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                    ((MainActivity)getActivity()).userName.setText(userRepository.getUserNickname());
+//                    ((MainActivity)getActivity()).userName.setText(userRepository.getUserNickname());
                     ((MainActivity)getActivity()).activarCerrar();
                 }else{
                     Toast.makeText(getContext(), "Debe ingresar los datos de email y password", Toast.LENGTH_SHORT).show();

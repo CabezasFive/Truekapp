@@ -10,6 +10,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.os.Handler;
+import android.os.Message;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
 
     public String nick = "";
+
+    Handler handler;
 
 
     @Override
@@ -164,9 +168,22 @@ public class MainActivity extends AppCompatActivity {
     public void activarCerrar() {
         btnIniciarSesion.setVisibility(View.INVISIBLE);
         btnCerrarSesion.setVisibility(View.VISIBLE);
-        getNickAyncTask getNick= new getNickAyncTask();
-        getNick.execute();
-        userName.setText(nick);
+//        getNickAyncTask getNick= new getNickAyncTask();
+//        getNick.execute();
+
+        handler = new Handler(){
+            @Override
+            public void handleMessage(Message message){
+                Bundle bundle= message.getData();
+                nick = bundle.getString("nik");
+
+                userName.setText(nick);
+            }
+        };
+
+        Thread thread = new Thread(new HiloNickUser());
+        thread.start();
+
     }
 
 
@@ -187,6 +204,36 @@ public class MainActivity extends AppCompatActivity {
             ocultarCerrarSesion();
         }
     }
+
+
+    class HiloNickUser implements Runnable{
+        @Override
+        public void run(){
+            Message message = new Message();
+            Bundle bundle = new Bundle();
+
+            String usernick;
+            try {
+                Thread.sleep(1000);
+            }catch (InterruptedException e){
+
+            }
+
+            usernick =userRepository.getUserNickname();
+
+            bundle.putString("nik", usernick);
+            message.setData(bundle);
+            try {
+                Thread.sleep(1050);
+            }catch (InterruptedException e){
+
+            }
+            handler.sendMessage(message);
+
+        }
+    }
+
+
 
     private class getNickAyncTask extends AsyncTask<Void, Integer, String>{
         @Override

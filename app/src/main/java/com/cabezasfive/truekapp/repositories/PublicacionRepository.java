@@ -98,6 +98,33 @@ public class PublicacionRepository {
 
 
 
+    /** Obtener todas las publicaciones que tengan pendiente un intercambio de un usuario pasando su id  */
+    public ArrayList<Publicacion> getAllPublicacionesUserConIntercambio(String userId){
+        databaseReference.child("users").child(userId).child("publicaciones").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    publicaciones.clear();
+
+                    for (DataSnapshot ds : snapshot.getChildren()){
+                        Publicacion publicacion = ds.getValue(Publicacion.class);
+                        if (Integer.parseInt(publicacion.getInt_pendiente()) > 0){
+                            publicaciones.add(publicacion);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return publicaciones;
+    }
+
+
+
     /** Busca una publicacion por el id pasado como argumento   */
     public Publicacion getPublicacionById(String uid){
 
@@ -144,7 +171,7 @@ public class PublicacionRepository {
         // Borrar la imagen de la publicacion del Storage
     }
 
-
+    /** BUSQUEDA **/
     /** Busca todas las publicaciones que comienzan con el string pasado   */
     /** Convierte a mayusculas el string para buscar dentro de las publicaciones el nodo titulo_upper donde se guarda el titulo completo en mayusculas   */
     public ArrayList<Publicacion> searchPublicacion(String search){

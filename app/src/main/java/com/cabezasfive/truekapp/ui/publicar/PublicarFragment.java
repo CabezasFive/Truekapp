@@ -1,8 +1,8 @@
 package com.cabezasfive.truekapp.ui.publicar;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -10,6 +10,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -193,7 +194,6 @@ public class PublicarFragment extends Fragment  {
                             if (titulo.equals("") || descripcion.equals("") || precio.equals("")){
                                 validacion();
                             } else {
-                                Toast.makeText(getActivity(), "Creando Publicacion", Toast.LENGTH_SHORT).show();
 
                                 // crear un objeto (instancia de la clase Publicacion)
                                 Publicacion p = new Publicacion();
@@ -210,6 +210,7 @@ public class PublicarFragment extends Fragment  {
                                 p.setActivo("true");
                                 p.setPrecio(precio);
                                 p.setVisitas(0);
+                                p.setInt_pendiente("0");
 
                                 //Subir imagen en storage
 
@@ -238,10 +239,20 @@ public class PublicarFragment extends Fragment  {
                                     }
                                 });
 
-                                Toast.makeText(getActivity(), "Publicacion creada correctamente", Toast.LENGTH_SHORT).show();
-                                InputMethodManager imm =(InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                                limpiarDatos();
+                                androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                builder.setTitle("Eliminar Publicación");
+                                builder.setMessage("Publicacion creada con exito!")
+                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                InputMethodManager imm =(InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                                                limpiarDatos();
+                                                Navigation.findNavController(view).navigate(R.id.homeFragment);
+                                            }
+                                        })
+                                        .setCancelable(false)
+                                        .show();
                             }
                         }else{
                             Toast.makeText(getContext(), "Usuario no registrado", Toast.LENGTH_SHORT).show();
@@ -250,7 +261,7 @@ public class PublicarFragment extends Fragment  {
                             Navigation.findNavController(getView()).navigate(R.id.loginFragment);
                         }
                         //Falla navegation para home
-                        Navigation.findNavController(getView()).navigate(R.id.homeFragment);
+//                        Navigation.findNavController(getView()).navigate(R.id.homeFragment);
                     }
                 });
 

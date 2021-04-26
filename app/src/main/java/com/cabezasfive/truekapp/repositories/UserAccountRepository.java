@@ -130,16 +130,16 @@ public class UserAccountRepository{
     /** A REVISAR -- NO ESTA FUNCIONANDO EN MAINACTIVITY PARA MOSTRAR EL NICK CUANDO ESTA LOGUEADO */
     public String getUserNickname(){
 
-        if(firebaseAuth.getCurrentUser() != null){
             String id = firebaseAuth.getCurrentUser().getUid();
-            databaseReference.child("users").child(id).child("nick").addValueEventListener(new ValueEventListener() {
+            databaseReference.child("users").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()){
                         for (DataSnapshot ds: snapshot.getChildren()){
-                            userNick   = ds.getValue().toString();
-                            Toast.makeText(application, "Usuario: " + userNick, Toast.LENGTH_SHORT).show();
-//                            userNick = nick;
+                            Usuario user = ds.getValue(Usuario.class);
+                            if (id == user.getId()){
+                                userNick = user.getNick();
+                            }
                         }
                     }
                 }
@@ -149,9 +149,6 @@ public class UserAccountRepository{
                 }
 
             });
-        } else {
-            userNick="*----*";
-        }
         return userNick;
     }
 

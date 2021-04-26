@@ -78,9 +78,6 @@ public class SolicitudesRecibidasFragment extends Fragment {
         userId = mAuth.getCurrentUser().getUid();
 
 
-//        TareaAsyncTask tareaAsyncTask = new TareaAsyncTask();
-//        tareaAsyncTask.execute();
-
 
         handler = new Handler(){
             @Override
@@ -89,9 +86,15 @@ public class SolicitudesRecibidasFragment extends Fragment {
                 publicaciones = (ArrayList<Publicacion>) bundle.getSerializable("pub");
 
                 adapter = new AdapterPublicacionesUser(getContext(), publicaciones,getActivity().getApplication());
-
                 listView.setAdapter(adapter);
 
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Toast.makeText(getContext(), "Se va a ver: " + publicaciones.get(i).getTitulo(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
 
                 adapter.notifyDataSetChanged();
             }
@@ -114,12 +117,12 @@ public class SolicitudesRecibidasFragment extends Fragment {
 
             ArrayList<Publicacion> pubs;
 
-            pubs = viewModel.getAllPublicacionesUser(userId);
+            pubs = viewModel.getAllPublicacionesUserConIntercambio(userId);
 
             bundle.putSerializable("pub", pubs);
             message.setData(bundle);
             try {
-                Thread.sleep(1500);
+                Thread.sleep(1050);
             }catch (InterruptedException e){
 
             }
@@ -127,42 +130,4 @@ public class SolicitudesRecibidasFragment extends Fragment {
         }
     }
 
-
-
-//    private class TareaAsyncTask extends AsyncTask<Void, Integer, ArrayList<Publicacion>> {
-//
-//        @Override
-//        protected void onPreExecute(){
-//
-//        }
-//
-//        @Override
-//        protected ArrayList<Publicacion> doInBackground(Void... voids) {
-//            publicaciones = viewModel.getAllPublicacionesUser(userId);
-//            return publicaciones;
-//        }
-//
-//        @Override
-//        protected void onProgressUpdate(Integer... values){
-//
-//        }
-//
-//        @Override
-//        protected void onPostExecute(ArrayList<Publicacion> resultado){
-//            adapter = new AdapterPublicacionesUser(getContext(), resultado,getActivity().getApplication());
-//
-//            listView.setAdapter(adapter);
-//
-//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                @Override
-//                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//                    Publicacion publicacion = resultado.get(position);
-//
-//                    Toast.makeText(getContext(), "Ver solicitudes de: " + publicacion.getTitulo(), Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//
-//
-//        }
-//    }
 }

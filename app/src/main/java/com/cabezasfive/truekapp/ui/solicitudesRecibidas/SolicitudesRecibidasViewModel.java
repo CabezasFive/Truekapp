@@ -18,8 +18,8 @@ public class SolicitudesRecibidasViewModel extends AndroidViewModel {
         publicacionRepository = new PublicacionRepository(application);
     }
 
-    public ArrayList<Publicacion> getAllPublicacionesUser(String userId){
-        return publicacionRepository.getAllPublicacionesUser(userId);
+    public ArrayList<Publicacion> getAllPublicacionesUserConIntercambio(String userId){
+        return publicacionRepository.getAllPublicacionesUserConIntercambio(userId);
     }
 
     public Integer cantidadIntercambios(String id){

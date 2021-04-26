@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.adapters.AdapterListaPublicacionesIntercambio;
 import com.cabezasfive.truekapp.models.Publicacion;
+import com.cabezasfive.truekapp.ui.listadoPublicaciones.ListadoPublicacionesFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
@@ -41,6 +44,8 @@ public class SolicitudFragment extends Fragment {
 
     private String userId;
     private FirebaseAuth mAuth;
+
+    private Handler handler;
 
 
     public static SolicitudFragment newInstance(String param1, String param2) {
@@ -96,54 +101,55 @@ public class SolicitudFragment extends Fragment {
         userId = mAuth.getCurrentUser().getUid();
 
 
-        TareaAsyncTask tareaAsyncTask = new TareaAsyncTask();
-        tareaAsyncTask.execute();
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message message) {
+                Bundle bundle = message.getData();
+                publicaciones = (ArrayList<Publicacion>) bundle.getSerializable("pub");
 
+                adapterPublicaciones = new AdapterListaPublicacionesIntercambio(getContext(), publicaciones,getActivity().getApplication() );
+
+                listView.setAdapter(adapterPublicaciones);
+
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                        Publicacion publicacion = publicaciones.get(position);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("miPub", publicacion);
+                        bundle.putSerializable("xPub", pubXIntercambio);
+                        Navigation.findNavController(view).navigate(R.id.confirmarEnvioSoliditud,bundle);
+                    }
+                });
+
+            }
+        };
+
+        Thread thread = new Thread(new HiloObtenerDatos());
+        thread.start();
 
         return view;
     }
 
 
-
-
-
-
-    private class TareaAsyncTask extends AsyncTask<Void, Integer, ArrayList<Publicacion>> {
-
+    class HiloObtenerDatos implements Runnable{
         @Override
-        protected void onPreExecute(){
+        public void run(){
+            Message message = new Message();
+            Bundle bundle = new Bundle();
 
-        }
+            ArrayList<Publicacion> pubs;
 
-        @Override
-        protected ArrayList<Publicacion> doInBackground(Void... voids) {
-            publicaciones = solicitudViewModel.getAllPublicacionesUser(userId);
-            return publicaciones;
-        }
+            pubs = solicitudViewModel.getAllPublicacionesUser(userId);
 
-        @Override
-        protected void onProgressUpdate(Integer... values){
+            bundle.putSerializable("pub", pubs);
+            message.setData(bundle);
+            try {
+                Thread.sleep(1050);
+            }catch (InterruptedException e){
 
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Publicacion> resultado){
-            adapterPublicaciones = new AdapterListaPublicacionesIntercambio(getContext(), resultado,getActivity().getApplication() );
-
-            listView.setAdapter(adapterPublicaciones);
-
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    Publicacion publicacion = resultado.get(position);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("miPub", publicacion);
-                    bundle.putSerializable("xPub", pubXIntercambio);
-                    Navigation.findNavController(view).navigate(R.id.confirmarEnvioSoliditud,bundle);
-                }
-            });
-
-
+            }
+            handler.sendMessage(message);
         }
     }
 

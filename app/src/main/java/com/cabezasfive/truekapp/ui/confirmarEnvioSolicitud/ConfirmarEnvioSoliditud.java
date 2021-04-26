@@ -115,6 +115,15 @@ public class ConfirmarEnvioSoliditud extends Fragment {
                                                 .child("int_pendiente").child(idInterPub);
                 reference.child(idUserPub).setValue(pubSeleccionada);
 
+                DatabaseReference userOwner = databaseReference.child("users").child(pubIntercambio.getIdUser())
+                                                .child("publicaciones").child(pubIntercambio.getUid());
+                Integer intPend = Integer.parseInt(pubIntercambio.getInt_pendiente());
+                intPend = intPend + 1;
+                userOwner.child("int_pendiente").setValue(intPend.toString());
+
+                DatabaseReference userPub = databaseReference.child("Publicacion").child(pubIntercambio.getUid());
+                userPub.child("int_pendiente").setValue(intPend.toString());
+
                 // Confirmacion de solicitud enviada
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Envio de solicitud");
