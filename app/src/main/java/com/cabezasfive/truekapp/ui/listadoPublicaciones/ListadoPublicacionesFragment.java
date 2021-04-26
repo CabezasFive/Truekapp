@@ -11,6 +11,8 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +38,7 @@ public class ListadoPublicacionesFragment extends Fragment {
 
     private String findText;
 
-
+    private Handler handler;
 
 
     @Override
@@ -68,59 +70,116 @@ public class ListadoPublicacionesFragment extends Fragment {
 
         publicaciones = new ArrayList<>();
 
-        TareaAsyncTask tareaAsyncTask = new TareaAsyncTask();
-        tareaAsyncTask.execute();
+//        TareaAsyncTask tareaAsyncTask = new TareaAsyncTask();
+//        tareaAsyncTask.execute();
+
+        handler = new Handler(){
+            @Override
+            public void handleMessage(Message message){
+                Bundle bundle= message.getData();
+                publicaciones = (ArrayList<Publicacion>) bundle.getSerializable("pub");
+
+                adapter = new AdapterListarPublicaciones(publicaciones, R.layout.publicacion_item, getContext());
+
+                adapter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        // ************************************************************** //
+                        //   Pasa a verPublicacion el uid de la publicacion seleccionada //
+
+                        Publicacion pub = publicaciones.get(rvPublicaciones.getChildAdapterPosition(view));
+
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("publicacion", pub );
+                        //bundle.putString("uid", uidPublicacion);
+                        Navigation.findNavController(getView()).navigate(R.id.verPublicacion, bundle);
+                    }
+                });
+                rvPublicaciones.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+        };
+
+        Thread thread = new Thread(new HiloPedidoDatos());
+        thread.start();
+
 
         return view;
     }
 
 
-    private class TareaAsyncTask extends AsyncTask<Void, Integer, ArrayList<Publicacion>> {
-
+    class HiloPedidoDatos implements Runnable{
         @Override
-        protected void onPreExecute(){
+        public void run(){
+            Message message = new Message();
+            Bundle bundle = new Bundle();
 
-        }
+            ArrayList<Publicacion> pubs;
 
-        @Override
-        protected ArrayList<Publicacion> doInBackground(Void... voids) {
             if (findText != null){
-                publicaciones = listadoPublicacionesViewModel.searchPublicacion(findText);
-                return publicaciones;
+                pubs = listadoPublicacionesViewModel.searchPublicacion(findText);
             }else {
-                publicaciones = listadoPublicacionesViewModel.getAllPublicaciones();
-                return publicaciones;
+                pubs = listadoPublicacionesViewModel.getAllPublicaciones();
             }
 
-        }
+            bundle.putSerializable("pub", pubs);
+            message.setData(bundle);
+            try {
+                Thread.sleep(2000);
+            }catch (InterruptedException e){
 
-        @Override
-        protected void onProgressUpdate(Integer... values){
-
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Publicacion> resultado){
-            adapter = new AdapterListarPublicaciones(publicaciones, R.layout.publicacion_item, getContext());
-
-            adapter.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    // ************************************************************** //
-                    //   Pasa a verPublicacion el uid de la publicacion seleccionada //
-
-                    Publicacion pub = publicaciones.get(rvPublicaciones.getChildAdapterPosition(view));
-
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("publicacion", pub );
-                    //bundle.putString("uid", uidPublicacion);
-                    Navigation.findNavController(getView()).navigate(R.id.verPublicacion, bundle);
-                }
-            });
-            rvPublicaciones.setAdapter(adapter);
-            adapter.notifyDataSetChanged();
+            }
+            handler.sendMessage(message);
         }
     }
+//
+//    private class TareaAsyncTask extends AsyncTask<Void, Integer, ArrayList<Publicacion>> {
+//
+//        @Override
+//        protected void onPreExecute(){
+//
+//        }
+//
+//        @Override
+//        protected ArrayList<Publicacion> doInBackground(Void... voids) {
+//            if (findText != null){
+//                publicaciones = listadoPublicacionesViewModel.searchPublicacion(findText);
+//                return publicaciones;
+//            }else {
+//                publicaciones = listadoPublicacionesViewModel.getAllPublicaciones();
+//                return publicaciones;
+//            }
+//
+//        }
+//
+//        @Override
+//        protected void onProgressUpdate(Integer... values){
+//
+//        }
+//
+//        @Override
+//        protected void onPostExecute(ArrayList<Publicacion> resultado){
+//            adapter = new AdapterListarPublicaciones(publicaciones, R.layout.publicacion_item, getContext());
+//
+//            adapter.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//
+//                    // ************************************************************** //
+//                    //   Pasa a verPublicacion el uid de la publicacion seleccionada //
+//
+//                    Publicacion pub = publicaciones.get(rvPublicaciones.getChildAdapterPosition(view));
+//
+//                    Bundle bundle = new Bundle();
+//                    bundle.putSerializable("publicacion", pub );
+//                    //bundle.putString("uid", uidPublicacion);
+//                    Navigation.findNavController(getView()).navigate(R.id.verPublicacion, bundle);
+//                }
+//            });
+//            rvPublicaciones.setAdapter(adapter);
+//            adapter.notifyDataSetChanged();
+//        }
+//    }
 
 }
