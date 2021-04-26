@@ -1,6 +1,5 @@
-package com.cabezasfive.truekapp.ui.solicitudIntercambio;
+package com.cabezasfive.truekapp.ui.verSolicitudesDeIntercambios;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,39 +16,36 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cabezasfive.truekapp.R;
-import com.cabezasfive.truekapp.adapters.AdapterListaPublicacionesIntercambio;
+import com.cabezasfive.truekapp.adapters.AdapterPubXInt;
 import com.cabezasfive.truekapp.models.Publicacion;
-import com.cabezasfive.truekapp.ui.listadoPublicaciones.ListadoPublicacionesFragment;
+import com.cabezasfive.truekapp.ui.solicitudIntercambio.SolicitudViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-
-public class SolicitudFragment extends Fragment {
-
-    private ListView listView;
-    private ArrayList<Publicacion> publicaciones;
-    private AdapterListaPublicacionesIntercambio adapterPublicaciones;
-
-    private Publicacion pubXIntercambio;
-    private ImageView ivImagenPub;
-    private TextView tvTituloPub;
+public class VerSolicitudesDeIntercambioFragment extends Fragment {
 
     private Button btnVolver;
+    private Publicacion mPublicacion;
+    private ArrayList<Publicacion> publicaciones;
 
-    SolicitudViewModel solicitudViewModel;
+    private TextView tvTitulo;
+    private ImageView ivMipub;
+    private ListView listView;
 
     private String userId;
     private FirebaseAuth mAuth;
 
+    VerSolicitudesViewModel solicitudesViewModel;
+    private AdapterPubXInt adapterPub;
     private Handler handler;
 
-
-    public static SolicitudFragment newInstance(String param1, String param2) {
-        SolicitudFragment fragment = new SolicitudFragment();
+    public static VerSolicitudesDeIntercambioFragment newInstance(String param1, String param2) {
+        VerSolicitudesDeIntercambioFragment fragment = new VerSolicitudesDeIntercambioFragment();
 
         return fragment;
     }
@@ -58,23 +54,22 @@ public class SolicitudFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        solicitudViewModel = new ViewModelProvider(this).get(SolicitudViewModel.class);
-
+        solicitudesViewModel = new ViewModelProvider(this).get(VerSolicitudesViewModel.class);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_solicitud, container, false);
+        View view = inflater.inflate(R.layout.fragment_ver_solicitudes_de_intercambio, container, false);
 
         Bundle getPublicacion = getArguments();
         if (getPublicacion != null){
-            pubXIntercambio = (Publicacion) getPublicacion.getSerializable("publicacion");
+            mPublicacion = (Publicacion) getPublicacion.getSerializable("publicacion");
         }
 
-        /** Boton Volver al Listado */
-        btnVolver = view.findViewById(R.id.btnVolverAListado);
+
+        btnVolver = view.findViewById(R.id.btnVolverDeVerSolicitudesRec);
         btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,21 +77,22 @@ public class SolicitudFragment extends Fragment {
             }
         });
 
+        tvTitulo = view.findViewById(R.id.tvTituloMiPubxInt);
+        ivMipub = view.findViewById(R.id.ivMiPubXInt);
 
-        listView = view.findViewById(R.id.lvMisArticulosSolicitud);
-        listView.setAdapter(adapterPublicaciones);
-
-        ivImagenPub = view.findViewById(R.id.ivArticuloSolicitud);
-        tvTituloPub = view.findViewById(R.id.tvTituloArtSolicitud);
-
-        tvTituloPub.setText(pubXIntercambio.getTitulo());
-        if (pubXIntercambio.getImagen01() != null){
-            String url = pubXIntercambio.getImagen01();
-            Picasso.get().load(url).into(ivImagenPub);
-        }else {
-            ivImagenPub.setImageResource(R.drawable.sin_imagen);
+        tvTitulo.setText("Tu Publicacion\n" + mPublicacion.getTitulo());
+        if(mPublicacion.getImagen01() != null){
+            String url = mPublicacion.getImagen01();
+            Picasso.get()
+                    .load(url)
+                    .into(ivMipub);
         }
 
+        /** llenar el listView con las publicaciones que pidieron Int */
+        listView = view.findViewById(R.id.lvPubParaInt);
+        listView.setAdapter(adapterPub);
+
+        // userId = mPublicacion.getIdUser();
         mAuth = FirebaseAuth.getInstance();
         userId = mAuth.getCurrentUser().getUid();
 
@@ -107,18 +103,14 @@ public class SolicitudFragment extends Fragment {
                 Bundle bundle = message.getData();
                 publicaciones = (ArrayList<Publicacion>) bundle.getSerializable("pub");
 
-                adapterPublicaciones = new AdapterListaPublicacionesIntercambio(getContext(), publicaciones, pubXIntercambio, getActivity().getApplication() );
+                adapterPub = new AdapterPubXInt(getContext(), publicaciones, getActivity().getApplication());
 
-                listView.setAdapter(adapterPublicaciones);
+                listView.setAdapter(adapterPub);
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                        Publicacion publicacion = publicaciones.get(position);
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("miPub", publicacion);
-                        bundle.putSerializable("xPub", pubXIntercambio);
-                        Navigation.findNavController(view).navigate(R.id.confirmarEnvioSoliditud,bundle);
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Toast.makeText(getContext(), "Pub" + publicaciones.get(i).getTitulo(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -127,6 +119,7 @@ public class SolicitudFragment extends Fragment {
 
         Thread thread = new Thread(new HiloObtenerDatos());
         thread.start();
+
 
         return view;
     }
@@ -140,7 +133,7 @@ public class SolicitudFragment extends Fragment {
 
             ArrayList<Publicacion> pubs;
 
-            pubs = solicitudViewModel.getAllPublicacionesUser(userId);
+            pubs = solicitudesViewModel.getPublicacionesInter(userId);
 
             bundle.putSerializable("pub", pubs);
             message.setData(bundle);
@@ -152,5 +145,4 @@ public class SolicitudFragment extends Fragment {
             handler.sendMessage(message);
         }
     }
-
 }

@@ -147,6 +147,15 @@
         android:id="@+id/solicitudesRecibidasFragment"
         android:name="com.cabezasfive.truekapp.ui.solicitudesRecibidas.SolicitudesRecibidasFragment"
         android:label="fragment_solicitudes_recibidas"
-        tools:layout="@layout/fragment_solicitudes_recibidas" />
+        tools:layout="@layout/fragment_solicitudes_recibidas" >
+        <action
+            android:id="@+id/action_solicitudesRecibidasFragment_to_verSolicitudesDeIntercambioFragment"
+            app:destination="@id/verSolicitudesDeIntercambioFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/verSolicitudesDeIntercambioFragment"
+        android:name="com.cabezasfive.truekapp.ui.verSolicitudesDeIntercambios.VerSolicitudesDeIntercambioFragment"
+        android:label="fragment_ver_solicitudes_de_intercambio"
+        tools:layout="@layout/fragment_ver_solicitudes_de_intercambio" />
 
 </navigation>

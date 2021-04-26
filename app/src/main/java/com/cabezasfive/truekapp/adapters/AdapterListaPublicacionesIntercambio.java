@@ -19,11 +19,13 @@ public class AdapterListaPublicacionesIntercambio extends BaseAdapter {
     private Context context;
     private ArrayList<Publicacion> publicaciones;
     private Application application;
+    private Publicacion publicacionInterc;
 
-    public AdapterListaPublicacionesIntercambio(Context context, ArrayList<Publicacion> publicaciones, Application application) {
+    public AdapterListaPublicacionesIntercambio(Context context, ArrayList<Publicacion> publicaciones, Publicacion publicacionInterc, Application application) {
         this.context = context;
         this.publicaciones = publicaciones;
         this.application = application;
+        this.publicacionInterc = publicacionInterc;
     }
 
     @Override
@@ -53,20 +55,32 @@ public class AdapterListaPublicacionesIntercambio extends BaseAdapter {
         TextView tvTitulo = view.findViewById(R.id.tvTituloMiPublicacionItemSolicitud);
         TextView tvValor = view.findViewById(R.id.tvValorItemSolicitud);
         ImageView ivImagen = view.findViewById(R.id.ivMiPublicacionItemSolicitud);
-        int valor;
+        int valor, valorPub;
 
         tvTitulo.setText(publicacion.getTitulo());
         if (publicacion.getPrecio() != null){
             valor = Integer.parseInt(publicacion.getPrecio());
+            if (publicacionInterc.getPrecio() != null){
+                valorPub = Integer.parseInt(publicacionInterc.getPrecio());
+                if (valorPub < valor){
+                    tvValor.setText("El valor estimado de tu articulo es: " + valor + "\nEs superior al articulo para intercambiar");
+                }else{
+                    tvValor.setText("El valor estimado de tu articulo es: " + valor + "\nEs menor al articulo para intercambiar");
+                }
+            }else{
+                tvValor.setText("El valor estimado de tu articulo es: " + valor + "\nLa publicacion de intercambio no agrego valor estimado");
+            }
+
         }else{
             valor = 0;
-        }
-
-        if (valor > 0 ){
-            tvValor.setText("Valor estimado: " + valor);
-        }else{
             tvValor.setText("No se agrego un valor estimado");
         }
+
+//        if (valor > 0 ){
+//            tvValor.setText("Valor estimado: " + valor);
+//        }else{
+//            tvValor.setText("No se agrego un valor estimado");
+//        }
 
         if(publicaciones.get(i).getImagen01() != null){
             String url = publicaciones.get(i).getImagen01();

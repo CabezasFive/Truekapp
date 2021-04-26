@@ -91,8 +91,10 @@ public class SolicitudesRecibidasFragment extends Fragment {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Toast.makeText(getContext(), "Se va a ver: " + publicaciones.get(i).getTitulo(), Toast.LENGTH_SHORT).show();
-
+//                        Toast.makeText(getContext(), "Se va a ver: " + publicaciones.get(i).getTitulo(), Toast.LENGTH_SHORT).show();
+                        Bundle bundle1 = new Bundle();
+                        bundle1.putSerializable("publicacion" , publicaciones.get(i));
+                        Navigation.findNavController(view).navigate(R.id.verSolicitudesDeIntercambioFragment, bundle1);
                     }
                 });
 
