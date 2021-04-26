@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.models.Publicacion;
@@ -51,9 +52,9 @@ public class AdapterPublicacionesUser  extends BaseAdapter {
 
         publicacionRepository = new PublicacionRepository(application);
 
-
         Publicacion publicacion = publicaciones.get(i);
 
+        Integer solicitudes = publicacionRepository.cantidadIntercambios(publicacion.getUid());
 
         ImageView imagenV = view.findViewById(R.id.ivPubUserIntercambio);
         TextView tvTitulo = view.findViewById(R.id.tituloPubIntercambio);
@@ -68,7 +69,8 @@ public class AdapterPublicacionesUser  extends BaseAdapter {
                     .into(imagenV);
         }
 
-        tvcantSolicitud.setText("Tienes 5 \nsolicitudes pendientes");
+        tvcantSolicitud.setText("Tienes " + solicitudes + "\nsolicitudes pendientes");
+        Toast.makeText(context, "Tienes : " + solicitudes + " solicitudes", Toast.LENGTH_SHORT).show();
 
 
         return view;

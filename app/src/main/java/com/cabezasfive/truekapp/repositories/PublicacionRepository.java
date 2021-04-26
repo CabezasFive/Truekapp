@@ -28,6 +28,7 @@ public class PublicacionRepository {
     private ArrayList<Publicacion> publicaciones = new ArrayList<>();
     private Integer cantidad = 0;
     String estado;
+    private Integer cantInt;
 
     private Publicacion find = new Publicacion();
 
@@ -175,6 +176,33 @@ public class PublicacionRepository {
         });
         return publicaciones;
     }
+
+
+    /** Obtener la cantidad de intercambios pendientes de una publicacion */
+    public Integer cantidadIntercambios(String pubId){
+        cantInt = 0;
+
+        Query query = databaseReference.child("Publicacion").child(pubId);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    Publicacion publicacion = snapshot.getValue(Publicacion.class);
+                    cantInt = Integer.parseInt(publicacion.getInt_pendiente());
+                }else {
+                    Toast.makeText(application, "No encontro el id de publicacion", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        return cantInt;
+    }
+
 
     public void addPublicacionMutable(Publicacion pub){
         publicacionMutableLiveData.setValue(pub);

@@ -21,5 +21,9 @@ public class SolicitudesRecibidasViewModel extends AndroidViewModel {
     public ArrayList<Publicacion> getAllPublicacionesUser(String userId){
         return publicacionRepository.getAllPublicacionesUser(userId);
     }
+
+    public Integer cantidadIntercambios(String id){
+        return publicacionRepository.cantidadIntercambios(id);
+    }
 }
 
