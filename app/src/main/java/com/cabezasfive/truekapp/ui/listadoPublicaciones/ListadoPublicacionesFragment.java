@@ -126,7 +126,7 @@ public class ListadoPublicacionesFragment extends Fragment {
             bundle.putSerializable("pub", pubs);
             message.setData(bundle);
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1500);
             }catch (InterruptedException e){
 
             }

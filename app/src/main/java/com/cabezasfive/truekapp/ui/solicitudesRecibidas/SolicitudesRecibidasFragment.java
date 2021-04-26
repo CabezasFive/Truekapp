@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +19,11 @@ import android.widget.Toast;
 
 import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.adapters.AdapterListaPublicacionesIntercambio;
+import com.cabezasfive.truekapp.adapters.AdapterListarPublicaciones;
 import com.cabezasfive.truekapp.adapters.AdapterMisPublicaciones;
 import com.cabezasfive.truekapp.adapters.AdapterPublicacionesUser;
 import com.cabezasfive.truekapp.models.Publicacion;
+import com.cabezasfive.truekapp.ui.listadoPublicaciones.ListadoPublicacionesFragment;
 import com.cabezasfive.truekapp.ui.misPublicaciones.MisPublicacionesFragment;
 import com.cabezasfive.truekapp.ui.misPublicaciones.MisPublicacionesViewModel;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,6 +43,8 @@ public class SolicitudesRecibidasFragment extends Fragment {
 
     private String userId;
     private FirebaseAuth mAuth;
+
+    private Handler handler;
 
     public static SolicitudesRecibidasFragment newInstance(String param1, String param2) {
         SolicitudesRecibidasFragment fragment = new SolicitudesRecibidasFragment();
@@ -72,49 +78,91 @@ public class SolicitudesRecibidasFragment extends Fragment {
         userId = mAuth.getCurrentUser().getUid();
 
 
-        TareaAsyncTask tareaAsyncTask = new TareaAsyncTask();
-        tareaAsyncTask.execute();
+//        TareaAsyncTask tareaAsyncTask = new TareaAsyncTask();
+//        tareaAsyncTask.execute();
+
+
+        handler = new Handler(){
+            @Override
+            public void handleMessage(Message message){
+                Bundle bundle= message.getData();
+                publicaciones = (ArrayList<Publicacion>) bundle.getSerializable("pub");
+
+                adapter = new AdapterPublicacionesUser(getContext(), publicaciones,getActivity().getApplication());
+
+                listView.setAdapter(adapter);
+
+
+                adapter.notifyDataSetChanged();
+            }
+        };
+
+        Thread thread = new Thread(new HiloPedidoDatos());
+        thread.start();
+
+
 
         return view;
     }
 
 
-
-
-    private class TareaAsyncTask extends AsyncTask<Void, Integer, ArrayList<Publicacion>> {
-
+    class HiloPedidoDatos implements Runnable{
         @Override
-        protected void onPreExecute(){
+        public void run(){
+            Message message = new Message();
+            Bundle bundle = new Bundle();
 
-        }
+            ArrayList<Publicacion> pubs;
 
-        @Override
-        protected ArrayList<Publicacion> doInBackground(Void... voids) {
-            publicaciones = viewModel.getAllPublicacionesUser(userId);
-            return publicaciones;
-        }
+            pubs = viewModel.getAllPublicacionesUser(userId);
 
-        @Override
-        protected void onProgressUpdate(Integer... values){
+            bundle.putSerializable("pub", pubs);
+            message.setData(bundle);
+            try {
+                Thread.sleep(1500);
+            }catch (InterruptedException e){
 
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<Publicacion> resultado){
-            adapter = new AdapterPublicacionesUser(getContext(), resultado,getActivity().getApplication());
-
-            listView.setAdapter(adapter);
-
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                    Publicacion publicacion = resultado.get(position);
-
-                    Toast.makeText(getContext(), "Ver solicitudes de: " + publicacion.getTitulo(), Toast.LENGTH_SHORT).show();
-                }
-            });
-
-
+            }
+            handler.sendMessage(message);
         }
     }
+
+
+
+//    private class TareaAsyncTask extends AsyncTask<Void, Integer, ArrayList<Publicacion>> {
+//
+//        @Override
+//        protected void onPreExecute(){
+//
+//        }
+//
+//        @Override
+//        protected ArrayList<Publicacion> doInBackground(Void... voids) {
+//            publicaciones = viewModel.getAllPublicacionesUser(userId);
+//            return publicaciones;
+//        }
+//
+//        @Override
+//        protected void onProgressUpdate(Integer... values){
+//
+//        }
+//
+//        @Override
+//        protected void onPostExecute(ArrayList<Publicacion> resultado){
+//            adapter = new AdapterPublicacionesUser(getContext(), resultado,getActivity().getApplication());
+//
+//            listView.setAdapter(adapter);
+//
+//            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+//                    Publicacion publicacion = resultado.get(position);
+//
+//                    Toast.makeText(getContext(), "Ver solicitudes de: " + publicacion.getTitulo(), Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//
+//
+//        }
+//    }
 }
