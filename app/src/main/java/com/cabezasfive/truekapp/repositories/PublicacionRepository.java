@@ -125,6 +125,63 @@ public class PublicacionRepository {
 
 
 
+
+    /** Obtener as las publicaciones de intercambio de un usuario pasando su id y Uid de pub */
+    public ArrayList<Publicacion> getPublicacionesInt(String userId, String pubId){
+        databaseReference.child("users").child(userId).child("int_pendiente").child(pubId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    publicaciones.clear();
+
+                    for (DataSnapshot ds : snapshot.getChildren()){
+                        Publicacion publicacion = ds.getValue(Publicacion.class);
+                        publicaciones.add(publicacion);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return publicaciones;
+    }
+
+
+
+    /** Acepta el intercambio */
+    public void intAceptado(String pubId, String userId){
+        databaseReference.child("Publicacion").child(pubId).child("int_pendiente").setValue("0");
+        databaseReference.child("users").child(userId).child("int_pendiente").child(pubId).setValue(null);
+
+    }
+
+    /** Cancela solicitud de intercambio */
+    public void cancelarSolicitudDeInt(String pubId, String userId, String mPubId){
+        databaseReference.child("Publicacion").child(pubId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot != null){
+                    Publicacion publicacion = snapshot.getValue(Publicacion.class);
+                    cantInt = Integer.parseInt(publicacion.getInt_pendiente());
+                 }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        //cantInt = cantInt - 1;
+        databaseReference.child("Publicacion").child(pubId).child("int_pendiente").setValue(cantInt.toString());
+        databaseReference.child("users").child(userId).child("publicaciones").child(mPubId).child("int_pendiente").setValue(cantInt.toString());
+
+    }
+
+
+
     /** Busca una publicacion por el id pasado como argumento   */
     public Publicacion getPublicacionById(String uid){
 

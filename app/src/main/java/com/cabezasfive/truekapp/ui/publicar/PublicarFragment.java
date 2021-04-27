@@ -240,7 +240,7 @@ public class PublicarFragment extends Fragment  {
                                 });
 
                                 androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                                builder.setTitle("Eliminar Publicación");
+                                builder.setTitle("Publicación Creada");
                                 builder.setMessage("Publicacion creada con exito!")
                                         .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                             @Override

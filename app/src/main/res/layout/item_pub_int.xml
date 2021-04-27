@@ -86,7 +86,7 @@
 
 
         <ImageButton
-            android:id="@+id/btnEditarMiPub"
+            android:id="@+id/btnAceptarInt"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:src="@drawable/ic_check"
@@ -99,14 +99,14 @@
             />
 
         <ImageButton
-            android:id="@+id/btnPausarMiPub"
+            android:id="@+id/btnCancelarInt"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:src="@drawable/ic_not"
             android:backgroundTint="@color/rojo"
             android:scaleType="fitCenter"
-            android:layout_toEndOf="@id/btnEditarMiPub"
-            android:layout_toRightOf="@id/btnEditarMiPub"
+            android:layout_toEndOf="@id/btnAceptarInt"
+            android:layout_toRightOf="@id/btnAceptarInt"
             android:layout_below="@id/tvRechazarInt"
             android:layout_marginLeft="40dp"
             />
