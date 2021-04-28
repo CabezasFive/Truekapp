@@ -58,35 +58,6 @@
                 android:paddingBottom="10dp" />
 
             <EditText
-                android:id="@+id/et_Registro_Direccion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Direccion"
-                android:drawablePadding="10dp"
-                android:background="@drawable/marco_input"
-                android:ems="10"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp" />
-
-            <EditText
-                android:id="@+id/et_Registro_Telefono"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Telefono"
-                android:inputType="number"
-                android:drawablePadding="10dp"
-                android:background="@drawable/marco_input"
-                android:ems="10"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp" />
-
-            <EditText
                 android:id="@+id/et_Registro_NickName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -100,43 +71,14 @@
                 android:paddingRight="10dp"
                 android:paddingBottom="10dp" />
 
-            <EditText
-                android:id="@+id/et_Registro_Email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:drawablePadding="10dp"
-                android:background="@drawable/marco_input"
-                android:ems="10"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp" />
-
-            <EditText
-                android:id="@+id/et_Registro_Password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:drawablePadding="10dp"
-                android:background="@drawable/marco_input"
-                android:ems="10"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="10dp"/>
-
             <Button
                 android:id="@+id/btn_RegistroUsuario"
-                android:layout_width="match_parent"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
+                android:layout_gravity="right"
                 android:background="@drawable/btn_contorno"
-                android:text="REGISTRAR USUARIO"
+                android:text="CONTINUAR"
                 android:backgroundTint="@color/purple_700"/>
 
          </LinearLayout>

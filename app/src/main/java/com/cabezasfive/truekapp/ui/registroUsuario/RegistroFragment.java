@@ -69,7 +69,7 @@ public class RegistroFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=  inflater.inflate(R.layout.fragment_registro, container, false);
+        View view=  inflater.inflate(R.layout.fragment_registro01, container, false);
 
         editTextnombre = view.findViewById(R.id.et_Registro_Nombre);
         editTextapellido = view.findViewById(R.id.et_Registro_Apellido);

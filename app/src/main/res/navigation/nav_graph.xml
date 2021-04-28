@@ -53,7 +53,7 @@
         android:id="@+id/registroFragment"
         android:name="com.cabezasfive.truekapp.ui.registroUsuario.RegistroFragment"
         android:label="fragment_registro"
-        tools:layout="@layout/fragment_registro" >
+        tools:layout="@layout/fragment_registro01" >
         <action
             android:id="@+id/action_registroFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
