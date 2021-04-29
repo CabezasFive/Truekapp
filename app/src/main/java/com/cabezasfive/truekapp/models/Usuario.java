@@ -1,12 +1,15 @@
 package com.cabezasfive.truekapp.models;
 
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
 
     private String id;
     private String nombre;
     private String apellido;
     private String direccion;
     private String telefono;
+    private String ciudad;
     private String email;
     private String nick;
     private String fechaCreado;
@@ -14,17 +17,43 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String nombre, String apellido, String direccion, String telefono, String email, String nick, String fechaCreado) {
+    public Usuario(String id, String nombre, String apellido, String direccion, String telefono, String ciudad, String email, String nick, String fechaCreado) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.ciudad = ciudad;
         this.email = email;
         this.nick = nick;
         this.fechaCreado = fechaCreado;
     }
 
+    public Usuario(String nombre, String apellido, String nick, String fechaCreado) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.nick = nick;
+        this.fechaCreado = fechaCreado;
+    }
+
+
+    public Usuario(String nombre, String apellido, String direccion, String telefono, String ciudad, String nick, String fechaCreado) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.nick = nick;
+        this.fechaCreado = fechaCreado;
+        this.ciudad = ciudad;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
 
     public String getId() {
         return id;

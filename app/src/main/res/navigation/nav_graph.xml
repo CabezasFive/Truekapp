@@ -44,19 +44,16 @@
         android:id="@+id/loginFragment"
         android:name="com.cabezasfive.truekapp.ui.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_registroFragment"
-            app:destination="@id/registroFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/registroFragment"
         android:name="com.cabezasfive.truekapp.ui.registroUsuario.RegistroFragment"
         android:label="fragment_registro"
         tools:layout="@layout/fragment_registro01" >
         <action
-            android:id="@+id/action_registroFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_registroFragment_to_registroFragment02"
+            app:destination="@id/registroFragment02"
+            app:enterAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/categoriasFragment"
@@ -157,5 +154,18 @@
         android:name="com.cabezasfive.truekapp.ui.verSolicitudesDeIntercambios.VerSolicitudesDeIntercambioFragment"
         android:label="fragment_ver_solicitudes_de_intercambio"
         tools:layout="@layout/fragment_ver_solicitudes_de_intercambio" />
+    <fragment
+        android:id="@+id/registroFragment02"
+        android:name="com.cabezasfive.truekapp.ui.registroUsuario.RegistroFragment02"
+        android:label="RegistroFragment02" >
+        <action
+            android:id="@+id/action_registroFragment02_to_registroFragment03"
+            app:destination="@id/registroFragment03"
+            app:enterAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/registroFragment03"
+        android:name="com.cabezasfive.truekapp.ui.registroUsuario.RegistroFragment03"
+        android:label="RegistroFragment03" />
 
 </navigation>
