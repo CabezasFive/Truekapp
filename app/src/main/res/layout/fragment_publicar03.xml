@@ -21,7 +21,7 @@
         >
 
         <TextView
-            android:id="@+id/textPublicar"
+            android:id="@+id/textregistro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nueva Publicacion"
@@ -58,32 +58,29 @@
             android:orientation="vertical">
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/publicacionTitulo"
-                android:hint="Ponle un titulo"
-                app:errorEnabled="true"
-                android:layout_marginTop="25dp"
-                >
+                    <Button
+                        android:id="@+id/btn_Agregar_Foto"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:backgroundTint="@color/verde"
+                        android:gravity="center"
+                        android:text="@string/Agregar_Foto"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        android:textAllCaps="false"/>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tie_Nombre_Producto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:textColor="#000000"
-                    android:textSize="18sp"
-                    android:backgroundTint="@color/blancotransparente"
-                    android:background="@drawable/marco_titulo"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
+                    <ImageView
+                        android:id="@+id/Imagen_Producto"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:layout_margin="10dp"
+                        android:contentDescription="Imagen_Producto" />
 
 
             <Button
-                android:id="@+id/btn_GoForm2Publicar"
+                android:id="@+id/btn_GoForm4Publicar"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -98,8 +95,6 @@
 
     </ScrollView>
     </com.google.android.material.card.MaterialCardView>
-
-
 
 
 </LinearLayout>

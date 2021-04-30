@@ -90,8 +90,8 @@
         android:label="fragment_publicar"
         tools:layout="@layout/fragment_publicar" >
         <action
-            android:id="@+id/action_publicarFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_publicarFragment_to_publicarFragment022"
+            app:destination="@id/publicarFragment022" />
     </fragment>
     <fragment
         android:id="@+id/solicitudFragment"
@@ -167,5 +167,25 @@
         android:id="@+id/registroFragment03"
         android:name="com.cabezasfive.truekapp.ui.registroUsuario.RegistroFragment03"
         android:label="RegistroFragment03" />
+    <fragment
+        android:id="@+id/publicarFragment022"
+        android:name="com.cabezasfive.truekapp.ui.publicar.PublicarFragment02"
+        android:label="PublicarFragment02" >
+        <action
+            android:id="@+id/action_publicarFragment022_to_publicarFragment032"
+            app:destination="@id/publicarFragment032" />
+    </fragment>
+    <fragment
+        android:id="@+id/publicarFragment032"
+        android:name="com.cabezasfive.truekapp.ui.publicar.PublicarFragment03"
+        android:label="PublicarFragment03" >
+        <action
+            android:id="@+id/action_publicarFragment032_to_publicarFragment04"
+            app:destination="@id/publicarFragment04" />
+    </fragment>
+    <fragment
+        android:id="@+id/publicarFragment04"
+        android:name="com.cabezasfive.truekapp.ui.publicar.PublicarFragment04"
+        android:label="PublicarFragment04" />
 
 </navigation>
