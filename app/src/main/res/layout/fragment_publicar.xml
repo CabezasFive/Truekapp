@@ -80,6 +80,27 @@
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/precioTitulo"
+                android:hint="@string/Precio_producto"
+                app:errorEnabled="true"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tie_Precio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:textColor="#000000"
+                    android:textSize="12sp"
+                    android:backgroundTint="@color/blancotransparente"
+                    android:background="@drawable/marco_titulo"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
 
 
             <Button
@@ -99,124 +120,33 @@
     </ScrollView>
     </com.google.android.material.card.MaterialCardView>
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#91D8EE"
+    android:layout_marginHorizontal="5dp"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal"
+    >
 
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/ic_info"
+        android:layout_gravity="center"
+        />
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
+        android:textSize="10sp"
+        android:textStyle="italic"
+        android:text="El precio del producto se tomará solamente como referencia en un intercambio.\nEn ningun momento será mostrado en la publicación."
+        />
 </LinearLayout>
 
 
-
-
-
-
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    tools:context=".ui.publicar.PublicarFragment">-->
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical">-->
-
-<!--        <TextView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:layout_marginTop="15dp"-->
-<!--            android:background="@color/verdeFondo"-->
-<!--            android:gravity="center"-->
-<!--            android:text="@string/agregar_producto"-->
-<!--            android:textColor="#000000"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textSize="20sp" />-->
-
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            style="Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/productNameLayout"-->
-<!--            android:hint="@string/Nombre_producto"-->
-<!--            app:errorEnabled="true">-->
-
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:id="@+id/tie_Nombre_Producto"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="5dp"-->
-<!--                android:inputType="text"-->
-<!--                android:textColor="#000000"-->
-<!--                android:textSize="15sp" />-->
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
-
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            style="Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="@string/Descripcion_producto"-->
-<!--            android:layout_gravity="top"-->
-<!--            app:errorEnabled="true">-->
-
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:id="@+id/tie_Descripción"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="5dp"-->
-<!--                android:padding="50dp"-->
-<!--                android:textColor="#000000"-->
-<!--                android:textSize="15sp"/>-->
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
-
-
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            style="Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="@string/Precio_producto"-->
-<!--            app:errorEnabled="true">-->
-
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:id="@+id/tie_Precio"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:inputType="number"-->
-<!--                android:layout_margin="5dp"-->
-<!--                android:textColor="#000000"-->
-<!--                android:textSize="15sp" />-->
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
-
-<!--        <Button-->
-<!--            android:id="@+id/btn_Agregar_Foto"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="45dp"-->
-<!--            android:layout_marginLeft="70dp"-->
-<!--            android:layout_marginRight="70dp"-->
-<!--            android:backgroundTint="@color/gris"-->
-<!--            android:gravity="center"-->
-<!--            android:text="@string/Agregar_Foto"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="17sp"-->
-<!--            android:textAllCaps="false"/>-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/Imagen_Producto"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="275dp"-->
-<!--            android:layout_margin="10dp"-->
-<!--            android:contentDescription="Imagen_Producto" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/btn_Agregar_producto"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="60dp"-->
-<!--            android:backgroundTint="@color/verdeFondo"-->
-<!--            android:gravity="center"-->
-<!--            android:text="@string/Publicar"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="20sp"-->
-<!--            android:textAllCaps="false"/>-->
-
-<!--    </LinearLayout>-->
-<!--</ScrollView>-->
+</LinearLayout>

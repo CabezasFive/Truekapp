@@ -43,6 +43,6 @@
     <string name="Direccion_producto">Dirección</string>
     <string name="Precio_producto">Precio estimado (UY)</string>
     <string name="Agregar_Foto">Elegir foto del producto</string>
-    <string name="Publicar">Agregar producto</string>
+    <string name="Publicar">Publicar</string>
 
 </resources>
