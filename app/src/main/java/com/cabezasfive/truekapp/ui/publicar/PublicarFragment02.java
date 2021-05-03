@@ -2,54 +2,57 @@ package com.cabezasfive.truekapp.ui.publicar;
 
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import androidx.navigation.Navigation;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
 import com.cabezasfive.truekapp.R;
 import com.cabezasfive.truekapp.models.Publicacion;
 import com.google.android.material.textfield.TextInputEditText;
 
-public class PublicarFragment extends Fragment {
+public class PublicarFragment02 extends Fragment  {
 
-    private TextInputEditText inputTitulo, inputPrecio;
+    private TextInputEditText inputDescripcion;
     private Button btn_Siguiente;
+    private Publicacion mPublicacion = new Publicacion();
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+        super.onCreate(savedInstanceState);}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_publicar, container, false);
+        View view = inflater.inflate(R.layout.fragment_publicar02, container, false);
 
-        inputTitulo = view.findViewById(R.id.tie_Nombre_Producto);
-        inputPrecio = view.findViewById(R.id.tie_Precio);
+        Bundle getUsuario = getArguments();
+        if (getUsuario != null){
+            mPublicacion = (Publicacion) getUsuario.getSerializable("pub");
+        }
 
-        btn_Siguiente = view.findViewById(R.id.btn_GoForm2Publicar);
+        inputDescripcion = view.findViewById(R.id.tie_Descripción);
+
+        btn_Siguiente = view.findViewById(R.id.btn_GoForm3Publicar);
+
 
         btn_Siguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validacion()) {
+                if (validacion()){
                     Publicacion publicacion = new Publicacion();
-                    String titulo = inputTitulo.getText().toString();
-                    String precio = inputPrecio.getText().toString();
-                    publicacion.setTitulo(titulo);
-                    publicacion.setPrecio(precio);
+                    publicacion = mPublicacion;
+                    String descripcion = inputDescripcion.getText().toString();
+                    publicacion.setDescripcion(descripcion);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("pub", publicacion);
-                    Navigation.findNavController(view).navigate(R.id.publicarFragment022, bundle);
+                    Navigation.findNavController(view).navigate(R.id.publicarFragment032,bundle);
                 }
             }
         });
@@ -60,14 +63,13 @@ public class PublicarFragment extends Fragment {
 
     //Valida que este ingresado los valores necesarios
     private boolean validacion() {
-        String titulo = inputTitulo.getText().toString().trim();
-        String precio = inputPrecio.getText().toString().trim();
-
-        if (titulo.equals("") || precio.equals("")) {
-            Toast.makeText(getActivity(), "Debe ingresar los datos", Toast.LENGTH_SHORT).show();
+        String descripcion = inputDescripcion.getText().toString();
+        if(descripcion.equals("")){
+            Toast.makeText(getActivity(), "Debe ingresar una Descripcion", Toast.LENGTH_SHORT).show();
             return false;
-        } else {
+        }else {
             return true;
         }
     }
+
 }

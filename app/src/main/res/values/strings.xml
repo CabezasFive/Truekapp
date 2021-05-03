@@ -26,7 +26,9 @@
     <string name="ayuda_destacados">Selección de los articulos más importantes o de mayor relevancia en cada una de las categorias del site.</string>
     <string name="ayuda_mas_vistos">Selección de los articulos con mayor cantidad de visitas de usuarios en un intervalo previamente determinado. </string>
     <string name="ayuda_FAQ">Por mas preguntas que puedas tener, puedes verificar nuestra seccion de FAQ o dirigirte al inicio con los siguientes botones</string>
-    <string name="Registro">Registro</string>
+    <string name="Registro">Registro nuevo usuario 1/3</string>
+    <string name="Registro2">Registro nuevo usuario 2/3</string>
+    <string name="Registro3">Registro nuevo usuario 3/3</string>
     <string name="iniciar_sesion">Iniciar Sesion</string>
     <string name="correo_elecronico">Correo elecronico</string>
     <string name="password">Password</string>
@@ -37,10 +39,10 @@
 
     <string name="agregar_producto">Ingresar detalles del producto</string>
     <string name="Nombre_producto">Nombre del producto</string>
-    <string name="Descripcion_producto">Descripción</string>
+    <string name="Descripcion_producto">Agregale una descripción</string>
     <string name="Direccion_producto">Dirección</string>
     <string name="Precio_producto">Precio estimado (UY)</string>
     <string name="Agregar_Foto">Elegir foto del producto</string>
-    <string name="Publicar">Agregar producto</string>
+    <string name="Publicar">Publicar</string>
 
 </resources>

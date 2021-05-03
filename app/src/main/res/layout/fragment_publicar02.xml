@@ -21,7 +21,7 @@
         >
 
         <TextView
-            android:id="@+id/textPublicar"
+            android:id="@+id/textregistro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nueva Publicacion"
@@ -57,54 +57,28 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                style="Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/publicacionTitulo"
-                android:hint="Ponle un titulo"
-                app:errorEnabled="true"
-                android:layout_marginTop="25dp"
-                >
+                android:hint="@string/Descripcion_producto"
+                android:layout_gravity="top"
+                app:errorEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tie_Nombre_Producto"
+                    android:id="@+id/tie_Descripción"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
+                    android:layout_margin="5dp"
+                    android:padding="60dp"
                     android:textColor="#000000"
-                    android:textSize="18sp"
-                    android:backgroundTint="@color/blancotransparente"
-                    android:background="@drawable/marco_titulo"
-                    />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/precioTitulo"
-                android:hint="@string/Precio_producto"
-                app:errorEnabled="true"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tie_Precio"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:textColor="#000000"
-                    android:textSize="12sp"
-                    android:backgroundTint="@color/blancotransparente"
-                    android:background="@drawable/marco_titulo"
-                    />
+                    android:textSize="15sp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
 
 
             <Button
-                android:id="@+id/btn_GoForm2Publicar"
+                android:id="@+id/btn_GoForm3Publicar"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -120,33 +94,6 @@
     </ScrollView>
     </com.google.android.material.card.MaterialCardView>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#91D8EE"
-    android:layout_marginHorizontal="5dp"
-    android:layout_marginTop="10dp"
-    android:orientation="horizontal"
-    >
-
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginLeft="5dp"
-        android:src="@drawable/ic_info"
-        android:layout_gravity="center"
-        />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="10dp"
-        android:paddingVertical="5dp"
-        android:textSize="10sp"
-        android:textStyle="italic"
-        android:text="El precio del producto se tomará solamente como referencia en un intercambio.\nEn ningun momento será mostrado en la publicación."
-        />
-</LinearLayout>
-
 
 </LinearLayout>
+

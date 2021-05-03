@@ -14,7 +14,9 @@
             android:id="@+id/action_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:enterAnim="@anim/nav_default_pop_enter_anim"
-            app:exitAnim="@anim/nav_default_pop_exit_anim" />
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_homeFragment_to_registroFragment"
             app:destination="@id/registroFragment" />
@@ -24,11 +26,7 @@
         <action
 
             android:id="@+id/action_homeFragment_to_publicarFragment"
-            app:destination="@id/publicarFragment" /><![CDATA[
-
-            android:id="@+id/action_homeFragment_to_listadoPublicacionesFragment"
-            app:destination="@id/listadoPublicacionesFragment" />
-        ]]>
+            app:destination="@id/publicarFragment" />
         <action
             android:id="@+id/action_homeFragment_to_ayudaActivity"
             app:destination="@id/ayudaActivity" />
@@ -38,25 +36,25 @@
         <action
             android:id="@+id/action_homeFragment_to_perfilFragment"
             app:destination="@id/perfilFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_destacadosFragment"
+            app:destination="@id/destacadosFragment" />
 
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.cabezasfive.truekapp.ui.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_registroFragment"
-            app:destination="@id/registroFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/registroFragment"
         android:name="com.cabezasfive.truekapp.ui.registroUsuario.RegistroFragment"
         android:label="fragment_registro"
-        tools:layout="@layout/fragment_registro" >
+        tools:layout="@layout/fragment_registro01" >
         <action
-            android:id="@+id/action_registroFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_registroFragment_to_registroFragment02"
+            app:destination="@id/registroFragment02"
+            app:enterAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/categoriasFragment"
@@ -71,7 +69,8 @@
         tools:layout="@layout/fragment_ver_publicacion" >
         <action
             android:id="@+id/action_verPublicacion_to_solicitudFragment"
-            app:destination="@id/solicitudFragment" />
+            app:destination="@id/solicitudFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/listadoPublicacionesFragment"
@@ -93,17 +92,14 @@
         android:label="fragment_publicar"
         tools:layout="@layout/fragment_publicar" >
         <action
-            android:id="@+id/action_publicarFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_publicarFragment_to_publicarFragment022"
+            app:destination="@id/publicarFragment022" />
     </fragment>
     <fragment
         android:id="@+id/solicitudFragment"
         android:name="com.cabezasfive.truekapp.ui.solicitudIntercambio.SolicitudFragment"
         android:label="fragment_solicitud"
         tools:layout="@layout/fragment_solicitud" >
-        <action
-            android:id="@+id/action_solicitudFragment_to_verPublicacion"
-            app:destination="@id/verPublicacion" />
         <action
             android:id="@+id/action_solicitudFragment_to_confirmarEnvioSoliditud"
             app:destination="@id/confirmarEnvioSoliditud" />
@@ -112,16 +108,16 @@
         android:id="@+id/publicacionBorradaFragment"
         android:name="com.cabezasfive.truekapp.ui.publicacionBorrada.PublicacionBorradaFragment"
         android:label="fragment_publicacion_borrada"
-        tools:layout="@layout/fragment_publicacion_borrada" />
+        tools:layout="@layout/fragment_publicacion_borrada" >
+        <action
+            android:id="@+id/action_publicacionBorradaFragment_to_misPublicacionesFragment"
+            app:destination="@id/misPublicacionesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/confirmarEnvioSoliditud"
         android:name="com.cabezasfive.truekapp.ui.confirmarEnvioSolicitud.ConfirmarEnvioSoliditud"
         android:label="fragment_confirmar_envio_soliditud"
-        tools:layout="@layout/fragment_confirmar_envio_soliditud" >
-        <action
-            android:id="@+id/action_confirmarEnvioSoliditud_to_solicitudFragment"
-            app:destination="@id/solicitudFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_confirmar_envio_soliditud" />
     <fragment
         android:id="@+id/perfilFragment"
         android:name="com.cabezasfive.truekapp.ui.perfilUsuario.PerfilFragment"
@@ -133,6 +129,9 @@
         <action
             android:id="@+id/action_perfilFragment_to_solicitudesRecibidasFragment"
             app:destination="@id/solicitudesRecibidasFragment" />
+        <action
+            android:id="@+id/action_perfilFragment_to_editarUsuarioFragment"
+            app:destination="@id/editarUsuarioFragment" />
     </fragment>
     <fragment
         android:id="@+id/misPublicacionesFragment"
@@ -142,6 +141,9 @@
         <action
             android:id="@+id/action_misPublicacionesFragment_to_publicacionBorradaFragment"
             app:destination="@id/publicacionBorradaFragment" />
+        <action
+            android:id="@+id/action_misPublicacionesFragment_to_editPublicacionFragment"
+            app:destination="@id/editPublicacionFragment" />
     </fragment>
     <fragment
         android:id="@+id/solicitudesRecibidasFragment"
@@ -157,5 +159,63 @@
         android:name="com.cabezasfive.truekapp.ui.verSolicitudesDeIntercambios.VerSolicitudesDeIntercambioFragment"
         android:label="fragment_ver_solicitudes_de_intercambio"
         tools:layout="@layout/fragment_ver_solicitudes_de_intercambio" />
+    <fragment
+        android:id="@+id/registroFragment02"
+        android:name="com.cabezasfive.truekapp.ui.registroUsuario.RegistroFragment02"
+        android:label="RegistroFragment02" >
+        <action
+            android:id="@+id/action_registroFragment02_to_registroFragment03"
+            app:destination="@id/registroFragment03"
+            app:enterAnim="@android:anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/registroFragment03"
+        android:name="com.cabezasfive.truekapp.ui.registroUsuario.RegistroFragment03"
+        android:label="RegistroFragment03" />
+    <fragment
+        android:id="@+id/publicarFragment022"
+        android:name="com.cabezasfive.truekapp.ui.publicar.PublicarFragment02"
+        android:label="PublicarFragment02" >
+        <action
+            android:id="@+id/action_publicarFragment022_to_publicarFragment032"
+            app:destination="@id/publicarFragment032" />
+    </fragment>
+    <fragment
+        android:id="@+id/publicarFragment032"
+        android:name="com.cabezasfive.truekapp.ui.publicar.PublicarFragment03"
+        android:label="PublicarFragment03" >
+    </fragment>
+    <fragment
+        android:id="@+id/destacadosFragment"
+        android:name="com.cabezasfive.truekapp.ui.listaDestacados.DestacadosFragment"
+        android:label="fragment_destacados"
+        tools:layout="@layout/fragment_destacados" >
+        <action
+            android:id="@+id/action_destacadosFragment_to_perfilFragment"
+            app:destination="@id/perfilFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_raph"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/editarUsuarioFragment"
+        android:name="com.cabezasfive.truekapp.ui.editarUsuario.EditarUsuarioFragment"
+        android:label="fragment_editar_usuario"
+        tools:layout="@layout/fragment_editar_usuario" >
+        <action
+            android:id="@+id/action_editarUsuarioFragment_to_perfilFragment"
+            app:destination="@id/perfilFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPublicacionFragment"
+        android:name="com.cabezasfive.truekapp.ui.editarPublicacion.EditPublicacionFragment"
+        android:label="fragment_edit_publicacion"
+        tools:layout="@layout/fragment_edit_publicacion" >
+        <action
+            android:id="@+id/action_editPublicacionFragment_to_misPublicacionesFragment"
+            app:destination="@id/misPublicacionesFragment" />
+    </fragment>
 
 </navigation>

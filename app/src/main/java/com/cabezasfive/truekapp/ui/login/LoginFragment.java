@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import android.os.Handler;
@@ -95,7 +97,8 @@ public class LoginFragment extends Fragment  {
         tvRegistrarse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(getView()).navigate(R.id.registroFragment);
+                Navigation.findNavController(view).popBackStack(R.id.homeFragment, true);
+                Navigation.findNavController(view).navigate(R.id.registroFragment);
             }
         });
 

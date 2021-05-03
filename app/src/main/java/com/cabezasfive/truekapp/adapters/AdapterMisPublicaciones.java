@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -142,6 +143,15 @@ public class AdapterMisPublicaciones extends BaseAdapter {
                         .show();
             }
 
+        });
+
+        btnEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("publicacion", publicaciones.get(i));
+                Navigation.findNavController(view).navigate(R.id.action_misPublicacionesFragment_to_editPublicacionFragment, bundle);
+            }
         });
 
 
