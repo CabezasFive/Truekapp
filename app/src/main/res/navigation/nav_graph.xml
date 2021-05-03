@@ -108,7 +108,11 @@
         android:id="@+id/publicacionBorradaFragment"
         android:name="com.cabezasfive.truekapp.ui.publicacionBorrada.PublicacionBorradaFragment"
         android:label="fragment_publicacion_borrada"
-        tools:layout="@layout/fragment_publicacion_borrada" />
+        tools:layout="@layout/fragment_publicacion_borrada" >
+        <action
+            android:id="@+id/action_publicacionBorradaFragment_to_misPublicacionesFragment"
+            app:destination="@id/misPublicacionesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/confirmarEnvioSoliditud"
         android:name="com.cabezasfive.truekapp.ui.confirmarEnvioSolicitud.ConfirmarEnvioSoliditud"
@@ -137,6 +141,9 @@
         <action
             android:id="@+id/action_misPublicacionesFragment_to_publicacionBorradaFragment"
             app:destination="@id/publicacionBorradaFragment" />
+        <action
+            android:id="@+id/action_misPublicacionesFragment_to_editPublicacionFragment"
+            app:destination="@id/editPublicacionFragment" />
     </fragment>
     <fragment
         android:id="@+id/solicitudesRecibidasFragment"
@@ -200,6 +207,15 @@
             android:id="@+id/action_editarUsuarioFragment_to_perfilFragment"
             app:destination="@id/perfilFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/editPublicacionFragment"
+        android:name="com.cabezasfive.truekapp.ui.editarPublicacion.EditPublicacionFragment"
+        android:label="fragment_edit_publicacion"
+        tools:layout="@layout/fragment_edit_publicacion" >
+        <action
+            android:id="@+id/action_editPublicacionFragment_to_misPublicacionesFragment"
+            app:destination="@id/misPublicacionesFragment" />
     </fragment>
 
 </navigation>

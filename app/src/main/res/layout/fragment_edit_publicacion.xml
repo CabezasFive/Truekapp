@@ -1,79 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.editarPublicacion.EditPublicacionFragment">
+    tools:context=".ui.editarPublicacion.EditPublicacionFragment"
+    android:background="@drawable/fondoregistro">
 
 
-    <Button
-        android:id="@+id/btn_EditPub"
-        android:layout_width="214dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="40dp"
-        android:text="EDITAR"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_EditDescripcionPub" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="-25dp"
+            android:background="@drawable/marco_titulo"
+            android:elevation="8dp">
 
-    <Button
-        android:id="@+id/btn_DeletePub"
-        android:layout_width="214dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="112dp"
-        android:text="BORRAR"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toStartOf="parent"
-        android:backgroundTint="@color/rojo"
-        app:layout_constraintTop_toBottomOf="@+id/tv_EditDescripcionPub" />
+            <TextView
+                android:id="@+id/textregistro2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Editar Publicacion"
+                android:textColor="@color/rojointenso"
+                android:textSize="15sp" />
 
-    <TextView
-        android:id="@+id/tv_EditDescripcionPub"
-        android:layout_width="327dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="24dp"
-        android:text="Ingresa una descripcion"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_EditDescrPub" />
+        </RelativeLayout>
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_EditTituloPub"
-        android:layout_width="323dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="64dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="15dp"
+            android:background="@color/blancotransparente">
 
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp">
 
-    <EditText
-        android:id="@+id/et_EditDescrPub"
-        android:layout_width="319dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.521"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EdittextView2" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/EdittextView2"
-        android:layout_width="219dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="32dp"
-        android:text="Ingresa el Titulo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_EditTituloPub" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tituloEdit"
+                        android:hint="Titulo"
+                        android:layout_marginTop="5dp"
+                        >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_Edit_Titulo_Pub"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:textColor="#000000"
+                            android:textSize="12sp"
+                            android:backgroundTint="@color/blancotransparente"
+                            android:background="@drawable/marco_titulo"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/descripcionEdit"
+                        android:hint="Descripción"
+                        android:layout_marginTop="5dp"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_Edit_Descripcion_Pub"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:textColor="#000000"
+                            android:textSize="12sp"
+                            android:padding="40dp"
+                            android:backgroundTint="@color/blancotransparente"
+                            android:background="@drawable/marco_titulo"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/valorEdit"
+                        android:hint="Valor aproximado"
+                        android:layout_marginTop="5dp"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/et_Edit_Valor_Pub"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:textColor="#000000"
+                            android:textSize="12sp"
+                            android:backgroundTint="@color/blancotransparente"
+                            android:background="@drawable/marco_titulo"
+                            />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_Edit_Imagen_Pub"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_margin="10dp"
+                        android:contentDescription="Imagen_Producto"
+                        android:background="@color/gris"/>
+
+                    <Button
+                        android:id="@+id/btn_Modificar_Foto"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:backgroundTint="@color/teal_700"
+                        android:gravity="center"
+                        android:text="Cambiar Foto"
+                        android:textColor="@color/black"
+                        android:textSize="10sp"
+                        android:textAllCaps="false"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnCancelEditPub"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Cancelar"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:layout_margin="5dp"
+                            android:backgroundTint="@color/rojo"
+                            />
+
+                        <Button
+                            android:id="@+id/btnGuardarEditPub"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Guardar"
+                            android:layout_marginTop="10dp"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/verde"
+                            />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+
+</RelativeLayout>
