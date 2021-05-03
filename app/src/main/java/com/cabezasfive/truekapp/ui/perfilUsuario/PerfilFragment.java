@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -62,7 +63,7 @@ public class PerfilFragment extends Fragment {
         cardPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Aqui va a editar el perfil de usuario
+                Navigation.findNavController(view).navigate(R.id.action_perfilFragment_to_editarUsuarioFragment);
             }
         });
 
@@ -77,6 +78,7 @@ public class PerfilFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // Aqui a la gestion de creditos de usuario
+                Navigation.findNavController(view).navigate(R.id.listadoPublicacionesFragment);
             }
         });
 
