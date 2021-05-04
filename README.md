@@ -1,5 +1,5 @@
 # Truekapp
-**Truekapp** es una aplicacion creada en Android Studio para el intercambio de vienes y servicios de manera gratuita utilizando la modalidad de trueque.
+**Truekapp** es una aplicacion creada en Android Studio para el intercambio de bienes y servicios de manera gratuita utilizando la modalidad de trueque.
 Esta es la version Android de TruekappWeb que fue desarrollada como proyecto final b_IT 1er año. 
 
 ![image](https://github.com/CabezasFive/Truekapp/blob/master/Captura00.PNG)
